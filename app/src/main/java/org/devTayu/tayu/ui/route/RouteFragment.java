@@ -22,12 +22,13 @@ public class RouteFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         routeViewModel =
                 new ViewModelProvider(this).get(RouteViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_route, container, false);
+        View root = inflater.inflate(R.layout.activity_map, container, false);
+//        View root = inflater.inflate(R.layout.fragment_route, container, false);
         final TextView textView = root.findViewById(R.id.text_route);
         routeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+//                textView.setText(s);
             }
         });
         return root;

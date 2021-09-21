@@ -1,5 +1,6 @@
 package org.devTayu.tayu;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
+
     // Toolbar
     public void setToolbar() {
         toolbar = findViewById(R.id.toolbar);
