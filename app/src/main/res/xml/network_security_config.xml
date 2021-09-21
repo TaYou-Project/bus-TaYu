@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- http 통신 허용 -->
 <network-security-config>
     <base-config cleartextTrafficPermitted="true">
         <trust-anchors>

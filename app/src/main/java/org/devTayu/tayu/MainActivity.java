@@ -25,6 +25,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import org.devTayu.tayu.activity.LikedActivity;
+import org.devTayu.tayu.activity.ReserveActivity;
+import org.devTayu.tayu.activity.RouteActivity;
+import org.devTayu.tayu.activity.SetupActivity;
 import org.jetbrains.annotations.NotNull;
 
 import java.security.MessageDigest;
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setBottomNavigationView();
 
         //해시키
-        getHashKey();
+        //getHashKey();
     }
 
     //해시키
@@ -141,7 +145,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.devContect:
                 Toast.makeText(MainActivity.this, "Contect to DEV@gmail.com", Toast.LENGTH_LONG).show();
                 break;
+
+            /*case R.id.navigation_route:
+                startActivity(new Intent(this, RouteActivity.class));
+            case R.id.navigation_reserve:
+                startActivity(new Intent(this, ReserveActivity.class));
+            case R.id.navigation_liked:
+                startActivity(new Intent(this, LikedActivity.class));
+            case R.id.navigation_setup:
+                startActivity(new Intent(this, SetupActivity.class));*/
         }
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
