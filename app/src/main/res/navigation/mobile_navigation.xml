@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_route">
+
+    <fragment
+        android:id="@+id/navigation_route"
+        android:name="org.devTayu.tayu.ui.route.RouteFragment"
+        android:label="@string/title_route"
+        tools:layout="@layout/fragment_route" />
+    <fragment
+        android:id="@+id/navigation_reserve"
+        android:name="org.devTayu.tayu.ui.reserve.ReserveFragment"
+        android:label="@string/title_reserve"
+        tools:layout="@layout/fragment_reserve" />
+
+    <fragment
+        android:id="@+id/navigation_liked"
+        android:name="org.devTayu.tayu.ui.liked.LikedFragment"
+        android:label="@string/title_liked"
+        tools:layout="@layout/fragment_liked" />
+
+    <fragment
+        android:id="@+id/navigation_setup"
+        android:name="org.devTayu.tayu.ui.setup.SetupFragment"
+        android:label="@string/title_setup"
+        tools:layout="@layout/fragment_setup" />
+</navigation>

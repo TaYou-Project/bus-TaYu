@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--햄버거 메뉴는 따로 MainActivity setToolbar() 에서 추가-->
+
+    <!-- 우측 메뉴 필요 시 사용
+    <item
+        android:id="@+id/menu_drawer"
+        android:title="MENU"
+        android:icon="@drawable/ic_baseline_menu_24"
+        app:showAsAction="always"
+        />
+    -->
+</menu>
