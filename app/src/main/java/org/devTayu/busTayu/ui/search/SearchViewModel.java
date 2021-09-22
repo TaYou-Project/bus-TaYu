@@ -1,16 +1,16 @@
-package org.devTayu.tayu.ui.liked;
+package org.devTayu.busTayu.ui.search;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class LikedViewModel extends ViewModel {
+public class SearchViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public LikedViewModel() {
+    public SearchViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is liked 즐겨찾기 fragment");
+        mText.setValue("This is 검색 search fragment");
     }
 
     public LiveData<String> getText() {

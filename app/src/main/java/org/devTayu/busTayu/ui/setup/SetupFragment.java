@@ -1,4 +1,4 @@
-package org.devTayu.tayu.ui.liked;
+package org.devTayu.busTayu.ui.setup;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,19 +12,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.devTayu.tayu.R;
+import org.devTayu.busTayu.R;
 
-public class LikedFragment extends Fragment {
+public class SetupFragment extends Fragment {
 
-    private LikedViewModel likedViewModel;
+    private SetupViewModel setupViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        likedViewModel =
-                new ViewModelProvider(this).get(LikedViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_liked, container, false);
-        final TextView textView = root.findViewById(R.id.text_liked);
-        likedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        setupViewModel =
+                new ViewModelProvider(this).get(SetupViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_setup, container, false);
+        final TextView textView = root.findViewById(R.id.text_setup);
+        setupViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

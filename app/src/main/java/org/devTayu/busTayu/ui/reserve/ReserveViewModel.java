@@ -1,4 +1,4 @@
-package org.devTayu.tayu.ui.reserve;
+package org.devTayu.busTayu.ui.reserve;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

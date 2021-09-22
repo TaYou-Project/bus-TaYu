@@ -1,6 +1,5 @@
-package org.devTayu.tayu;
+package org.devTayu.busTayu;
 
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -25,10 +24,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import org.devTayu.tayu.activity.LikedActivity;
-import org.devTayu.tayu.activity.ReserveActivity;
-import org.devTayu.tayu.activity.RouteActivity;
-import org.devTayu.tayu.activity.SetupActivity;
 import org.jetbrains.annotations.NotNull;
 
 import java.security.MessageDigest;
@@ -56,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setBottomNavigationView();
 
         //해시키
-        //getHashKey();
+        getHashKey();
     }
 
     //해시키
@@ -129,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_route, R.id.navigation_reserve, R.id.navigation_liked, R.id.navigation_setup)
+                R.id.menu_liked, R.id.menu_reserve, R.id.menu_around, R.id.menu_search)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
@@ -138,16 +133,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // NavigationItem 메뉴 선택 시 이벤트
     public boolean onNavigationItemSelected(@NotNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.login:
+            case R.id.menu_login:
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_LONG).show();
                 break;
 
-            case R.id.devContect:
+            case R.id.menu_devContect:
                 Toast.makeText(MainActivity.this, "Contect to DEV@gmail.com", Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.menu_notification:
+                Toast.makeText(MainActivity.this, "notification", Toast.LENGTH_LONG).show();
                 break;
 
             /*case R.id.navigation_route:
                 startActivity(new Intent(this, RouteActivity.class));
+            case R.id.navigation_around:
+                startActivity(new Intent(this, AroundActivity.class));
+            case R.id.navigation_search:
+                startActivity(new Intent(this, SearchActivity.class));
             case R.id.navigation_reserve:
                 startActivity(new Intent(this, ReserveActivity.class));
             case R.id.navigation_liked:
@@ -184,7 +187,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (0 <= gapTime && 2000 >= gapTime) {
             super.onBackPressed();
-        } else {
+        }
+        else {
             backBtnTime = currentTime;
             Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }

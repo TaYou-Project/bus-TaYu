@@ -1,4 +1,4 @@
-package org.devTayu.tayu.ui.setup;
+package org.devTayu.busTayu.ui.route;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,22 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.devTayu.tayu.R;
+import org.devTayu.busTayu.R;
 
-public class SetupFragment extends Fragment {
+public class RouteFragment extends Fragment {
 
-    private SetupViewModel setupViewModel;
+    private RouteViewModel routeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        setupViewModel =
-                new ViewModelProvider(this).get(SetupViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_setup, container, false);
-        final TextView textView = root.findViewById(R.id.text_setup);
-        setupViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        routeViewModel =
+                new ViewModelProvider(this).get(RouteViewModel.class);
+//        View root = inflater.inflate(R.layout.activity_map, container, false);
+        View root = inflater.inflate(R.layout.fragment_route, container, false);
+        final TextView textView = root.findViewById(R.id.text_route);
+        routeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+//                textView.setText(s);
             }
         });
         return root;

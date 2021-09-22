@@ -1,4 +1,4 @@
-package org.devTayu.tayu.activity;
+package org.devTayu.busTayu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

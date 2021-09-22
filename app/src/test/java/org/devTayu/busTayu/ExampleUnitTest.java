@@ -1,4 +1,4 @@
-package org.devTayu.tayu;
+package org.devTayu.busTayu;
 
 import org.junit.Test;
 

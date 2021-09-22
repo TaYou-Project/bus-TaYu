@@ -1,16 +1,16 @@
-package org.devTayu.tayu.ui.setup;
+package org.devTayu.busTayu.ui.around;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SetupViewModel extends ViewModel {
+public class AroundViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SetupViewModel() {
+    public AroundViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is 설정 setup fragment");
+        mText.setValue("This is around 주위 fragment");
     }
 
     public LiveData<String> getText() {

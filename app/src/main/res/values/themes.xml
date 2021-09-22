@@ -3,7 +3,7 @@
     Default ActionBar
     parent="Theme.MaterialComponents.DayNight.DarkActionBar"
     -->
-    <style name="Theme.TaYu" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.BusTAYU" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

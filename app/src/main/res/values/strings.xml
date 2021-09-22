@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">TaYu</string>
+    <string name="app_name">BusTAYU</string>
     <string name="title_route">경로</string>
+    <string name="title_around">주변검색</string>
     <string name="title_reserve">예약</string>
     <string name="title_liked">즐겨찾기</string>
     <string name="title_setup">설정</string>
+    <string name="title_search">검색</string>
+    <string name="title_notification">알림</string>
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
 </resources>

@@ -6,7 +6,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "org.techtown.tayu"
+        applicationId "org.devTayu.bustayu"
         minSdkVersion 26
         // targetSdkVersion 29에서 http 고쳐보려고 내림
         targetSdkVersion 26

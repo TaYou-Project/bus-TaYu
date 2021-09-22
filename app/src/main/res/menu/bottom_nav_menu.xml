@@ -2,22 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_route"
-        android:icon="@drawable/ic_baseline_map_24"
-        android:title="@string/title_route" />
-    <item
-        android:id="@+id/navigation_reserve"
-        android:icon="@drawable/ic_baseline_access_time_filled_24"
-        android:title="@string/title_reserve" />
-
-    <item
-        android:id="@+id/navigation_liked"
+        android:id="@+id/menu_liked"
         android:icon="@drawable/ic_baseline_bookmarks_24"
         android:title="@string/title_liked" />
 
     <item
-        android:id="@+id/navigation_setup"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/title_setup" />
+        android:id="@+id/menu_reserve"
+        android:icon="@drawable/ic_baseline_access_time_filled_24"
+        android:title="@string/title_reserve" />
+
+    <item
+        android:id="@+id/menu_around"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/title_around" />
+
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/title_search" />
 
 </menu>

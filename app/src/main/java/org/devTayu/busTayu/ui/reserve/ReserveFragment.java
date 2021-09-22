@@ -1,4 +1,4 @@
-package org.devTayu.tayu.ui.reserve;
+package org.devTayu.busTayu.ui.reserve;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.devTayu.tayu.R;
+import org.devTayu.busTayu.R;
 
 public class ReserveFragment extends Fragment {
 

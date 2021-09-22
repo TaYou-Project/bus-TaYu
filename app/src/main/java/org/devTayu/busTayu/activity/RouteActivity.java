@@ -1,4 +1,4 @@
-package org.devTayu.tayu.activity;
+package org.devTayu.busTayu.activity;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -20,7 +20,7 @@ import android.widget.Toast;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
-import org.devTayu.tayu.R;
+import org.devTayu.busTayu.R;
 
 public class RouteActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
 
