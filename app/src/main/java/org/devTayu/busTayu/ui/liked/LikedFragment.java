@@ -18,6 +18,18 @@ public class LikedFragment extends Fragment {
 
     private LikedViewModel likedViewModel;
 
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_liked, container, false);
+
+        return root;
+    }
+}
+
+/*
+public class LikedFragment extends Fragment {
+
+    private LikedViewModel likedViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         likedViewModel =
@@ -33,3 +45,4 @@ public class LikedFragment extends Fragment {
         return root;
     }
 }
+*/

@@ -1,5 +1,6 @@
 package org.devTayu.busTayu;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -24,6 +25,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import org.devTayu.busTayu.activity.RouteActivity;
 import org.jetbrains.annotations.NotNull;
 
 import java.security.MessageDigest;
@@ -51,11 +53,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setBottomNavigationView();
 
         //해시키
-        getHashKey();
+        //getHashKey();
     }
 
     //해시키
-    private void getHashKey(){
+    public void getHashKey(){
         PackageInfo packageInfo = null;
         try {
             packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -124,29 +126,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.menu_liked, R.id.menu_reserve, R.id.menu_around, R.id.menu_search)
+                R.id.menu_liked, R.id.menu_reserve, R.id.menu_around, R.id.menu_search, R.id.menu_route)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
-    // NavigationItem 메뉴 선택 시 이벤트
+
+    // 메뉴 선택 시 이벤트
     public boolean onNavigationItemSelected(@NotNull MenuItem item) {
         switch (item.getItemId()) {
+            // drawer login
             case R.id.menu_login:
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_LONG).show();
                 break;
-
-            case R.id.menu_devContect:
-                Toast.makeText(MainActivity.this, "Contect to DEV@gmail.com", Toast.LENGTH_LONG).show();
+            // drawer Contact
+            case R.id.menu_devContact:
+                Toast.makeText(MainActivity.this, "Contact to DEV@gmail.com", Toast.LENGTH_LONG).show();
                 break;
-
+            // top notification
             case R.id.menu_notification:
                 Toast.makeText(MainActivity.this, "notification", Toast.LENGTH_LONG).show();
                 break;
-
-            /*case R.id.navigation_route:
+            case R.id.menu_route:
                 startActivity(new Intent(this, RouteActivity.class));
+                overridePendingTransition(0,0);
+                return true;
+            /*
             case R.id.navigation_around:
                 startActivity(new Intent(this, AroundActivity.class));
             case R.id.navigation_search:
@@ -156,7 +162,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_liked:
                 startActivity(new Intent(this, LikedActivity.class));
             case R.id.navigation_setup:
-                startActivity(new Intent(this, SetupActivity.class));*/
+                    Intent intent = new Intent(getApplicationContext(), NoticeActivity.class);
+                    startActivity(intent);
+            */
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

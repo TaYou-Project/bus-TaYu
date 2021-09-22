@@ -21,4 +21,9 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/title_search" />
 
+    <item
+        android:id="@+id/menu_route"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/title_route" />
+
 </menu>

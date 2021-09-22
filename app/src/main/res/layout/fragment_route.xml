@@ -1,93 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.route.RouteFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonGPS"
-        android:contentDescription="GPS setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="100dp"
-        android:backgroundTint="#D1D0D0"
-        android:clickable="true"
-        android:src="@drawable/ic_baseline_gps_fixed_24"
-        app:borderWidth="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <net.daum.mf.map.api.MapView
+        android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="30dp">
+        android:layout_height="match_parent" />
 
-        <RelativeLayout
-            android:id="@+id/relativeRoot_route"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- mapView
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/mapView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            -->
-
-            <!-- 검색 창 -->
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/some_id"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/border_all">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="목적지 검색" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!---->
-
-           <!-- 기존 -->
-            <TextView
-                android:id="@+id/text_route"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- 연습
-            <TextView
-                android:id="@+id/text_route2"
-                android:text="안녕"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:background="@color/black"
-                android:layout_below="@+id/text_route" />
-            -->
-
-        </RelativeLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
