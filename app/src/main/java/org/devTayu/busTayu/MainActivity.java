@@ -25,6 +25,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import org.devTayu.busTayu.activity.LocationActivity;
 import org.devTayu.busTayu.activity.RouteActivity;
 import org.jetbrains.annotations.NotNull;
 

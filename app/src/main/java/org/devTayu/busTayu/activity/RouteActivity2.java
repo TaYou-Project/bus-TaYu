@@ -1,3 +1,4 @@
+/*
 package org.devTayu.busTayu.activity;
 
 import android.Manifest;
@@ -6,32 +7,25 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.location.LocationManager;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
-
-import android.util.Base64;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
 import org.devTayu.busTayu.R;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-public class RouteActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
+public class RouteActivity2 extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
 
     public static final String LOG_TAG = "RouteActivity";
 
@@ -44,26 +38,18 @@ public class RouteActivity extends AppCompatActivity implements MapView.CurrentL
     public static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION};
 
-    public RouteActivity(Context context, FragmentActivity activity) {
+    public RouteActivity2(Context context, FragmentActivity activity) {
         this.mContext = mContext;
         this.activity = activity;
-        getMap();
-    }
-
-    public void getMap(){
-        Log.d("유소정", "**************** RouteActivity getMap() 찍힘 ****************");
-    }
-
-    public void getTest(){
-        Log.d("유소정", "**************** RouteActivity getTest() 찍힘 ****************");
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.fragment_route);
+       // setContentView(R.layout.fragment_route);
 
-        //지도
+        //지도를 띄우자
+        // java code
         mapView = new MapView(this);
         mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
@@ -132,10 +118,10 @@ public class RouteActivity extends AppCompatActivity implements MapView.CurrentL
             } else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있다
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
-                    Toast.makeText(RouteActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RouteActivity2.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    Toast.makeText(RouteActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RouteActivity2.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -145,7 +131,7 @@ public class RouteActivity extends AppCompatActivity implements MapView.CurrentL
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
-        int hasFineLocationPermission = ContextCompat.checkSelfPermission(RouteActivity.this,
+        int hasFineLocationPermission = ContextCompat.checkSelfPermission(RouteActivity2.this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED) {
@@ -155,16 +141,16 @@ public class RouteActivity extends AppCompatActivity implements MapView.CurrentL
 
         } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
             // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
-            if (ActivityCompat.shouldShowRequestPermissionRationale(RouteActivity.this, REQUIRED_PERMISSIONS[0])) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(RouteActivity2.this, REQUIRED_PERMISSIONS[0])) {
                 // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
-                Toast.makeText(RouteActivity.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(RouteActivity2.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
                 // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
-                ActivityCompat.requestPermissions(RouteActivity.this, REQUIRED_PERMISSIONS,
+                ActivityCompat.requestPermissions(RouteActivity2.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             } else {
                 // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
                 // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
-                ActivityCompat.requestPermissions(RouteActivity.this, REQUIRED_PERMISSIONS,
+                ActivityCompat.requestPermissions(RouteActivity2.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
         }
@@ -173,7 +159,7 @@ public class RouteActivity extends AppCompatActivity implements MapView.CurrentL
     //여기부터는 GPS 활성화를 위한 메소드들
     public void showDialogForLocationServiceSetting() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(RouteActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(RouteActivity2.this);
         builder.setTitle("위치 서비스 비활성화");
         builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
                 + "위치 설정을 수정하시겠습니까?");
@@ -264,4 +250,4 @@ public class RouteActivity extends AppCompatActivity implements MapView.CurrentL
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
 
     }
-}
+}*/

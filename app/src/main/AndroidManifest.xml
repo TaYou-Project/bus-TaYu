@@ -4,6 +4,7 @@
 
     <!-- Permission  -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -40,6 +41,7 @@
         <activity android:name="org.devTayu.busTayu.activity.ReserveActivity"></activity>
         <activity android:name="org.devTayu.busTayu.activity.AroundActivity"></activity>
         <activity android:name="org.devTayu.busTayu.activity.SearchActivity"></activity>
+
     </application>
 
 </manifest>

@@ -19,16 +19,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.devTayu.busTayu.MainActivity;
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.LocationActivity;
 import org.devTayu.busTayu.activity.RouteActivity;
 
 public class RouteFragment extends Fragment {
 
-    private RouteActivity routeActivity;
+    RouteActivity routeActivity;
+    LocationActivity locationActivity;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        routeActivity = new RouteActivity();
+        routeActivity = new RouteActivity(context, getActivity());
+        locationActivity = new LocationActivity(context, getActivity());
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +44,8 @@ public class RouteFragment extends Fragment {
             @Override
             public void run() {
                 initUI(root);
+                String getTextView = locationActivity.getTextView();
+                Log.d("유소정", "**************** 주소 찍힘 ****************"+ "LocationActivity:"+ getTextView);
             }
         }).start();
 
@@ -66,10 +71,12 @@ public class RouteFragment extends Fragment {
     }
 
     public void initUI(View root) {
-        Log.d("안녕", "**************** 루트 프래그먼트 찍힘 ****************");
+        Log.d("유소정", "**************** RouteFragment 찍힘 ****************");
         //Intent aboutScreen = new Intent(getContext(), RouteActivity.class);
         //this.startActivity(aboutScreen);
-        //routeActivity.openMap();
+        routeActivity.getTest();
+        //((RouteActivity) getActivity()).getMap();
+
     }
 }
 
