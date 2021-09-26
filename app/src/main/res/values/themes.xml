@@ -13,7 +13,11 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- default color <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
+        <!--상태바 투명-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!--배경 밝기에 따라 상태바 아이콘 색상 변경 / 밝을 시 : 회색, 어두울 시 : 흰색-->
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

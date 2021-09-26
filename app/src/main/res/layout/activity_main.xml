@@ -27,6 +27,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+
+            app:labelVisibilityMode="labeled"
+            app:itemIconTint="@drawable/menu_selector_color"
+            app:itemTextColor="@drawable/menu_selector_color"
+
             app:menu="@menu/bottom_nav_menu" />
 
         <fragment
@@ -50,7 +55,8 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_nav_menu" />
 
-    <!-- drawer_nav_menu 아래에 필요 시 추가
+    <!--
+        drawer_nav_menu 아래에 필요 시 추가
         app:headerLayout="@layout/navi_header"
         app:itemIconTint="@drawable/drawer_item_color"
         app:itemTextColor="@drawable/drawer_item_color"

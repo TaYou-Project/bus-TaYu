@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import net.daum.mf.map.api.MapView;
+
 import org.devTayu.busTayu.MainActivity;
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.activity.LocationActivity;
@@ -26,19 +28,18 @@ public class RouteFragment extends Fragment {
 
     RouteActivity routeActivity;
     LocationActivity locationActivity;
+    public MapView m_MapView;
+    public ViewGroup m_mapViewContainer;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        routeActivity = new RouteActivity(context, getActivity());
+        //routeActivity = new RouteActivity(context, getActivity());
         locationActivity = new LocationActivity(context, getActivity());
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_route, container, false);
-
-        //해시키
-        //routeActivity.getHashKey();
 
         new Thread(new Runnable() {
             @Override
@@ -74,12 +75,16 @@ public class RouteFragment extends Fragment {
         Log.d("유소정", "**************** RouteFragment 찍힘 ****************");
         //Intent aboutScreen = new Intent(getContext(), RouteActivity.class);
         //this.startActivity(aboutScreen);
-        routeActivity.getTest();
+        //routeActivity.getTest();
         //((RouteActivity) getActivity()).getMap();
+
+        Intent intent = new Intent(getContext(), RouteActivity.class);
+        this.startActivity(intent);
 
     }
 }
 
+//기본 제공 : ViewModel 사용법 보려고 남겨둔 것
 /*
 public class RouteFragment extends Fragment {
 

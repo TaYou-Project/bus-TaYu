@@ -23,7 +23,8 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:titleTextColor="#434343"
-            android:background="#EBBABABA">
+            android:background="#EB878787">
+            <!--android:background="@android:color/transparent" 툴바 투명화-->
         </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
 

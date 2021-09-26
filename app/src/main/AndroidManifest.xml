@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.devTayu.busTayu">
 
     <!-- Permission  -->
@@ -35,12 +36,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="org.devTayu.busTayu.activity.RouteActivity"></activity>
-        <activity android:name="org.devTayu.busTayu.activity.SetupActivity"></activity>
-        <activity android:name="org.devTayu.busTayu.activity.LikedActivity"></activity>
-        <activity android:name="org.devTayu.busTayu.activity.ReserveActivity"></activity>
-        <activity android:name="org.devTayu.busTayu.activity.AroundActivity"></activity>
-        <activity android:name="org.devTayu.busTayu.activity.SearchActivity"></activity>
+        <activity android:name="org.devTayu.busTayu.activity.SetupActivity"/>
+        <activity android:name="org.devTayu.busTayu.activity.LikedActivity"/>
+        <activity android:name="org.devTayu.busTayu.activity.ReserveActivity"/>
+        <activity android:name="org.devTayu.busTayu.activity.AroundActivity"/>
+        <activity android:name="org.devTayu.busTayu.activity.SearchActivity"/>
+        <activity android:name="org.devTayu.busTayu.activity.RouteActivity" />
 
     </application>
 

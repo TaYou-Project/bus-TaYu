@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
@@ -35,20 +36,25 @@ public class RouteActivity extends AppCompatActivity implements MapView.CurrentL
 
     public static final String LOG_TAG = "RouteActivity";
 
-    private Context mContext;
-    private final Activity activity;
+    public Context mContext;
+    public Activity activity;
 
     public MapView mapView;
     public ViewGroup mapViewContainer;
+
     public static final int GPS_ENABLE_REQUEST_CODE = 2001;
     public static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION};
 
+    public RouteActivity(){}
+
+    /*
     public RouteActivity(Context context, FragmentActivity activity) {
         this.mContext = mContext;
         this.activity = activity;
         getMap();
     }
+    */
 
     public void getMap(){
         Log.d("유소정", "**************** RouteActivity getMap() 찍힘 ****************");
@@ -61,19 +67,36 @@ public class RouteActivity extends AppCompatActivity implements MapView.CurrentL
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.fragment_route);
+        setContentView(R.layout.fragment_route);
 
-        //지도
+        // map view
         mapView = new MapView(this);
         mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
+
+        // EventListener 설정 > currentLocation 현재 위치 Tracking 이동
         mapView.setMapViewEventListener(this);
         mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting();
-        }else {
+        } else {
             checkRunTimePermission();
         }
+
+        /*마커 찍기*/
+        MapPoint MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.576915,126.976837); // 임의 값 : 경복궁 위치
+        MapPOIItem customMarker = new MapPOIItem();
+        customMarker.setItemName("Custom Marker");
+        customMarker.setTag(1);
+        customMarker.setMapPoint(MARKER_POINT);
+        customMarker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 마커타입을 커스텀 마커로 지정.
+        customMarker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+        customMarker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+        customMarker.setCustomImageAutoscale(false); // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
+        customMarker.setCustomImageAnchor(0.5f, 1.0f); // 마커 이미지중 기준이 되는 위치(앵커포인트) 지정 - 마커 이미지 좌측 상단 기준 x(0.0f ~ 1.0f), y(0.0f ~ 1.0f) 값.
+
+        /*add*/
+        mapView.addPOIItem(customMarker);
     }
 
     @Override

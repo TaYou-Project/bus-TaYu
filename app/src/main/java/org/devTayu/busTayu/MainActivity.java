@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     //해시키
+    /*
     public void getHashKey(){
         PackageInfo packageInfo = null;
         try {
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
+    */
 
     // Toolbar
     public void setToolbar() {
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);  // 아이콘 설정
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24); // 아이콘 설정
 
         // DrawerLayout 좌측 메뉴 drawer_layout
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -149,11 +151,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.menu_notification:
                 Toast.makeText(MainActivity.this, "notification", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.menu_route:
-                startActivity(new Intent(this, RouteActivity.class));
-                overridePendingTransition(0,0);
-                return true;
-            /*
+
+            /* 필요 시 사용
             case R.id.navigation_around:
                 startActivity(new Intent(this, AroundActivity.class));
             case R.id.navigation_search:
@@ -161,7 +160,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_reserve:
                 startActivity(new Intent(this, ReserveActivity.class));
             case R.id.navigation_liked:
-                startActivity(new Intent(this, LikedActivity.class));
+                startActivity(new Intent(this, RouteActivity.class));
+                overridePendingTransition(0,0);
+                return true;
             case R.id.navigation_setup:
                     Intent intent = new Intent(getApplicationContext(), NoticeActivity.class);
                     startActivity(intent);

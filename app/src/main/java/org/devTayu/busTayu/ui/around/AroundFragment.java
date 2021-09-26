@@ -20,8 +20,7 @@ public class AroundFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        mapViewModel =
-                new ViewModelProvider(this).get(AroundViewModel.class);
+        mapViewModel = new ViewModelProvider(this).get(AroundViewModel.class);
         View root = inflater.inflate(R.layout.fragment_around, container, false);
         final TextView textView = root.findViewById(R.id.text_around);
         mapViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
