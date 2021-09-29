@@ -41,8 +41,10 @@
         <activity android:name="org.devTayu.busTayu.activity.ReserveActivity" />
         <activity android:name="org.devTayu.busTayu.activity.AroundActivity" />
         <activity android:name="org.devTayu.busTayu.activity.SearchActivity" />
-        <activity android:name="org.devTayu.busTayu.activity.RouteActivity" />
         <activity android:name="org.devTayu.busTayu.activity.StationActivity" />
+
+        <!--임시-->
+        <activity android:name="org.devTayu.busTayu.activity.RouteActivity" />
 
     </application>
 
