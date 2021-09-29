@@ -16,6 +16,12 @@
                     style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                     android:title="Dev Contact"
                     />
+                <item
+                    android:id="@+id/menu_station"
+                    android:icon="@drawable/ic_baseline_person_24"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:title="임시 메뉴 - Station"
+                    />
             </menu>
         </item>
     </group>

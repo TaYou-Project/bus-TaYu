@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,12 +28,16 @@ import androidx.navigation.ui.NavigationUI;
 
 import org.devTayu.busTayu.activity.LocationActivity;
 import org.devTayu.busTayu.activity.RouteActivity;
+import org.devTayu.busTayu.activity.StationActivity;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private ActivityResultLauncher<Intent> resultLauncher;
+
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -151,14 +156,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.menu_notification:
                 Toast.makeText(MainActivity.this, "notification", Toast.LENGTH_LONG).show();
                 break;
+            // 임시 메뉴 - Station
+            case R.id.menu_station:
+                Toast.makeText(MainActivity.this, "Station 이동", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), StationActivity.class);
+                startActivity(intent);
+                break;
 
             /* 필요 시 사용
             case R.id.navigation_around:
                 startActivity(new Intent(this, AroundActivity.class));
-            case R.id.navigation_search:
-                startActivity(new Intent(this, SearchActivity.class));
-            case R.id.navigation_reserve:
-                startActivity(new Intent(this, ReserveActivity.class));
             case R.id.navigation_liked:
                 startActivity(new Intent(this, RouteActivity.class));
                 overridePendingTransition(0,0);
@@ -194,11 +201,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else if (0 <= gapTime && 2000 >= gapTime) {
+        } else if (0 <= gapTime && 2000 >= gapTime) {
             super.onBackPressed();
-        }
-        else {
+        } else {
             backBtnTime = currentTime;
             Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }

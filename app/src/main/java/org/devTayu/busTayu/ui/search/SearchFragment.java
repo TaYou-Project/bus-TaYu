@@ -1,19 +1,69 @@
 package org.devTayu.busTayu.ui.search;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.SearchActivity;
 
+
+public class SearchFragment extends Fragment {
+
+    SearchActivity searchActivity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_search, container, false);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                initUI(root);
+            }
+        }).start();
+
+        return root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //initUI(root);
+                    }
+                });
+            }
+        }).start();
+    }
+
+    public void initUI(View root) {
+
+        Intent intent = new Intent(getContext(), SearchActivity.class);
+        this.startActivity(intent);
+
+    }
+}
+
+/*
 public class SearchFragment extends Fragment {
 
     private SearchViewModel searchViewModel;
@@ -32,4 +82,4 @@ public class SearchFragment extends Fragment {
         });
         return root;
     }
-}
+}*/
