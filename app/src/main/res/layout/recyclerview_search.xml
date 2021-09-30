@@ -2,64 +2,61 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_station"
+    android:id="@+id/search_stationInform"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/borderline">
     <TextView
-        android:id="@+id/item_board_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8sp"
-        android:layout_marginTop="8sp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="TITLE" />
-
-    <TextView
-        android:id="@+id/item_board_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textSize="16sp"
-        tools:text="Contents" />
-
-    <LinearLayout
+        android:id="@+id/search_stationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginTop="20sp"
+        android:textSize="17sp"
+        tools:text="정류장 명" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/item_board_time"
-            android:layout_width="match_parent"
+            android:id="@+id/search_stationNumber"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            android:layout_marginTop="15sp"
             android:textSize="16sp"
-            tools:text="Time" />
+            tools:text="정류장 번호" />
 
         <TextView
-            android:id="@+id/item_board_writer"
+            android:id="@+id/search_stationWay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="15sp"
             android:textSize="16sp"
-            tools:text="Writer" />
+            tools:text="~방면" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+        <Button
+            android:id="@+id/search_btn_more"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="115sp"
+            android:layout_marginRight="10sp"
+            android:textSize="13sp"
+            android:text="더보기" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_person_24" />
 
     </LinearLayout>
+
 
 </LinearLayout>
