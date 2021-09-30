@@ -7,7 +7,8 @@ android {
 
     defaultConfig {
         applicationId "org.devTayu.bustayu"
-        minSdkVersion 29
+        // 29에서 안드 8.0에 맞추기 위해 내림
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

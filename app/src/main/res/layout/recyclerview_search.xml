@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/search_stationInform"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:layout_marginBottom="20dp"
     android:layout_marginLeft="10dp"
+    android:layout_marginTop="20dp"
     android:layout_marginRight="10dp"
-    android:orientation="vertical"
-    android:background="@drawable/borderline">
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/borderline"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/search_stationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
         android:layout_marginTop="20sp"
+        android:layout_marginRight="15sp"
         android:textSize="17sp"
         tools:text="정류장 명" />
 
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15sp"
-            android:layout_marginRight="15sp"
             android:layout_marginTop="15sp"
+            android:layout_marginRight="15sp"
             android:textSize="16sp"
             tools:text="정류장 번호" />
 
@@ -41,8 +41,8 @@
             android:id="@+id/search_stationWay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10sp"
             android:layout_marginTop="15sp"
+            android:layout_marginRight="10sp"
             android:textSize="16sp"
             tools:text="~방면" />
 
@@ -52,11 +52,8 @@
             android:layout_height="40dp"
             android:layout_marginLeft="115sp"
             android:layout_marginRight="10sp"
-            android:textSize="13sp"
-            android:text="더보기" />
-
-
+            android:text="더보기"
+            android:textSize="13sp" />
     </LinearLayout>
-
 
 </LinearLayout>

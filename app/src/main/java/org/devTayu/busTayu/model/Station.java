@@ -1,6 +1,7 @@
 package org.devTayu.busTayu.model;
 
 public class Station {
+
     public String title;
     public String contents;
     public String time;

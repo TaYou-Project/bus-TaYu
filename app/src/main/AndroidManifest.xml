@@ -28,7 +28,8 @@
 
         <activity
             android:name="org.devTayu.busTayu.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,15 +37,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="org.devTayu.busTayu.activity.SetupActivity" />
         <activity android:name="org.devTayu.busTayu.activity.LikedActivity" />
         <activity android:name="org.devTayu.busTayu.activity.ReserveActivity" />
         <activity android:name="org.devTayu.busTayu.activity.AroundActivity" />
-        <activity android:name="org.devTayu.busTayu.activity.SearchActivity" />
+        <activity android:name="org.devTayu.busTayu.activity.SearchActivity"/>
         <activity android:name="org.devTayu.busTayu.activity.StationActivity" />
 
-        <!--임시-->
-        <activity android:name="org.devTayu.busTayu.activity.RouteActivity" />
+        <!--필요 시 사용 - 설정 빠지면 삭제 -->
+        <activity android:name="org.devTayu.busTayu.activity.SetupActivity" />
 
     </application>
 

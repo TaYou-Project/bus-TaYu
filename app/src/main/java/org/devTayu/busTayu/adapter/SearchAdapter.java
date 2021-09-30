@@ -31,7 +31,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // ViewHodler 객체를 생성 후 리턴한다.
         // Create a new view, which defines the UI of the list item
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_station, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_search, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -67,8 +67,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // 아이템 뷰에 필요한 View
-            title = itemView.findViewById(R.id.item_board_title);
-            contents = itemView.findViewById(R.id.item_board_content);
+            title = itemView.findViewById(R.id.search_stationName);
+            contents = itemView.findViewById(R.id.search_stationNumber);
         }
     }
 

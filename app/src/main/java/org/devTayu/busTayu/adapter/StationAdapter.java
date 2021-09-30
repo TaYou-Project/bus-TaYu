@@ -66,7 +66,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // 아이템 뷰에 필요한 View
-            title = itemView.findViewById(R.id.item_board_title);
+            title = itemView.findViewById(R.id.station_busName);
             contents = itemView.findViewById(R.id.item_board_content);
         }
     }
