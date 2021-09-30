@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.route.RouteFragment">
 
-    <!---->
     <RelativeLayout
         android:id="@+id/map_view"
         android:layout_width="match_parent"

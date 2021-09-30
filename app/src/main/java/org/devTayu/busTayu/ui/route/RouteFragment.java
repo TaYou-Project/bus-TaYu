@@ -1,4 +1,4 @@
-package org.devTayu.busTayu.ui.route;
+/*package org.devTayu.busTayu.ui.route;
 
 import android.content.Context;
 import android.content.Intent;
@@ -76,7 +76,7 @@ public class RouteFragment extends Fragment {
         this.startActivity(intent);
 
     }
-}
+}*/
 
 //기본 제공 : ViewModel 사용법 보려고 남겨둔 것
 /*
