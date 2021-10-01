@@ -35,6 +35,8 @@ import org.devTayu.busTayu.R;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import static android.content.ContentValues.TAG;
+
 public class AroundActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
 
     public static final String LOG_TAG = "AroundActivity";

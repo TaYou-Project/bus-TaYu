@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView_around"
+            android:id="@+id/around_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/around_title"

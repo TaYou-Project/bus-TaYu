@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +41,7 @@ public class AroundFragment extends Fragment {
             public void run() {
                 initUI(root);
                 String getTextView = locationActivity.getTextView();
+
                 Log.d("유소정", "**************** 주소 찍힘 ****************"+ "LocationActivity:"+ getTextView);
             }
         }).start();
@@ -71,6 +73,10 @@ public class AroundFragment extends Fragment {
         //this.startActivity(aboutScreen);
         //aroundActivity.getTest();
         //((AroundActivity) getActivity()).getMap();
+
+        /* 사용자 현 위치 : 지금은 _구_동 까지 -> 변경하기 */
+        TextView text = (TextView) root.findViewById(R.id.around_title);
+        text.setText(locationActivity.getTextView());
 
         Intent intent = new Intent(getContext(), AroundActivity.class);
         this.startActivity(intent);
