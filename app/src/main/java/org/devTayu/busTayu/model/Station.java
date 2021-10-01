@@ -2,46 +2,52 @@ package org.devTayu.busTayu.model;
 
 public class Station {
 
-    public String title;
-    public String contents;
-    public String time;
-    public String writer;
+    private String rtNm; // 노선 명
+    private String adirection; // 방면
+    private String arrmsgSec1; // 첫번째 도착예정버스의 도착정보메시지
+    private String arrmsgSec2; // 두번째 도착예정버스의 도착정보메시지
 
-    public Station(String title, String contents, String time, int i, int i1) {
-        this.title = title;
-        this.contents = contents;
-        this.time = time;
+    public Station() {
+        super();
     }
 
-    public String getTitle() {
-        return title;
+    public void setRtNm(String rtNm) {
+        this.rtNm = rtNm;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getRtNm() {
+        return rtNm;
     }
 
-    public String getContents() {
-        return contents;
+    public String getAdirection() {
+        return adirection;
     }
 
-    public void setContents(String contents) {
-        this.contents = contents;
+    public void setAdirection(String adirection) {
+        this.adirection = adirection;
     }
 
-    public String getTime() {
-        return time;
+    public String getArrmsgSec1() {
+        return arrmsgSec1;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setArrmsgSec1(String arrmsgSec1) {
+        this.arrmsgSec1 = arrmsgSec1;
     }
 
-    public String getWriter() {
-        return writer;
+    public String getArrmsgSec2() {
+        return arrmsgSec2;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setArrmsgSec2(String arrmsgSec2) {
+        this.arrmsgSec2 = arrmsgSec2;
     }
+
+    public Station(String rtNm, String adirection, String arrmsgSec1, String arrmsgSec2) {
+        this.rtNm = rtNm;
+        this.adirection = adirection;
+        this.arrmsgSec1 = arrmsgSec1;
+        this.arrmsgSec2 = arrmsgSec2;
+    }
+
 }

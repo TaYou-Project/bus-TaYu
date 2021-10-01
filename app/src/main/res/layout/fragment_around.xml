@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.around.AroundFragment">
 
+    <!-- Floating Action Button : 현위치 탐색 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/around_floatingbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+        app:backgroundTint="#D8D8D8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_location_searching_24"
+        android:contentDescription="@string/around_floatingBtn" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,9 +30,9 @@
             android:id="@+id/textView_around"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="사용자 현 위치"
+            android:text="@string/around_title"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"/>
 

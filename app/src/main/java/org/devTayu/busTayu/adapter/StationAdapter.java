@@ -11,14 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.model.Station;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHolder> {
 
     // 해당 어댑터의 ViewHolder를 상속받는다.
-    private final List<Station> datas;
+    private final ArrayList<Station> datas;
 
-    public StationAdapter(List<Station> datas) {
+    public StationAdapter(ArrayList<Station> datas) {
         this.datas = datas;
         //localDataSet = dataSet
     }
@@ -45,8 +46,11 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
         // ViewHolder 가 재활용 될 때 사용되는 메소드
         Station data = datas.get(position);
 
-        viewHolder.title.setText(data.getTitle());
-        viewHolder.contents.setText(data.getContents());
+        // 데이터 결합
+        viewHolder.rtNm.setText(data.getRtNm());
+        viewHolder.adirection.setText(data.getAdirection());
+        viewHolder.arrmsgSec1.setText(data.getArrmsgSec1());
+        viewHolder.arrmsgSec2.setText(data.getArrmsgSec2());
     }
 
     // 필수 3 : 아이템 개수를 조회
@@ -60,14 +64,19 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
     // 아이템 뷰를 저장하는 클래스
     public class ViewHolder extends RecyclerView.ViewHolder {
         // ViewHolder 에 필요한 데이터들을 적음.
-        private TextView title;
-        private TextView contents;
+        private TextView rtNm;
+        private TextView adirection;
+        private TextView arrmsgSec1;
+        private TextView arrmsgSec2;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // 아이템 뷰에 필요한 View
-            title = itemView.findViewById(R.id.station_busName);
-            contents = itemView.findViewById(R.id.item_board_content);
+            rtNm = itemView.findViewById(R.id.station_rtNm);
+            adirection = itemView.findViewById(R.id.station_adirection);
+            arrmsgSec1 = itemView.findViewById(R.id.station_arrmsgSec1);
+            arrmsgSec2 = itemView.findViewById(R.id.station_arrmsgSec2);
         }
     }
 

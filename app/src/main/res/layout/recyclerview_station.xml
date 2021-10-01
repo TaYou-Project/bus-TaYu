@@ -1,64 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_station"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <!--노선명-->
     <TextView
-        android:id="@+id/station_busName"
+        android:id="@+id/station_rtNm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8sp"
         android:layout_marginTop="8sp"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold"
-        tools:text="TITLE" />
+        tools:text="rtNm 노선명" />
 
+    <!--버스 방면-->
     <TextView
-        android:id="@+id/item_board_content"
+        android:id="@+id/station_adirection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textSize="16sp"
-        tools:text="Contents" />
+        android:layout_marginLeft="8dp"
+        android:textSize="14sp"
+        tools:text="arirection" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8sp"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/item_board_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:textSize="16sp"
-            tools:text="Time" />
-
-        <TextView
-            android:id="@+id/item_board_writer"
+        <Button
+            android:id="@+id/station_likeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:textSize="16sp"
-            tools:text="Writer" />
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="8dp"
+            android:minWidth="10dp"
+            android:text="@string/station_likeBtn" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_person_24" />
+            android:orientation="vertical">
+            <!-- 첫번째 버스 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--첫번째 도착 예정 버스 정보-->
+                <TextView
+                    android:id="@+id/station_arrmsgSec1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    tools:text="arrmsgSec1" />
+
+                <Button
+                    android:id="@+id/station_arrmsgSec1Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:minWidth="5dp"
+                    android:minHeight="5dp"
+                    android:text="@string/station_rserveBtn" />
+            </LinearLayout>
+
+            <!-- 두번째 버스 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--두번째 도착 예정 버스 정보-->
+                <TextView
+                    android:id="@+id/station_arrmsgSec2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    tools:text="arrmsgSec2" />
+
+                <Button
+                    android:id="@+id/station_arrmsgSec2Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:minWidth="5dp"
+                    android:minHeight="5dp"
+                    android:text="@string/station_rserveBtn" />
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

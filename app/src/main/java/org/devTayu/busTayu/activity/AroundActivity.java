@@ -20,8 +20,11 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -46,7 +49,8 @@ public class AroundActivity extends AppCompatActivity implements MapView.Current
     public static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION};
 
-    public AroundActivity(){}
+    public AroundActivity() {
+    }
 
     /*
     public AroundActivity(Context context, FragmentActivity activity) {
@@ -56,11 +60,11 @@ public class AroundActivity extends AppCompatActivity implements MapView.Current
     }
     */
 
-    public void getMap(){
+    public void getMap() {
         Log.d("유소정", "**************** AroundActivity getMap() 찍힘 ****************");
     }
 
-    public void getTest(){
+    public void getTest() {
         Log.d("유소정", "**************** AroundActivity getTest() 찍힘 ****************");
     }
 
@@ -84,7 +88,7 @@ public class AroundActivity extends AppCompatActivity implements MapView.Current
         }
 
         /*마커 찍기*/
-        MapPoint MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.576915,126.976837); // 임의 값 : 경복궁 위치
+        MapPoint MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.576915, 126.976837); // 임의 값 : 경복궁 위치
         MapPOIItem customMarker = new MapPOIItem();
         customMarker.setItemName("Custom Marker");
         customMarker.setTag(1);
@@ -97,6 +101,15 @@ public class AroundActivity extends AppCompatActivity implements MapView.Current
 
         /*add*/
         mapView.addPOIItem(customMarker);
+
+        // 플로팅 현위치 : floatingActionButton
+        FloatingActionButton fab = findViewById(R.id.around_floatingbtn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(AroundActivity.this, "현위치", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

@@ -38,6 +38,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation fileTree(dir: 'src\\main\\jniLibs', include: ['*.aar', '*.jar'], exclude: [])
     
     implementation fileTree(include: ['*.jar'], dir: 'libs')
