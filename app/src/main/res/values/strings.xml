@@ -16,4 +16,6 @@
     <string name="around_title">사용자 현 위치</string>
     <string name="station_rserveBtn">예약</string>
     <string name="station_likeBtn">즐겨찾기</string>
+    <string name="liked_floatingBtn">시간 새로고침</string>
+    <string name="liked_btn">더보기</string>
 </resources>
