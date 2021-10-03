@@ -1,6 +1,7 @@
 package org.devTayu.busTayu.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,8 @@ public class LikedActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_liked);
+
+        Log.d("유소정", "LikeActivity onCreate");
 
         mPostRecyclerView = findViewById(R.id.recyclerView_liked);
         mDatas = new ArrayList<>(); // 샘플 데이터 추가

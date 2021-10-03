@@ -5,6 +5,10 @@
     android:id="@+id/item_liked"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/borderline"
+    android:layout_marginBottom="15sp"
+    android:layout_marginStart="5sp"
+    android:layout_marginEnd="5sp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,7 +21,7 @@
             android:id="@+id/liked_stationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8sp"
+            android:layout_marginStart="8sp"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="정류소 명" />
@@ -27,7 +31,7 @@
             android:id="@+id/liked_stationNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8sp"
+            android:layout_marginStart="8sp"
             android:textSize="18sp"
             tools:text="정류소 번호" />
 
@@ -36,7 +40,7 @@
             android:id="@+id/liked_adirection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8sp"
+            android:layout_marginStart="8sp"
             android:textSize="18sp"
             tools:text="정류소 방면" />
 
@@ -44,7 +48,7 @@
             android:id="@+id/liked_Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8sp"
+            android:layout_marginStart="8sp"
             android:layout_marginEnd="8dp"
             android:minWidth="10dp"
             android:text="@string/liked_btn" />

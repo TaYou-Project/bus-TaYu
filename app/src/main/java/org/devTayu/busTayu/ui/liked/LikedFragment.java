@@ -15,6 +15,7 @@ import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.activity.LikedActivity;
 import org.devTayu.busTayu.activity.SearchActivity;
 
+
 public class LikedFragment extends Fragment {
 
     LikedActivity likedActivity;
@@ -37,7 +38,7 @@ public class LikedFragment extends Fragment {
         return root;
     }
 
-    @Override
+    /*@Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -53,7 +54,7 @@ public class LikedFragment extends Fragment {
                 });
             }
         }).start();
-    }
+    }*/
 
     public void initUI(View root) {
 
@@ -65,9 +66,7 @@ public class LikedFragment extends Fragment {
 
 /*
 public class LikedFragment extends Fragment {
-
     private LikedViewModel likedViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         likedViewModel =

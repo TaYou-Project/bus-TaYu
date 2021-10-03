@@ -4,6 +4,10 @@
     android:id="@+id/item_station"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="5sp"
+    android:layout_marginEnd="5sp"
+    android:layout_marginBottom="15sp"
+    android:background="@drawable/borderline"
     android:orientation="vertical">
 
     <!--노선명-->
@@ -11,7 +15,8 @@
         android:id="@+id/station_rtNm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8sp"
+        android:layout_marginStart="8sp"
+        android:layout_marginEnd="8sp"
         android:layout_marginTop="8sp"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -22,7 +27,8 @@
         android:id="@+id/station_adirection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8sp"
+        android:layout_marginEnd="8sp"
         android:textSize="14sp"
         tools:text="arirection" />
 
@@ -30,6 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8sp"
+        android:layout_marginStart="8sp"
+        android:layout_marginEnd="8dp"
         android:orientation="horizontal">
 
         <Button
@@ -42,7 +50,7 @@
             android:text="@string/station_likeBtn" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <!-- 첫번째 버스 -->

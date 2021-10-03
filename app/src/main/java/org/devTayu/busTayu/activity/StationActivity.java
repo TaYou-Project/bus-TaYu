@@ -119,10 +119,10 @@ public class StationActivity extends AppCompatActivity {
 
         RecyclerView mPostRecyclerView = findViewById(R.id.recyclerView_station);
 
-        /* default 선 추가
-        // Divider 추가 */
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, linearLayoutManager.getOrientation());
-        mPostRecyclerView.addItemDecoration(dividerItemDecoration);
+        // 레이아웃에서 박스 처리해서 필요 없어짐
+        /* default 선 추가 : Divider 추가 */
+        //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, linearLayoutManager.getOrientation());
+        //mPostRecyclerView.addItemDecoration(dividerItemDecoration);
 
 
         // 아이템 간 간격 추가

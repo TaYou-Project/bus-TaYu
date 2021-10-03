@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/search_stationInform"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginBottom="20dp"
+    android:layout_marginStart="5sp"
+    android:layout_marginEnd="5sp"
+    android:layout_marginBottom="15sp"
     android:background="@drawable/borderline"
     android:orientation="vertical">
 
@@ -15,15 +15,18 @@
         android:id="@+id/search_stationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginRight="15sp"
-        android:textSize="17sp"
+        android:layout_marginStart="8sp"
+        android:layout_marginTop="8sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         tools:text="정류장 명" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginStart="8sp"
+        android:layout_marginEnd="8sp"
+        android:layout_marginTop="8sp"
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
@@ -31,29 +34,24 @@
             android:id="@+id/search_stationNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15sp"
-            android:layout_marginTop="15sp"
-            android:layout_marginRight="15sp"
-            android:textSize="16sp"
+            android:layout_marginEnd="8sp"
+            android:textSize="18sp"
             tools:text="정류장 번호" />
 
         <TextView
             android:id="@+id/search_stationWay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
-            android:layout_marginRight="10sp"
-            android:textSize="16sp"
-            tools:text="~방면" />
+            android:layout_marginEnd="8sp"
+            android:textSize="18sp"
+            tools:text="방면" />
 
         <Button
             android:id="@+id/search_btn_more"
             android:layout_width="65dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="115sp"
-            android:layout_marginRight="10sp"
-            android:text="더보기"
-            android:textSize="13sp" />
+            android:minWidth="10dp"
+            android:text="@string/search_btn" />
     </LinearLayout>
 
 </LinearLayout>

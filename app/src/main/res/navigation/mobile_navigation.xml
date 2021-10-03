@@ -29,10 +29,4 @@
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
-    <fragment
-        android:id="@+id/menu_route"
-        android:name="org.devTayu.busTayu.ui.route.RouteFragment"
-        android:label="@string/title_route"
-        tools:layout="@layout/fragment_route" />
-
 </navigation>

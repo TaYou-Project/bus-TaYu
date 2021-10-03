@@ -47,6 +47,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         Search data = datas.get(position);
 
         viewHolder.title.setText(data.getTitle());
+        viewHolder.time.setText(data.getTitle());
         viewHolder.contents.setText(data.getContents());
     }
 
@@ -63,12 +64,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         // ViewHolder 에 필요한 데이터들을 적음.
         private TextView title;
         private TextView contents;
+        private TextView time;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // 아이템 뷰에 필요한 View
             title = itemView.findViewById(R.id.search_stationName);
             contents = itemView.findViewById(R.id.search_stationNumber);
+            time = itemView.findViewById(R.id.search_stationWay);
         }
     }
 
