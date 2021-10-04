@@ -45,11 +45,12 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedAdapter.ViewHolder> 
         // ViewHolder 가 재활용 될 때 사용되는 메소드
         Liked data = datas.get(position);
 
-        viewHolder.title.setText(data.getTitle());
-        viewHolder.contents.setText(data.getContents());
-        viewHolder.contents0.setText(data.getContents());
-        viewHolder.contents1.setText(data.getTitle());
-        viewHolder.contents2.setText(data.getContents());
+        viewHolder.stationName.setText(data.getStationName());
+        viewHolder.stationNum.setText(data.getStationNum());
+        viewHolder.adirection.setText(data.getAdirection());
+        viewHolder.rtNm.setText(data.getRtNm());
+        viewHolder.arrmsgSec1.setText(data.getArrmsgSec1());
+        viewHolder.arrmsgSec2.setText(data.getArrmsgSec2());
     }
 
     // 필수 3 : 아이템 개수를 조회
@@ -63,20 +64,22 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedAdapter.ViewHolder> 
     // 아이템 뷰를 저장하는 클래스
     public class ViewHolder extends RecyclerView.ViewHolder {
         // ViewHolder 에 필요한 데이터들을 적음.
-        private TextView title;
-        private TextView contents;
-        private TextView contents0;
-        private TextView contents1;
-        private TextView contents2;
+        private TextView stationName;
+        private TextView stationNum;
+        private TextView adirection;
+        private TextView rtNm;
+        private TextView arrmsgSec1;
+        private TextView arrmsgSec2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // 아이템 뷰에 필요한 View
-            title = itemView.findViewById(R.id.liked_adirection);
-            contents = itemView.findViewById(R.id.liked_stationName);
-            contents0 = itemView.findViewById(R.id.liked_rtNm);
-            contents1 = itemView.findViewById(R.id.liked_arrmsgSec1);
-            contents2 = itemView.findViewById(R.id.liked_arrmsgSec2);
+            stationName = itemView.findViewById(R.id.liked_stationName);
+            stationNum = itemView.findViewById(R.id.liked_stationNum);
+            adirection = itemView.findViewById(R.id.liked_adirection);
+            rtNm = itemView.findViewById(R.id.liked_rtNm);
+            arrmsgSec1 = itemView.findViewById(R.id.liked_arrmsgSec1);
+            arrmsgSec2 = itemView.findViewById(R.id.liked_arrmsgSec2);
         }
     }
 

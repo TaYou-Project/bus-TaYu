@@ -1,46 +1,67 @@
 package org.devTayu.busTayu.model;
 
 public class Liked {
-    public String title;
-    public String contents;
-    public String time;
-    public String writer;
+    public String stationName;
+    public String stationNum;
+    public String adirection;
+    public String rtNm;
+    public String arrmsgSec1;
+    public String arrmsgSec2;
 
-    public Liked(String title, String contents, String time, int i, int i1) {
-        this.title = title;
-        this.contents = contents;
-        this.time = time;
+    public String getStationName() {
+        return stationName;
     }
 
-    public String getTitle() {
-        return title;
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getStationNum() {
+        return stationNum;
     }
 
-    public String getContents() {
-        return contents;
+    public void setStationNum(String stationNum) {
+        this.stationNum = stationNum;
     }
 
-    public void setContents(String contents) {
-        this.contents = contents;
+    public String getAdirection() {
+        return adirection;
     }
 
-    public String getTime() {
-        return time;
+    public void setAdirection(String adirection) {
+        this.adirection = adirection;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public String getRtNm() {
+        return rtNm;
     }
 
-    public String getWriter() {
-        return writer;
+    public void setRtNm(String rtNm) {
+        this.rtNm = rtNm;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public String getArrmsgSec1() {
+        return arrmsgSec1;
+    }
+
+    public void setArrmsgSec1(String arrmsgSec1) {
+        this.arrmsgSec1 = arrmsgSec1;
+    }
+
+    public String getArrmsgSec2() {
+        return arrmsgSec2;
+    }
+
+    public void setArrmsgSec2(String arrmsgSec2) {
+        this.arrmsgSec2 = arrmsgSec2;
+    }
+
+    public Liked(String stationName, String stationNum, String adirection, String rtNm, String arrmsgSec1, String arrmsgSec2) {
+        this.stationName = stationName;
+        this.stationNum = stationNum;
+        this.adirection = adirection;
+        this.rtNm = rtNm;
+        this.arrmsgSec1 = arrmsgSec1;
+        this.arrmsgSec2 = arrmsgSec2;
     }
 }

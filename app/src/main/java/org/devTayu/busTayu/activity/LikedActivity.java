@@ -29,21 +29,14 @@ public class LikedActivity extends AppCompatActivity {
 
         mPostRecyclerView = findViewById(R.id.recyclerView_liked);
         mDatas = new ArrayList<>(); // 샘플 데이터 추가
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
-        mDatas.add(new Liked("search", "contents", "time", 20, 10));
+        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1","도착정보2"));
+        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1","도착정보2"));
+        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1","도착정보2"));
+        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1","도착정보2"));
+        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1","도착정보2"));
+        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1","도착정보2"));
+        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1","도착정보2"));
+        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1","도착정보2"));
 
         // Adapter, LayoutManager 연결
         mAdpater = new LikedAdapter(mDatas);
