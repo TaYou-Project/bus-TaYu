@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.amitshekhar.DebugDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //해시키
         //getHashKey();
+
+
+        //DebugDB.getAddressLog();
     }
 
     //해시키
@@ -128,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
-
 
     // 메뉴 선택 시 이벤트
     public boolean onNavigationItemSelected(@NotNull MenuItem item) {

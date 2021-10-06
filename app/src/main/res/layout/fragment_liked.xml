@@ -27,6 +27,12 @@
         android:orientation="vertical"
         tools:context=".activity.LikedActivity">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview"
+            android:text="안녕"
+            />
         <!-- recycleview_liked.xml -->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/liked_SwipeLayout"

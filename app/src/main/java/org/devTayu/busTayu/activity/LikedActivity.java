@@ -2,13 +2,16 @@ package org.devTayu.busTayu.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.adapter.LikedAdapter;
+import org.devTayu.busTayu.database.LikedDatabase;
 import org.devTayu.busTayu.model.Liked;
 
 import java.util.ArrayList;
@@ -20,12 +23,22 @@ public class LikedActivity extends AppCompatActivity {
     private LikedAdapter mAdpater;
     private List<Liked> mDatas;
 
+    private LikedDatabase db;
+    private TextView mResultTextView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_liked);
 
         Log.d("유소정", "LikeActivity onCreate");
+
+        mResultTextView = (TextView) findViewById(R.id.textview);
+        db = Room.databaseBuilder(this, LikedDatabase.class, "liked_database")
+                .build();
+        db.likedDAO().getAll().observe(this, dataList -> {
+            mResultTextView.setText(dataList.toString());
+        });
 
         mPostRecyclerView = findViewById(R.id.recyclerView_liked);
         mDatas = new ArrayList<>(); // 샘플 데이터 추가

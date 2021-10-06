@@ -11,13 +11,19 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import org.devTayu.busTayu.model.LikedDB;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Database(entities = {LikedDB.class}, version = 1, exportSchema = false)
 public abstract class LikedDatabase extends RoomDatabase {
 
     public abstract LikedDAO likedDAO();
+    public static final int NUMBER_OF_THREADS = 4;
 
     private static volatile LikedDatabase INSTANCE;
+
+    public static final ExecutorService databaseWriteExecutor
+            = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     //싱글톤
     public static LikedDatabase getDatabase(final Context context) {
@@ -26,6 +32,7 @@ public abstract class LikedDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             LikedDatabase.class, "liked_database")
+                            .addCallback(setInitialRoomDatabaseCallback)
                             .build();
                 }
             }
@@ -38,7 +45,7 @@ public abstract class LikedDatabase extends RoomDatabase {
         INSTANCE = null;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    private static RoomDatabase.Callback setInitialRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
@@ -52,7 +59,7 @@ public abstract class LikedDatabase extends RoomDatabase {
                 LikedDAO dao = INSTANCE.likedDAO();
                 dao.deleteAll();
 
-                LikedDB likedDB = new LikedDB("memo1","211212");
+                LikedDB likedDB = new LikedDB("버스번호","정류소번호");
                 dao.insert(likedDB);
             });
         }

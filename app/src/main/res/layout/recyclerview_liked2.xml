@@ -14,6 +14,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
         android:orientation="horizontal">
 
         <!--정류소 명-->
@@ -52,48 +54,6 @@
             android:layout_marginEnd="8dp"
             android:minWidth="10dp"
             android:text="@string/liked_btn" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
-        android:orientation="horizontal">
-
-        <!--노선명 : 버스번호-->
-        <TextView
-            android:id="@+id/liked_rtNm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="rtNm 노선명" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:orientation="vertical">
-
-            <!--첫번째 도착 예정 버스 정보-->
-            <TextView
-                android:id="@+id/liked_arrmsgSec1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                tools:text="arrmsgSec1" />
-
-            <!--두번째 도착 예정 버스 정보-->
-            <TextView
-                android:id="@+id/liked_arrmsgSec2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                tools:text="arrmsgSec2" />
-
-        </LinearLayout>
 
     </LinearLayout>
 
