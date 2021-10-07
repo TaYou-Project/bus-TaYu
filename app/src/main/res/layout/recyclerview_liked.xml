@@ -40,7 +40,6 @@
             android:id="@+id/liked_adirection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8sp"
             android:textSize="18sp"
             tools:text="정류소 방면" />
 
@@ -66,7 +65,8 @@
             android:id="@+id/liked_rtNm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="18sp"
+            android:layout_marginStart="8sp"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="rtNm 노선명" />
