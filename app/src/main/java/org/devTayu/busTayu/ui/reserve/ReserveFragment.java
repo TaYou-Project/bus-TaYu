@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +15,16 @@ import org.devTayu.busTayu.R;
 
 public class ReserveFragment extends Fragment {
 
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_reserve, container, false);
+
+        return root;
+    }
+}
+
+/*
+public class ReserveFragment extends Fragment {
+
     private ReserveViewModel reserveViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -23,7 +32,6 @@ public class ReserveFragment extends Fragment {
         reserveViewModel =
                 new ViewModelProvider(this).get(ReserveViewModel.class);
         View root = inflater.inflate(R.layout.fragment_reserve, container, false);
-        final TextView textView = root.findViewById(R.id.text_reserve);
         reserveViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -32,4 +40,4 @@ public class ReserveFragment extends Fragment {
         });
         return root;
     }
-}
+}*/

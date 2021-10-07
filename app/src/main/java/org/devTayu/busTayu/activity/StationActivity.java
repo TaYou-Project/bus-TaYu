@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class StationActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_station);
 
         // "이전" 버튼 == MainActivity로 이동 : 지금은 Main 강제 이동이나, 나중에 되면 "이전" 페이지로 돌아가도록 변경해야 함
-        Button backButton = findViewById(R.id.btn_back);
+        ImageButton backButton = findViewById(R.id.btn_back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +55,7 @@ public class StationActivity extends AppCompatActivity {
         });
 
         TextView textView = (TextView) findViewById(R.id.station_name);
+        // 정류소_명 [정류소 번호]
         textView.setText(station_name + " [" + station_num + " ]");
 
         /* Android Honeycomb 이후 MainThread 에서 networking 처리 불가 */

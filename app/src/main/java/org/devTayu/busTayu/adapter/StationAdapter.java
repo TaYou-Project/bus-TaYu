@@ -1,14 +1,18 @@
 package org.devTayu.busTayu.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.StationActivity;
 import org.devTayu.busTayu.model.Station;
 
 import java.util.ArrayList;
@@ -16,12 +20,20 @@ import java.util.List;
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHolder> {
 
+    // 버튼 : 리스너 객체 참조를 저장하는 변수
+    private AdapterView.OnItemClickListener mListener = null;
+
     // 해당 어댑터의 ViewHolder를 상속받는다.
     private final ArrayList<Station> datas;
 
     public StationAdapter(ArrayList<Station> datas) {
         this.datas = datas;
         //localDataSet = dataSet
+    }
+
+    // 버튼 : OnItemClickListener 리스너 객체 참조를 어댑터에 전달하는 메서드
+    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
+        this.mListener = listener;
     }
 
     // 필수 1 : 뷰홀더를 생성(레이아웃 생성)
@@ -77,6 +89,21 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
             adirection = itemView.findViewById(R.id.station_adirection);
             arrmsgSec1 = itemView.findViewById(R.id.station_arrmsgSec1);
             arrmsgSec2 = itemView.findViewById(R.id.station_arrmsgSec2);
+
+            // 버튼 : 아이템 클릭 이벤트 처리.
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        // 리스너 객체의 메서드 호출.
+                        if (mListener != null) {
+                            //mListener.onItemClick(v, pos) ;
+                            Log.d("유소정", String.valueOf(pos));
+                        }
+                    }
+                }
+            });
         }
     }
 

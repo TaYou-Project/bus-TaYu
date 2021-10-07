@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="15sp"
+    android:layout_marginBottom="15sp"
     tools:context=".ui.liked.LikedFragment">
 
     <!-- Floating Action Button : 시간 새로고침 -->
@@ -26,6 +28,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".activity.LikedActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview11111"
+            android:text="안녕"
+            />
 
         <!-- recycleview_liked.xml -->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

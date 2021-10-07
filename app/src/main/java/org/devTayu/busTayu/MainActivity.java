@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.amitshekhar.DebugDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -49,6 +50,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //해시키
         //getHashKey();
+
+        /*
+         android-debug-database 라이브러리로 SQLite table 확인
+         핸드폰, 컴퓨터 둘 다 동일한 네트워크로 실행시켜야 로그를 출력 : 로그 확인하면 주소 있음
+         D/DebugDB: Open http://192.168.0.11:8080 in your browser 이런 식
+        */
+        DebugDB.getAddressLog();
     }
 
     //해시키
@@ -128,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
-
 
     // 메뉴 선택 시 이벤트
     public boolean onNavigationItemSelected(@NotNull MenuItem item) {
