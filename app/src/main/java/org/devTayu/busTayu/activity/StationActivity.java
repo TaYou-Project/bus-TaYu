@@ -55,6 +55,7 @@ public class StationActivity extends AppCompatActivity {
         });
 
         TextView textView = (TextView) findViewById(R.id.station_name);
+        // 정류소_명 [정류소 번호]
         textView.setText(station_name + " [" + station_num + " ]");
 
         /* Android Honeycomb 이후 MainThread 에서 networking 처리 불가 */

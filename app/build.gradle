@@ -39,6 +39,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
+    // Android Debug Database
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
     // room
@@ -48,10 +49,10 @@ dependencies {
 
     // swipefreshlayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // kakao
     implementation fileTree(dir: 'src\\main\\jniLibs', include: ['*.aar', '*.jar'], exclude: [])
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/libDaumMapAndroid.jar')
 
     testImplementation 'junit:junit:4.+'

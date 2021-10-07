@@ -32,9 +32,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textview"
+            android:id="@+id/textview11111"
             android:text="안녕"
             />
+
         <!-- recycleview_liked.xml -->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/liked_SwipeLayout"
