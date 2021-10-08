@@ -42,4 +42,9 @@ public class LikedDB {
         this.stationNumber = stationNumber;
     }
 
+    @Override
+    public String toString() {
+        return "\n busNumber=> " + this.busNumber + " , stationNumber=> " + this.stationNumber;
+    }
+
 }
