@@ -32,3 +32,4 @@ public interface LikedDAO {
 
     @Query("DELETE FROM TB_Liked")
     void deleteAll();
+}

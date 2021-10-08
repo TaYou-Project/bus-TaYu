@@ -87,11 +87,11 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
+                    Log.d("유소정", String.valueOf(pos));
                     if (pos != RecyclerView.NO_POSITION) {
                         // 리스너 객체의 메서드 호출.
                         if (mListener != null) {
                             //mListener.onItemClick(v, pos) ;
-                            Log.d("유소정", String.valueOf(pos));
                         }
                     }
                 }
