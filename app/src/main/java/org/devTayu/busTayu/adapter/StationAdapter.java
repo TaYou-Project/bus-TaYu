@@ -46,25 +46,20 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_station, viewGroup, false);
         return new ViewHolder(view);
     }
-
     // 필수 2 : 뷰홀더가 재활용될 때 실행되는 메서드
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-
         // ViewHolder 가 재활용 될 때 사용되는 메소드
         Station data = datas.get(position);
-
         // 데이터 결합
         viewHolder.rtNm.setText(data.getRtNm());
         viewHolder.adirection.setText(data.getAdirection());
         viewHolder.arrmsgSec1.setText(data.getArrmsgSec1());
         viewHolder.arrmsgSec2.setText(data.getArrmsgSec2());
     }
-
     // 필수 3 : 아이템 개수를 조회
     // Return the size of your dataset (invoked by the layout manager)
     @Override
@@ -72,7 +67,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
         return datas.size();
         //return localDataSet.length;
     }
-
     // 아이템 뷰를 저장하는 클래스
     public class ViewHolder extends RecyclerView.ViewHolder {
         // ViewHolder 에 필요한 데이터들을 적음.
@@ -80,8 +74,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
         private TextView adirection;
         private TextView arrmsgSec1;
         private TextView arrmsgSec2;
-
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // 아이템 뷰에 필요한 View
