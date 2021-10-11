@@ -1,6 +1,7 @@
 package org.devTayu.busTayu.holder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.StationActivity;
 import org.devTayu.busTayu.adapter.StationAdapter;
 import org.devTayu.busTayu.model.Station;
 import org.devTayu.busTayu.adapter.StationAdapter.OnItemClickEventListener;
@@ -37,9 +39,8 @@ public class StationHolder extends RecyclerView.ViewHolder {
         arrmsgSec1 = itemView.findViewById(R.id.station_arrmsgSec1);
         arrmsgSec2 = itemView.findViewById(R.id.station_arrmsgSec2);
 
-        station_likeBtn = itemView.findViewById(R.id.liked_Btn);
-
-        // 여기서 click listener 설정
+        // 아래로 click listener 설정
+        // itemView : click
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,12 +49,13 @@ public class StationHolder extends RecyclerView.ViewHolder {
 
                 if (position != RecyclerView.NO_POSITION) {
                     a_itemClickListener.onItemClick(position);
-                    Toast.makeText(context, position +"", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, position +" : itemView", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
+        // itemView : longClick
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -62,5 +64,34 @@ public class StationHolder extends RecyclerView.ViewHolder {
             }
         });
 
+        // station_likeBtn : 즐겨찾기 : click
+        itemView.findViewById(R.id.station_likeBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int position = getAdapterPosition();
+                Context context = v.getContext();
+                Toast.makeText(context, position +" : 즐겨찾기", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // station_arrmsgSec1Btn : 첫 번째 버스 : click
+        itemView.findViewById(R.id.station_arrmsgSec1Btn).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final int position = getAdapterPosition();
+                Context context = v.getContext();
+                Toast.makeText(context,  position +" : 첫 번째 버스", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // station_arrmsgSec2Btn : 두 번째 버스 : click
+        itemView.findViewById(R.id.station_arrmsgSec2Btn).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final int position = getAdapterPosition();
+                Context context = v.getContext();
+                Toast.makeText(context,  position +" : 두 번째 버스", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -5,9 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,8 +26,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationHolder> {
 
     public interface OnItemClickEventListener {
         void onItemClick(int a_position);
-
-        void btnClick(View v, int adapterPosition);
     }
 
     private ArrayList<Station> mItemList;
@@ -38,11 +33,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationHolder> {
     private OnItemClickEventListener mItemClickListener = new OnItemClickEventListener() {
         @Override
         public void onItemClick(int a_position) {
-
-        }
-        
-        public void btnClick(View v, int position){
-
         }
     };
 
