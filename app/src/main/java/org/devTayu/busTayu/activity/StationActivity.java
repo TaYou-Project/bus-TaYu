@@ -1,12 +1,14 @@
 package org.devTayu.busTayu.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -54,8 +56,8 @@ public class StationActivity extends AppCompatActivity {
             }
         });
 
-        TextView textView = (TextView) findViewById(R.id.station_name);
         // 정류소_명 [정류소 번호]
+        TextView textView = (TextView) findViewById(R.id.station_name);
         textView.setText(station_name + " [" + station_num + " ]");
 
         /* Android Honeycomb 이후 MainThread 에서 networking 처리 불가 */
@@ -63,15 +65,7 @@ public class StationActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    // 데이터 추가
-                    stationAPI = new StationAPI();
-                    mDatas = new ArrayList<>();
-                    try {
-                        mDatas = stationAPI.station_arsId();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    Log.d("유소정", "recyclerView: " + mDatas.size());
+                    bindList();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -115,17 +109,28 @@ public class StationActivity extends AppCompatActivity {
         });
     }
 
-    // recyclerView
-    public void recyclerView() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+    // bindList
+    private void bindList() {
+        // 데이터 추가
+        stationAPI = new StationAPI();
+        mDatas = new ArrayList<>();
+        try {
+            mDatas = stationAPI.station_arsId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Log.d("유소정", "recyclerView: " + mDatas.size());
+    }
 
+    // recyclerView
+    private void recyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         RecyclerView mPostRecyclerView = findViewById(R.id.recyclerView_station);
 
         // 레이아웃에서 박스 처리해서 필요 없어짐
         /* default 선 추가 : Divider 추가 */
         //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, linearLayoutManager.getOrientation());
         //mPostRecyclerView.addItemDecoration(dividerItemDecoration);
-
 
         // 아이템 간 간격 추가
         OffsetItemDecoration itemDecoration = new OffsetItemDecoration(20, 20);
@@ -142,11 +147,12 @@ public class StationActivity extends AppCompatActivity {
         StationAdapter mAdpater = new StationAdapter(mDatas);
         mPostRecyclerView.setAdapter(mAdpater);
         mPostRecyclerView.setLayoutManager(linearLayoutManager);
+
     }
 
     // 아이템 간 간격 정의
     // ItemDecoration : RecyclerView 내부에 있는 abstract class 로 item 간 구분선이나 여백을 설정할 수 있다
-    public static class OffsetItemDecoration extends RecyclerView.ItemDecoration {
+    private static class OffsetItemDecoration extends RecyclerView.ItemDecoration {
         private final int mPadding, mPadding2;
 
         public OffsetItemDecoration(int a_padding, int b_padding) {
