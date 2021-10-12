@@ -21,4 +21,7 @@
     <string name="search_btn">더보기</string>
     <string name="reserve_floatingBtn">시간 새로고침</string>
     <string name="reserve_btn">예약취소</string>
+    <string name="search_stationWay">방면</string>
+    <string name="search_stationNumber">정류장 번호</string>
+    <string name="search_stationName">정류장 명</string>
 </resources>

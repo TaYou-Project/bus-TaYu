@@ -1,46 +1,48 @@
 package org.devTayu.busTayu.model;
 
 public class Search {
-    public String title;
-    public String contents;
-    public String time;
-    public String writer;
+    public String stop_nm;
+    public String stop_no;
 
-    public Search(String title, String contents, String time, int i, int i1) {
-        this.title = title;
-        this.contents = contents;
-        this.time = time;
+    // 파베에 올린 데이터에 방면이 없어서 생각 필요
+    //public String stationWay;
+
+    public String xcode;
+    public String ycode;
+
+    public Search(){
+
     }
 
-    public String getTitle() {
-        return title;
+    public String getStop_nm() {
+        return stop_nm;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setStop_nm(String stop_nm) {
+        this.stop_nm = stop_nm;
     }
 
-    public String getContents() {
-        return contents;
+    public String getStop_no() {
+        return stop_no;
     }
 
-    public void setContents(String contents) {
-        this.contents = contents;
+    public void setStop_no(String stop_no) {
+        this.stop_no = stop_no;
     }
 
-    public String getTime() {
-        return time;
+    public String getXcode() {
+        return xcode;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setXcode(String xcode) {
+        this.xcode = xcode;
     }
 
-    public String getWriter() {
-        return writer;
+    public String getYcode() {
+        return ycode;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setYcode(String ycode) {
+        this.ycode = ycode;
     }
 }

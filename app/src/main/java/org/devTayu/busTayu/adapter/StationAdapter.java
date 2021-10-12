@@ -22,24 +22,22 @@ import java.util.List;
 public class StationAdapter extends RecyclerView.Adapter<StationHolder> {
 
     // 해당 어댑터의 ViewHolder를 상속받는다.
-    //private final ArrayList<Station> datas;
+    private ArrayList<Station> mItemList;
+
+    public StationAdapter(ArrayList<Station> datas) {
+        this.mItemList = datas;
+        //localDataSet = dataSet
+    }
 
     public interface OnItemClickEventListener {
         void onItemClick(int a_position);
     }
-
-    private ArrayList<Station> mItemList;
 
     private OnItemClickEventListener mItemClickListener = new OnItemClickEventListener() {
         @Override
         public void onItemClick(int a_position) {
         }
     };
-
-    public StationAdapter(ArrayList<Station> datas) {
-        this.mItemList = datas;
-        //localDataSet = dataSet
-    }
 
     // 필수 1 : 뷰홀더를 생성(레이아웃 생성)
     // Create new views (invoked by the layout manager)
