@@ -1,36 +1,34 @@
 package org.devTayu.busTayu.database;
+
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+
 import org.devTayu.busTayu.model.LikedDB;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 @Database(entities = {LikedDB.class}, version = 1, exportSchema = false)
-public abstract class LikedDatabase extends RoomDatabase {
+public abstract class TaYuDatabase extends RoomDatabase {
     public abstract LikedDAO likedDAO();
+
     public static final int NUMBER_OF_THREADS = 4;
-    private static volatile LikedDatabase INSTANCE;
+    private static volatile TaYuDatabase INSTANCE;
     public static final ExecutorService databaseWriteExecutor
             = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     //싱글톤
-    public static LikedDatabase getDatabase(final Context context) {
+    public static TaYuDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (LikedDatabase.class) {
+            synchronized (TaYuDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            LikedDatabase.class, "liked_database")
+                            TaYuDatabase.class, "TaYu_database")
                             .addCallback(setInitialRoomDatabaseCallback)
                             .build();
                 }
@@ -38,6 +36,7 @@ public abstract class LikedDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
     //DB 객체 제거
     public static void destroyInstance() {
         INSTANCE = null;
@@ -48,6 +47,8 @@ public abstract class LikedDatabase extends RoomDatabase {
         // 현재 시각 - 어떻게 찍히는지 확인 필요
         // Date currentTime = Calendar.getInstance().getTime();
 
+        // TimeActivity timeActivity = new TimeActivity();
+
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
@@ -55,15 +56,20 @@ public abstract class LikedDatabase extends RoomDatabase {
 
             // If you want to keep data through app restarts,
             // comment out the following block
+           /*
             Executor databaseWriteExecutor = null;
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
+
+                // 아래에 있는게 효용이 있는지 확인해봐야 함 코드가 동작 안하는 것 같아보임
                 LikedDAO dao = INSTANCE.likedDAO();
                 dao.deleteAll();
-                LikedDB likedDB = new LikedDB("버스번호","정류소번호");
-                dao.insert(likedDB);
+                // LikedDB likedDB = new LikedDB("버스번호","정류소번호", (java.sql.Date) timeActivity.getTimeToDate());
+                //LikedDB likedDB = new LikedDB("버스번호", "정류소번호");
+                //dao.insert(likedDB);
             });
+           */
         }
 
         @Override

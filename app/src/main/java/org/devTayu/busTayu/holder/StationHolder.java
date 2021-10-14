@@ -1,30 +1,19 @@
 package org.devTayu.busTayu.holder;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.devTayu.busTayu.R;
-import org.devTayu.busTayu.activity.StationActivity;
-import org.devTayu.busTayu.adapter.StationAdapter;
-import org.devTayu.busTayu.database.DataBases;
-import org.devTayu.busTayu.database.LikedDatabase;
-import org.devTayu.busTayu.model.LikedDB;
-import org.devTayu.busTayu.model.Station;
 import org.devTayu.busTayu.adapter.StationAdapter.OnItemClickEventListener;
+import org.devTayu.busTayu.database.TaYuDatabase;
+import org.devTayu.busTayu.model.LikedDB;
+import org.devTayu.busTayu.model.StationAPI;
 
 public class StationHolder extends RecyclerView.ViewHolder {
 
@@ -33,7 +22,8 @@ public class StationHolder extends RecyclerView.ViewHolder {
     public TextView adirection;
     public TextView arrmsgSec1;
     public TextView arrmsgSec2;
-    public Button station_likeBtn;
+    TaYuDatabase likedDatabase;
+    LikedDB likedDB;
 
     public StationHolder(@NonNull View itemView, final OnItemClickEventListener a_itemClickListener) {
         super(itemView);
@@ -43,7 +33,6 @@ public class StationHolder extends RecyclerView.ViewHolder {
         arrmsgSec1 = itemView.findViewById(R.id.station_arrmsgSec1);
         arrmsgSec2 = itemView.findViewById(R.id.station_arrmsgSec2);
 
-        // 아래로 click listener 설정
         // itemView : click
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +42,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
 
                 if (position != RecyclerView.NO_POSITION) {
                     a_itemClickListener.onItemClick(position);
-                    Toast.makeText(context, position +" : itemView", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, position + " : itemView", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -63,11 +52,10 @@ public class StationHolder extends RecyclerView.ViewHolder {
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Log.d("Recyclerview", "position = "+ getAdapterPosition());
+                Log.d("Recyclerview", "position = " + getAdapterPosition());
                 return false;
             }
         });
-
 
         // 파이어베이스 때문에 사용 중 아래로 두 줄
         //Station station = new Station();
@@ -80,7 +68,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
-                Toast.makeText(context, position +" : 즐겨찾기", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, position + " : 즐겨찾기", Toast.LENGTH_SHORT).show();
 
                 // 파이어베이스
                 // station.setRtNm("setRtNm");
@@ -94,31 +82,52 @@ public class StationHolder extends RecyclerView.ViewHolder {
                 //reff.child("liked1").setValue(station);
                 //Toast.makeText(context,"Liked Data Inserted Sucessfully",Toast.LENGTH_SHORT).show();
 
-                // SQLite
-                /*LikedDatabase likedDatabase = LikedDatabase.getDatabase(context);
-                likedDatabase.likedDAO().insert(
-                        new LikedDB("11","22")
-                );*/
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            // SQLite
+                            likedDatabase = TaYuDatabase.getDatabase(context);
+                            String busNumber = rtNm.getText().toString();
+                            StationAPI stationAPI = new StationAPI();
+                            String stationNumber = stationAPI.getAsrId();
+
+                            Integer likedExist = likedDatabase.likedDAO().getCount(busNumber, stationNumber);
+                            // 이미 있는 즐찾
+                            if (likedExist > 0) {
+
+                            }
+                            // 즐찾 디비에 추가
+                            else {
+                                likedDB = new LikedDB(busNumber, stationNumber);
+                                likedDatabase.likedDAO().insert(likedDB);
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         });
 
         // station_arrmsgSec1Btn : 첫 번째 버스 : click
-        itemView.findViewById(R.id.station_arrmsgSec1Btn).setOnClickListener(new View.OnClickListener(){
+        itemView.findViewById(R.id.station_arrmsgSec1Btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
-                Toast.makeText(context,  position +" : 첫 번째 버스", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, position + " : 첫 번째 버스", Toast.LENGTH_SHORT).show();
             }
         });
 
         // station_arrmsgSec2Btn : 두 번째 버스 : click
-        itemView.findViewById(R.id.station_arrmsgSec2Btn).setOnClickListener(new View.OnClickListener(){
+        itemView.findViewById(R.id.station_arrmsgSec2Btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
-                Toast.makeText(context,  position +" : 두 번째 버스", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, position + " : 두 번째 버스", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -16,6 +16,14 @@ public class StationAPI {
     // 신도림역2번출구
     String asrId = "17001";
 
+    // 정류소 번호
+    public String getAsrId() {
+        return asrId;
+    }
+    public void setAsrId(String asrId) {
+        this.asrId = asrId;
+    }
+
     // String
     String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null;
     // Check
