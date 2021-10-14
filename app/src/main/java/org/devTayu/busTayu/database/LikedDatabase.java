@@ -1,11 +1,18 @@
 package org.devTayu.busTayu.database;
 import android.content.Context;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import org.devTayu.busTayu.model.LikedDB;
+
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,6 +23,7 @@ public abstract class LikedDatabase extends RoomDatabase {
     private static volatile LikedDatabase INSTANCE;
     public static final ExecutorService databaseWriteExecutor
             = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
     //싱글톤
     public static LikedDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -37,6 +45,9 @@ public abstract class LikedDatabase extends RoomDatabase {
 
     // 처음부터 데이터가 들어가 있길 원한다면, 여기에서 직접 채워줄수 있습니다
     private static RoomDatabase.Callback setInitialRoomDatabaseCallback = new RoomDatabase.Callback() {
+        // 현재 시각 - 어떻게 찍히는지 확인 필요
+        // Date currentTime = Calendar.getInstance().getTime();
+
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);

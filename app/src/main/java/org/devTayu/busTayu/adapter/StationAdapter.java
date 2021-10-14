@@ -75,35 +75,3 @@ public class StationAdapter extends RecyclerView.Adapter<StationHolder> {
     }
 
 }
-
-/*
-public abstract class StationAdapter extends RecyclerView.Adapter<StationHolder> {
-
-    public interface OnItemClickEventListener {
-        void onItemClick(View a_view, int a_position);
-    }
-
-    // 해당 어댑터의 ViewHolder를 상속받는다.
-    private ArrayList<Station> mItemList;
-
-    private OnItemClickEventListener mItemClickListener;
-
-    public StationAdapter(ArrayList<Station> datas) {
-        //this.datas = datas;
-        mItemList = datas;
-    }
-
-    public void setOnItemClickListener(OnItemClickEventListener a_listener) {
-        mItemClickListener = a_listener;
-    }
-
-    // 버튼 : 리스너 객체 참조를 저장하는 변수
-    private AdapterView.OnItemClickListener mListener = null;
-
-
-    // 버튼 : OnItemClickListener 리스너 객체 참조를 어댑터에 전달하는 메서드
-    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
-        this.mListener = listener;
-    }
-}
-*/
