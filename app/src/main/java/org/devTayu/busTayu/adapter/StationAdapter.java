@@ -1,23 +1,17 @@
 package org.devTayu.busTayu.adapter;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.devTayu.busTayu.MainActivity;
 import org.devTayu.busTayu.R;
-import org.devTayu.busTayu.activity.StationActivity;
 import org.devTayu.busTayu.holder.StationHolder;
 import org.devTayu.busTayu.model.Station;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StationAdapter extends RecyclerView.Adapter<StationHolder> {
 

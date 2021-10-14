@@ -1,3 +1,4 @@
+/*
 package org.devTayu.busTayu.database;
 
 import android.content.ContentValues;
@@ -92,3 +93,4 @@ public class DBOpenHelper {
         return mDB.delete(DataBases.CreateDB._TABLENAME0, "_ID="+uid, null) > 0;
     }
 }
+*/
