@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.StationActivity;
 import org.devTayu.busTayu.adapter.StationAdapter.OnItemClickEventListener;
 import org.devTayu.busTayu.database.TaYuDatabase;
 import org.devTayu.busTayu.model.LikedDB;
@@ -24,6 +25,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
     public TextView arrmsgSec2;
     TaYuDatabase likedDatabase;
     LikedDB likedDB;
+    StationActivity stationActivity;
 
     public StationHolder(@NonNull View itemView, final OnItemClickEventListener a_itemClickListener) {
         super(itemView);
@@ -92,20 +94,37 @@ public class StationHolder extends RecyclerView.ViewHolder {
                             StationAPI stationAPI = new StationAPI();
                             String stationNumber = stationAPI.getAsrId();
 
-                            Integer likedExist = likedDatabase.likedDAO().getCount(busNumber, stationNumber);
-                            // 이미 있는 즐찾
+                            Integer likedExist = likedDatabase.likedDAO().getCountLiked(busNumber, stationNumber);
+                            // 즐겨찾기에 DELETE
                             if (likedExist > 0) {
-
+                                likedDB = new LikedDB(busNumber, stationNumber);
+                                likedDatabase.likedDAO().deleteLiked(busNumber, stationNumber);
+                                Log.d("StationHolder : ", "DELETE liked_table!");
                             }
-                            // 즐찾 디비에 추가
+                            // 즐겨찾기에 INSERT
                             else {
                                 likedDB = new LikedDB(busNumber, stationNumber);
-                                likedDatabase.likedDAO().insert(likedDB);
+                                likedDatabase.likedDAO().insertLiked(likedDB);
+                                Log.d("StationHolder : ", "INSERT liked_table!");
                             }
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        /*
+                        디비에 작업하고 toast 보여주거나,
+                        recyclerview 자체를 api에서 받아오고 해당 데이터 리스트들을 sql을 돌려서 이미 있는 것들은 효과를 따로 주거나?
+                        그냥 냅두거나
+
+                        stationActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });*/
                     }
                 }).start();
             }
