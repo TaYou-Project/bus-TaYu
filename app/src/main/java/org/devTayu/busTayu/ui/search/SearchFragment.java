@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,13 +20,14 @@ import org.devTayu.busTayu.activity.SearchActivity;
 public class SearchFragment extends Fragment {
 
     SearchActivity searchActivity;
+    private SearchView searchView;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
         new Thread(new Runnable() {
@@ -59,6 +62,20 @@ public class SearchFragment extends Fragment {
 
         Intent intent = new Intent(getContext(), SearchActivity.class);
         this.startActivity(intent);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                TextView textView = (TextView) getView().findViewById(R.id.search_stationName);
+                textView.setText(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+        });
 
     }
 }
