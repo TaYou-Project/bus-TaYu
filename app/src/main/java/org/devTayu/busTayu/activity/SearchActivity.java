@@ -1,10 +1,14 @@
 package org.devTayu.busTayu.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,21 +25,28 @@ import org.devTayu.busTayu.MainActivity;
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.adapter.SearchAdapter;
 import org.devTayu.busTayu.model.Search;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
+
     private RecyclerView mPostRecyclerView;
     private SearchAdapter mAdpater;
-    private List<Search> mDatas;
+    private List<Search> mDatas;  //데이터를 넣은 리스트 변수
+    private SearchView searchView;
     DatabaseReference database;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
+
+
         mPostRecyclerView = findViewById(R.id.recyclerView_search);
         mPostRecyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
 
@@ -75,7 +86,26 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+
         mAdpater = new SearchAdapter(mDatas);
         mPostRecyclerView.setAdapter(mAdpater); // 리사이클러뷰에 어댑터 연결
+
+
+        searchView = findViewById(R.id.searchView_search);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                TextView textView = (TextView)findViewById(R.id.search_stationName);
+                textView.setText(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+        });
+
     }
 }
