@@ -22,7 +22,7 @@ import org.devTayu.busTayu.MainActivity;
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.adapter.StationAdapter;
 import org.devTayu.busTayu.model.Station;
-import org.devTayu.busTayu.model.StationAPI;
+import org.devTayu.busTayu.ui.station.StationAPI;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

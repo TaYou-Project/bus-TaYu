@@ -12,7 +12,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/reserve_time"
+        android:id="@+id/reserve_leastTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8sp"
@@ -70,7 +70,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/reserve_clockTime"
+                android:id="@+id/reserve_expectationTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8sp"

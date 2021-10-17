@@ -24,13 +24,13 @@
 
     <!-- recycleview_reserve.xml -->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/liked_SwipeLayout"
+        android:id="@+id/reserve_SwipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activity.ReserveActivity">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_liked"
+            android:id="@+id/recyclerView_reserve"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

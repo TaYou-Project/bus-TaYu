@@ -1,24 +1,40 @@
 package org.devTayu.busTayu.ui.reserve;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.LikedActivity;
+import org.devTayu.busTayu.activity.ReserveActivity;
+import org.devTayu.busTayu.adapter.ReserveAdapter;
 
 public class ReserveFragment extends Fragment {
+
+    ReserveActivity reserveActivity;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_reserve, container, false);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                initUI(root);
+            }
+        }).start();
+
         return root;
+    }
+
+    public void initUI(View root) {
+
+        Intent intent = new Intent(getContext(), ReserveActivity.class);
+        this.startActivity(intent);
     }
 }
 
