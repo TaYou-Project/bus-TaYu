@@ -29,9 +29,6 @@ import java.util.ArrayList;
 
 public class StationActivity extends AppCompatActivity {
 
-    String station_name = "신도림역2번출구";
-    String station_num = "17001";
-
     StationAPI stationAPI;
     ArrayList<Station> mDatas;
 
@@ -51,16 +48,26 @@ public class StationActivity extends AppCompatActivity {
             }
         });
 
+        // SearchHolder 에서 넘어온 station_num : 정류소 번호
+        String station_num = getIntent().getStringExtra("station_num");
+        /*
+        Intent 가져올 때 null 체크 하려고 했는데 잘 안됨 : 일단 null 이어도 실행에 문제는 없음 : 나중에 확인
+        String station_num = getIntent().getStringExtra("station_num").equals("")?"17001":getIntent().getStringExtra("station_num");
+        */
+
+        // SearchHolder 에서 넘어온 station_name : 정류소 명
+        String station_name = getIntent().getStringExtra("station_name");
+
         // 정류소_명 [정류소 번호]
         TextView textView = (TextView) findViewById(R.id.station_name);
-        textView.setText(station_name + " [" + station_num + " ]");
+        textView.setText(station_name + " [ " + station_num + " ]");
 
         /* Android Honeycomb 이후 MainThread 에서 networking 처리 불가 */
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    bindList();
+                    bindList(station_num);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -104,13 +111,13 @@ public class StationActivity extends AppCompatActivity {
         });
     }
 
-    // bindList
-    private void bindList() {
+    // bindList(정류소 번호)
+    private void bindList(String station_num) {
         // 데이터 추가
         stationAPI = new StationAPI();
         mDatas = new ArrayList<>();
         try {
-            mDatas = stationAPI.station_arsId();
+            mDatas = stationAPI.station_arsId(station_num);
         } catch (Exception e) {
             e.printStackTrace();
         }

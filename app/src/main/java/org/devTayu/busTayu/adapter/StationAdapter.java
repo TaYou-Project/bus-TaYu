@@ -57,6 +57,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationHolder> {
         stationHolder.adirection.setText(data.getAdirection());
         stationHolder.arrmsgSec1.setText(data.getArrmsgSec1());
         stationHolder.arrmsgSec2.setText(data.getArrmsgSec2());
+        stationHolder.stationNum.setText(data.getStationNum());
 
     }
 

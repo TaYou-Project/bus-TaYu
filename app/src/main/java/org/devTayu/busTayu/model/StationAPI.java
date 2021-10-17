@@ -13,21 +13,23 @@ public class StationAPI {
     // 인증키
     String ServiceKey = "kd3zWLkxFKVIuT0XejOXR1qWycWNx03d21q75t5AHS2gIRKGQXQhqtwrvDWy3Huf04BaJZQL2vQHDvEkT8coDw%3D%3D";
     // 정류소고유번호
-    // 신도림역2번출구
-    String asrId = "17001";
+    String asrId;
 
     // 정류소 번호
     public String getAsrId() {
         return asrId;
     }
+
     public void setAsrId(String asrId) {
         this.asrId = asrId;
     }
 
     // String
     String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null;
+    String stationNum = null; // asrID 와 같은 내용 : 정류소 고유번호
+
     // Check
-    boolean rtNmCheck = false, adirectionCheck = false, arrmsgSec1Check = false, arrmsgSec2Check = false;
+    boolean rtNmCheck = false, adirectionCheck = false, arrmsgSec1Check = false, arrmsgSec2Check = false, stationNumCheck = false;
 
     public String getRtNm() {
         return rtNm;
@@ -61,8 +63,15 @@ public class StationAPI {
         this.arrmsgSec2 = arrmsgSec2;
     }
 
+    public String getStationNum() {
+        return stationNum;
+    }
 
-    public ArrayList<Station> station_arsId() {
+    public void setStationNum(String stationNum) {
+        this.stationNum = stationNum;
+    }
+
+    public ArrayList<Station> station_arsId(String asrId) {
         Log.d("유소정 : StationAPI", "station_arsId() 호출");
 
         // 서울특별시_정류소정보조회 서비스 : getStationByUidItem
@@ -95,6 +104,8 @@ public class StationAPI {
                             arrmsgSec1Check = true;
                         } else if (parser.getName().equals("arrmsgSec2")) {
                             arrmsgSec2Check = true;
+                        } else if (parser.getName().equals("arsId")) {
+                            stationNumCheck = true;
                         }
                         break;
                     case XmlPullParser.TEXT: // parser가 내용에 접근했을때
@@ -110,6 +121,9 @@ public class StationAPI {
                         } else if (arrmsgSec2Check) {
                             setArrmsgSec2(parser.getText());
                             arrmsgSec2Check = false;
+                        } else if (stationNumCheck) {
+                            setStationNum(parser.getText());
+                            stationNumCheck = false;
                         }
                         break;
                     case XmlPullParser.END_TAG:
@@ -119,8 +133,9 @@ public class StationAPI {
                             entity.setAdirection(getAdirection());
                             entity.setArrmsgSec1(getArrmsgSec1());
                             entity.setArrmsgSec2(getArrmsgSec2());
-                            station.add(entity);
+                            entity.setStationNum(getStationNum());
                             System.out.println("사이즈 " + station.size());
+                            station.add(entity);
                         }
                         break;
                 }

@@ -14,7 +14,6 @@ import org.devTayu.busTayu.activity.StationActivity;
 import org.devTayu.busTayu.adapter.StationAdapter.OnItemClickEventListener;
 import org.devTayu.busTayu.database.TaYuDatabase;
 import org.devTayu.busTayu.model.LikedDB;
-import org.devTayu.busTayu.model.StationAPI;
 
 public class StationHolder extends RecyclerView.ViewHolder {
 
@@ -23,17 +22,24 @@ public class StationHolder extends RecyclerView.ViewHolder {
     public TextView adirection;
     public TextView arrmsgSec1;
     public TextView arrmsgSec2;
+    public TextView stationNum;
+
     TaYuDatabase likedDatabase;
     LikedDB likedDB;
     StationActivity stationActivity;
 
-    public StationHolder(@NonNull View itemView, final OnItemClickEventListener a_itemClickListener) {
+    public StationHolder(@NonNull View itemView, final OnItemClickEventListener stationClickListener) {
         super(itemView);
         // 아이템 뷰에 필요한 View
         rtNm = itemView.findViewById(R.id.station_rtNm);
         adirection = itemView.findViewById(R.id.station_adirection);
         arrmsgSec1 = itemView.findViewById(R.id.station_arrmsgSec1);
         arrmsgSec2 = itemView.findViewById(R.id.station_arrmsgSec2);
+        // 디비에 정류소 번호 넣으려고 사용 : 숨김 처리, width/height 0 처리
+        stationNum = itemView.findViewById(R.id.station_stationNum);
+        stationNum.setVisibility(View.GONE);
+        stationNum.setWidth(0);
+        stationNum.setHeight(0);
 
         // itemView : click
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +49,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
                 Context context = v.getContext();
 
                 if (position != RecyclerView.NO_POSITION) {
-                    a_itemClickListener.onItemClick(position);
+                    stationClickListener.onItemClick(position);
                     Toast.makeText(context, position + " : itemView", Toast.LENGTH_SHORT).show();
                 }
 
@@ -90,9 +96,11 @@ public class StationHolder extends RecyclerView.ViewHolder {
                         try {
                             // SQLite
                             likedDatabase = TaYuDatabase.getDatabase(context);
+
+                            // busNumber (버스번호) 가져오기
                             String busNumber = rtNm.getText().toString();
-                            StationAPI stationAPI = new StationAPI();
-                            String stationNumber = stationAPI.getAsrId();
+                            // stationNum (정류소번호) 가져오기
+                            String stationNumber = stationNum.getText().toString();
 
                             Integer likedExist = likedDatabase.likedDAO().getCountLiked(busNumber, stationNumber);
                             // 즐겨찾기에 DELETE
