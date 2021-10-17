@@ -34,6 +34,21 @@ public class SearchFragment extends Fragment {
             @Override
             public void run() {
                 initUI(root);
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        TextView textView = (TextView) getView().findViewById(R.id.search_stationName);
+                        textView.setText(query);
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        return true;
+                    }
+                });
+
             }
         }).start();
 
@@ -62,20 +77,6 @@ public class SearchFragment extends Fragment {
 
         Intent intent = new Intent(getContext(), SearchActivity.class);
         this.startActivity(intent);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                TextView textView = (TextView) getView().findViewById(R.id.search_stationName);
-                textView.setText(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return true;
-            }
-        });
 
     }
 }
