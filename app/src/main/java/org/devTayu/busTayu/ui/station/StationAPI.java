@@ -1,7 +1,8 @@
-package org.devTayu.busTayu.model;
+package org.devTayu.busTayu.ui.station;
 
 import android.util.Log;
 
+import org.devTayu.busTayu.model.Station;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
