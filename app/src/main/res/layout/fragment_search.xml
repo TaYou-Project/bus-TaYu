@@ -4,29 +4,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activity.SearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".activity.SearchActivity">
+       >
 
-        <androidx.appcompat.widget.SearchView
+
+        <!-- recyclerview_search.xml -->
+
+        <SearchView
             android:id="@+id/searchView_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:searchIcon="@drawable/ic_baseline_search_24"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp"
             app:closeIcon="@drawable/ic_baseline_clear_24"
             app:iconifiedByDefault="false"
             app:queryBackground="@color/light_gray"
-            app:queryHint="정류장 명, 정류장 번호"
-            searchView.maxWidth = "Int.MAX_VALUE"
-            searvhView.isSubmitButtonEnabled = "true"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="30dp"/>
 
-        <!-- recyclerview_search.xml -->
+            app:queryHint="정류장 명, 정류장 번호"
+            app:searchIcon="@drawable/ic_baseline_search_24" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_search"
             android:layout_width="match_parent"
