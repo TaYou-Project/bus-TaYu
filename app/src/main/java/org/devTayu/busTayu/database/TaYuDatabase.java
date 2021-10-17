@@ -30,6 +30,7 @@ public abstract class TaYuDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             TaYuDatabase.class, "TaYu_database")
                             .addCallback(setInitialRoomDatabaseCallback)
+                            .fallbackToDestructiveMigration() // 정의된 이전 경로가 없는 증분 이전을 실행해야 할 때 앱의 데이터베이스에 테이블을 파괴적인 방식으로 다시 생성하도록 Room에 지시
                             .build();
                 }
             }
