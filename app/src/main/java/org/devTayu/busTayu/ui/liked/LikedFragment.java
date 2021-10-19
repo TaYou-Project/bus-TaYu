@@ -25,7 +25,7 @@ public class LikedFragment extends Fragment {
         super.onAttach(context);
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_liked, container, false);
 
         new Thread(new Runnable() {

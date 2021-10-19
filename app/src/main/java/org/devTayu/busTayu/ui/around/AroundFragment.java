@@ -77,6 +77,7 @@ public class AroundFragment extends Fragment {
         /* 사용자 현 위치 : 지금은 _구_동 까지 -> 변경하기 */
         TextView text = (TextView) root.findViewById(R.id.around_title);
         text.setText(locationActivity.getTextView());
+        //text.setText("서울시 종로구 세종로");
 
         Intent intent = new Intent(getContext(), AroundActivity.class);
         this.startActivity(intent);
