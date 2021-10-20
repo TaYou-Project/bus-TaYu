@@ -20,7 +20,6 @@ import org.devTayu.busTayu.activity.SearchActivity;
 import org.devTayu.busTayu.adapter.SearchAdapter;
 import org.devTayu.busTayu.model.Search;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,7 +35,6 @@ public class SearchFragment extends Fragment {
     public TextView result_stationName;
     public TextView result_stationNumber;
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -45,19 +43,12 @@ public class SearchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
-
-        Log.e("intent","onCreateView");
+        Log.e("intent", "onCreateView");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 initUI(root);
-
-
-
-
-
-
             }
         }).start();
 

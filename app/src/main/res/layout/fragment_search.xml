@@ -10,11 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-       >
-
-
-        <!-- recyclerview_search.xml -->
+        android:orientation="vertical">
 
         <SearchView
             android:id="@+id/searchView_search"
@@ -23,17 +19,16 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="30dp"
             app:closeIcon="@drawable/ic_baseline_clear_24"
-            app:iconifiedByDefault="false"
+            app:iconifiedByDefault="true"
             app:queryBackground="@color/light_gray"
-
             app:queryHint="정류장 명, 정류장 번호"
             app:searchIcon="@drawable/ic_baseline_search_24" />
 
+        <!-- recyclerview_search.xml -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
