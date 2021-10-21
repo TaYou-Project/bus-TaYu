@@ -1,3 +1,4 @@
+/*
 package org.devTayu.busTayu.activity;
 
 import android.os.Bundle;
@@ -39,12 +40,14 @@ public class LikedActivity extends AppCompatActivity {
         //.fallbackToDestructiveMigration() : Entity에 Data를 추가하거나 변경하여 버전(version)을 바꿔야 할때 적어주면 Migration 메서드를 따로 만들지 않아도 됩니다.
         //.allowMainThreadQueries()를 호출하면 메인스레드에서 DB접근을 허용할 수 있지만, 데이터를 받아오는 작업이 길어질 경우 UI가 장시간 멈추기 때문에 실제 어플에서는 사용을 권장하지 않는다고 합니다.
 
-        /*
+        */
+/*
         아래와 같은 것
         db.likedDAO().getAll().observe(this, dataList -> {
             mResultTextView.setText(dataList.toString());
         });
-        */
+        *//*
+
         //UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨)
         // UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨)
         // LiveData가 데이터 변화를 감지하여 UI를 업데이트하게 됩니다.^^ 그 소스는 onCreate에서 Oberver를 통해 onChanged를 Callback받아 실행한 코드를 보면 알수 있습니다
@@ -73,4 +76,4 @@ public class LikedActivity extends AppCompatActivity {
         mPostRecyclerView.setAdapter(mAdpater);
         mPostRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-}
+}*/
