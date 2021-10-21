@@ -1,3 +1,4 @@
+/*
 package org.devTayu.busTayu.activity;
 
 import android.os.Bundle;
@@ -39,3 +40,4 @@ public class ReserveActivity extends AppCompatActivity {
         mPostRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
+*/

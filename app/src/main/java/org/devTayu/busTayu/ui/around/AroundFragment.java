@@ -31,10 +31,9 @@ import org.devTayu.busTayu.activity.LocationActivity;
 
 public class AroundFragment extends Fragment implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
 
-    LocationActivity locationActivity;
-
-    public MapView mapView;
-    public ViewGroup mapViewContainer;
+    private LocationActivity locationActivity;
+    private MapView mapView;
+    private ViewGroup mapViewContainer;
 
     public static final int GPS_ENABLE_REQUEST_CODE = 2001;
     public static final int PERMISSIONS_REQUEST_CODE = 100;
