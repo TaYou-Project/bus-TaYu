@@ -35,6 +35,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
         adirection = itemView.findViewById(R.id.station_adirection);
         arrmsgSec1 = itemView.findViewById(R.id.station_arrmsgSec1);
         arrmsgSec2 = itemView.findViewById(R.id.station_arrmsgSec2);
+
         // 디비에 정류소 번호 넣으려고 사용 : 숨김 처리, width/height 0 처리
         stationNum = itemView.findViewById(R.id.station_stationNum);
         stationNum.setVisibility(View.GONE);
@@ -60,7 +61,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Log.d("Recyclerview", "position = " + getAdapterPosition());
+                Log.d("StationHolder Recyclerview", "position = " + getAdapterPosition());
                 return false;
             }
         });

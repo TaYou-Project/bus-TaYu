@@ -1,27 +1,32 @@
 package org.devTayu.busTayu.model;
 
 public class Liked {
-    public String stationName;
-    public String stationNum;
-    public String adirection;
-    public String rtNm;
-    public String arrmsgSec1;
-    public String arrmsgSec2;
 
-    public String getStationName() {
-        return stationName;
+    private String rtNm; // 노선 명 : 버스 번호
+    private String adirection; // 방면
+    private String arrmsgSec1; // 첫번째 도착예정버스의 도착정보메시지
+    private String arrmsgSec2; // 두번째 도착예정버스의 도착정보메시지
+    private String stationNum; // 정류소 고유 번호
+    private String stNm; // 정류소 이름 : 한글
+
+    public Liked() {
+        super();
     }
 
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
+    public String getStNm() {
+        return stNm;
     }
 
-    public String getStationNum() {
-        return stationNum;
+    public void setStNm(String stNm) {
+        this.stNm = stNm;
     }
 
-    public void setStationNum(String stationNum) {
-        this.stationNum = stationNum;
+    public void setRtNm(String rtNm) {
+        this.rtNm = rtNm;
+    }
+
+    public String getRtNm() {
+        return rtNm;
     }
 
     public String getAdirection() {
@@ -30,14 +35,6 @@ public class Liked {
 
     public void setAdirection(String adirection) {
         this.adirection = adirection;
-    }
-
-    public String getRtNm() {
-        return rtNm;
-    }
-
-    public void setRtNm(String rtNm) {
-        this.rtNm = rtNm;
     }
 
     public String getArrmsgSec1() {
@@ -56,12 +53,20 @@ public class Liked {
         this.arrmsgSec2 = arrmsgSec2;
     }
 
-    public Liked(String stationName, String stationNum, String adirection, String rtNm, String arrmsgSec1, String arrmsgSec2) {
-        this.stationName = stationName;
+    public String getStationNum() {
+        return stationNum;
+    }
+
+    public void setStationNum(String stationNum) {
         this.stationNum = stationNum;
-        this.adirection = adirection;
+    }
+
+    public Liked(String rtNm, String adirection, String arrmsgSec1, String arrmsgSec2, String stationNum, String stNm) {
         this.rtNm = rtNm;
+        this.adirection = adirection;
         this.arrmsgSec1 = arrmsgSec1;
         this.arrmsgSec2 = arrmsgSec2;
+        this.stationNum = stationNum;
+        this.stNm = stNm;
     }
 }

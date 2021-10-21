@@ -58,7 +58,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationHolder> {
         stationHolder.arrmsgSec1.setText(data.getArrmsgSec1());
         stationHolder.arrmsgSec2.setText(data.getArrmsgSec2());
         stationHolder.stationNum.setText(data.getStationNum());
-
     }
 
     // 필수 3 : 아이템 개수를 조회
