@@ -1,3 +1,4 @@
+/*
 package org.devTayu.busTayu.activity;
 
 import android.os.Bundle;
@@ -123,20 +124,12 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+*/
+
 /*
-database.orderByKey().startAt(what).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-    @Override
-    public void onComplete(@NonNull Task<DataSnapshot> task) {
-        if(!task.isSuccessful()){
-            Log.e("firebase", "Error getting data", task.getException());
-        }else{
-            for(DataSnapshot dataSnapshot : task.) {
-                Log.d("MainActivity", "ValueEventListener : " + snapshot.getValue());
-            }
-        }
-    }
-});*/
+
         mAdpater = new SearchAdapter(mDatas);
         mPostRecyclerView.setAdapter(mAdpater); // 리사이클러뷰에 어댑터 연결
     }
 }
+*/

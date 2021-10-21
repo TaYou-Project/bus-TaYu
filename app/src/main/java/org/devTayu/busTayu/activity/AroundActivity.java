@@ -1,3 +1,4 @@
+/*
 package org.devTayu.busTayu.activity;
 
 import android.Manifest;
@@ -44,13 +45,15 @@ public class AroundActivity extends AppCompatActivity implements MapView.Current
     public AroundActivity() {
     }
 
-    /*
+    */
+/*
     public AroundActivity(Context context, FragmentActivity activity) {
         this.mContext = mContext;
         this.activity = activity;
         getMap();
     }
-    */
+    *//*
+
 
     public void getMap() {
         Log.d("유소정", "**************** AroundActivity getMap() 찍힘 ****************");
@@ -79,7 +82,9 @@ public class AroundActivity extends AppCompatActivity implements MapView.Current
             checkRunTimePermission();
         }
 
-        /*마커 찍기*/
+        */
+/*마커 찍기*//*
+
         MapPoint MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.576915, 126.976837); // 임의 값 : 경복궁 위치
         MapPOIItem customMarker = new MapPOIItem();
         customMarker.setItemName("Custom Marker");
@@ -91,7 +96,9 @@ public class AroundActivity extends AppCompatActivity implements MapView.Current
         customMarker.setCustomImageAutoscale(false); // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
         customMarker.setCustomImageAnchor(0.5f, 1.0f); // 마커 이미지중 기준이 되는 위치(앵커포인트) 지정 - 마커 이미지 좌측 상단 기준 x(0.0f ~ 1.0f), y(0.0f ~ 1.0f) 값.
 
-        /*add*/
+        */
+/*add*//*
+
         mapView.addPOIItem(customMarker);
 
         // 플로팅 현위치 : floatingActionButton
@@ -292,4 +299,4 @@ public class AroundActivity extends AppCompatActivity implements MapView.Current
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
 
     }
-}
+}*/
