@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="65dp"
         android:clickable="true"
         android:contentDescription="@string/liked_floatingBtn"
         app:backgroundTint="#D8D8D8"
