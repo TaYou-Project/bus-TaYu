@@ -196,7 +196,7 @@ public class StationActivity extends AppCompatActivity {
         Log.d("유소정", "recyclerView: " + mDatas.size());
         // 샘플 데이터
         for (int i = 0; i < 2; i++) {
-            mDatas.add(new Station("샘플데이터", "샘플데이터", "샘플데이터", "샘플데이터", "샘플데이터"));
+            mDatas.add(new Station("샘플데이터", "샘플데이터", "샘플데이터", "샘플데이터", "샘플데이터", "샘플데이터"));
         }
 
         // Adapter, LayoutManager(LinerLayoutManager) 연결

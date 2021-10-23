@@ -1,6 +1,9 @@
 package org.devTayu.busTayu.holder;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -10,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.devTayu.busTayu.R;
-import org.devTayu.busTayu.activity.StationActivity;
 import org.devTayu.busTayu.adapter.StationAdapter.OnItemClickEventListener;
 import org.devTayu.busTayu.database.TaYuDatabase;
 import org.devTayu.busTayu.model.LikedDB;
@@ -23,18 +25,25 @@ public class StationHolder extends RecyclerView.ViewHolder {
     public TextView arrmsgSec1;
     public TextView arrmsgSec2;
     public TextView stationNum;
+    public TextView stNm;
 
-    TaYuDatabase likedDatabase;
-    LikedDB likedDB;
-    StationActivity stationActivity;
+    private TaYuDatabase likedDatabase;
+    private LikedDB likedDB;
 
     public StationHolder(@NonNull View itemView, final OnItemClickEventListener stationClickListener) {
         super(itemView);
+
         // 아이템 뷰에 필요한 View
         rtNm = itemView.findViewById(R.id.station_rtNm);
         adirection = itemView.findViewById(R.id.station_adirection);
         arrmsgSec1 = itemView.findViewById(R.id.station_arrmsgSec1);
         arrmsgSec2 = itemView.findViewById(R.id.station_arrmsgSec2);
+
+        // Alertdialog에 정류소 명 넣으려고 사용 : 숨김 처리, width/height 0 처리
+        stNm = itemView.findViewById(R.id.station_stationName);
+        stNm.setVisibility(View.GONE);
+        stNm.setWidth(0);
+        stNm.setHeight(0);
 
         // 디비에 정류소 번호 넣으려고 사용 : 숨김 처리, width/height 0 처리
         stationNum = itemView.findViewById(R.id.station_stationNum);
@@ -146,6 +155,42 @@ public class StationHolder extends RecyclerView.ViewHolder {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
                 Toast.makeText(context, position + " : 첫 번째 버스", Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                // 도착예정시간 : 현재시간 + 남은시간 추가
+                builder.setTitle("버스 예약").setMessage(
+                        Html.fromHtml("정류소 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
+                                        "버스 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
+                                        "방면 : " + "<b>" + adirection.getText().toString() + "</b>" + "<br>" +
+                                        "남은시간 : " + "<b>" + arrmsgSec1.getText().toString() + "</b>" + "<br>" + "<br>" +
+                                        "<b>예약하시겠습니까?</b>"
+                                , Html.FROM_HTML_MODE_LEGACY)
+                );
+
+                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(context.getApplicationContext(), "취소 되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                /*
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        Toast.makeText(context.getApplicationContext(), "Cancel Click", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                */
+                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
 
@@ -156,6 +201,42 @@ public class StationHolder extends RecyclerView.ViewHolder {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
                 Toast.makeText(context, position + " : 두 번째 버스", Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                // 도착예정시간 : 현재시간 + 남은시간 추가
+                builder.setTitle("버스 예약").setMessage(
+                        Html.fromHtml("정류소 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
+                                        "버스 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
+                                        "방면 : " + "<b>" + adirection.getText().toString() + "</b>" + "<br>" +
+                                        "남은시간 : " + "<b>" + arrmsgSec2.getText().toString() + "</b>" + "<br>" + "<br>" +
+                                        "<b>예약하시겠습니까?</b>"
+                                , Html.FROM_HTML_MODE_LEGACY)
+                );
+
+                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                /*
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        Toast.makeText(context.getApplicationContext(), "Cancel Click", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                */
+                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }

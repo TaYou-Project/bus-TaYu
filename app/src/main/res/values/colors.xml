@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#E1E1E1</color>
+
+    <!--AlertDialog-->
+    <color name="NegativeButtonStyle">#f00</color>
+    <color name="PositiveButtonStyle">#00f</color>
 </resources>

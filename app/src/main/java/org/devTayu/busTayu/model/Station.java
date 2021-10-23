@@ -7,6 +7,7 @@ public class Station {
     private String arrmsgSec1; // 첫번째 도착예정버스의 도착정보메시지
     private String arrmsgSec2; // 두번째 도착예정버스의 도착정보메시지
     private String stationNum; // 정류소 고유 번호
+    private String stNm; // 정류소 명
 
     public Station() {
         super();
@@ -52,11 +53,20 @@ public class Station {
         this.stationNum = stationNum;
     }
 
-    public Station(String rtNm, String adirection, String arrmsgSec1, String arrmsgSec2, String stationNum) {
+    public String getStNm() {
+        return stNm;
+    }
+
+    public void setStNm(String stNm) {
+        this.stNm = stNm;
+    }
+
+    public Station(String rtNm, String adirection, String arrmsgSec1, String arrmsgSec2, String stationNum, String stNm) {
         this.rtNm = rtNm;
         this.adirection = adirection;
         this.arrmsgSec1 = arrmsgSec1;
         this.arrmsgSec2 = arrmsgSec2;
         this.stationNum = stationNum;
+        this.stNm = stNm;
     }
 }

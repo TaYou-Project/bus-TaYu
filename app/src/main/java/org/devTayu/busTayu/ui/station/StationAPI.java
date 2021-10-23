@@ -29,11 +29,11 @@ public class StationAPI {
     }
 
     // String
-    String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null;
+    String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null, stNm = null;
     String stationNum = null; // asrID 와 같은 내용 : 정류소 고유번호
 
     // Check
-    boolean rtNmCheck = false, adirectionCheck = false, arrmsgSec1Check = false, arrmsgSec2Check = false, stationNumCheck = false;
+    boolean rtNmCheck = false, adirectionCheck = false, arrmsgSec1Check = false, arrmsgSec2Check = false, stationNumCheck = false, stNmCheck = false;
 
     public String getRtNm() {
         return rtNm;
@@ -75,6 +75,14 @@ public class StationAPI {
         this.stationNum = stationNum;
     }
 
+    public String getStNm() {
+        return stNm;
+    }
+
+    public void setStNm(String stNm) {
+        this.stNm = stNm;
+    }
+
     public ArrayList<Station> station_arsId(String asrId) {
         Log.d("유소정 : StationAPI", "station_arsId() 호출");
 
@@ -110,6 +118,8 @@ public class StationAPI {
                             arrmsgSec2Check = true;
                         } else if (parser.getName().equals("arsId")) {
                             stationNumCheck = true;
+                        } else if (parser.getName().equals("stNm")) {
+                            stNmCheck = true;
                         }
                         break;
                     case XmlPullParser.TEXT: // parser가 내용에 접근했을때
@@ -128,6 +138,9 @@ public class StationAPI {
                         } else if (stationNumCheck) {
                             setStationNum(parser.getText());
                             stationNumCheck = false;
+                        } else if (stNmCheck) {
+                            setStNm(parser.getText());
+                            stNmCheck = false;
                         }
                         break;
                     case XmlPullParser.END_TAG:
@@ -138,6 +151,7 @@ public class StationAPI {
                             entity.setArrmsgSec1(getArrmsgSec1());
                             entity.setArrmsgSec2(getArrmsgSec2());
                             entity.setStationNum(getStationNum());
+                            entity.setStNm(getStNm());
                             System.out.println("사이즈 " + station.size());
                             station.add(entity);
                         }
