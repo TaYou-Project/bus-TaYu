@@ -3,6 +3,7 @@ package org.devTayu.busTayu.holder;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Looper;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.adapter.StationAdapter.OnItemClickEventListener;
 import org.devTayu.busTayu.database.TaYuDatabase;
 import org.devTayu.busTayu.model.LikedDB;
+import org.devTayu.busTayu.model.ReservedDB;
 
 public class StationHolder extends RecyclerView.ViewHolder {
 
@@ -27,8 +29,9 @@ public class StationHolder extends RecyclerView.ViewHolder {
     public TextView stationNum;
     public TextView stNm;
 
-    private TaYuDatabase likedDatabase;
+    private TaYuDatabase taYuDatabase;
     private LikedDB likedDB;
+    private ReservedDB reservedDB;
 
     public StationHolder(@NonNull View itemView, final OnItemClickEventListener stationClickListener) {
         super(itemView);
@@ -86,7 +89,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
-                Toast.makeText(context, position + " : 즐겨찾기", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, position + " : 즐겨찾기", Toast.LENGTH_SHORT).show();
 
                 // 파이어베이스
                 // station.setRtNm("setRtNm");
@@ -105,44 +108,38 @@ public class StationHolder extends RecyclerView.ViewHolder {
                     public void run() {
                         try {
                             // SQLite
-                            likedDatabase = TaYuDatabase.getDatabase(context);
+                            taYuDatabase = TaYuDatabase.getDatabase(context);
 
                             // busNumber (버스번호) 가져오기
                             String busNumber = rtNm.getText().toString();
                             // stationNum (정류소번호) 가져오기
                             String stationNumber = stationNum.getText().toString();
 
-                            Integer likedExist = likedDatabase.likedDAO().getCountLiked(busNumber, stationNumber);
+                            Integer likedExist = taYuDatabase.likedDAO().getCountLiked(busNumber, stationNumber);
                             // 즐겨찾기에 DELETE
                             if (likedExist > 0) {
                                 likedDB = new LikedDB(busNumber, stationNumber);
-                                likedDatabase.likedDAO().deleteLiked(busNumber, stationNumber);
+                                taYuDatabase.likedDAO().deleteLiked(busNumber, stationNumber);
                                 Log.d("StationHolder : ", "DELETE liked_table!");
+
+                                Looper.prepare();
+                                Toast.makeText(context.getApplicationContext(), "즐겨찾기 해제.", Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+
                             }
                             // 즐겨찾기에 INSERT
                             else {
                                 likedDB = new LikedDB(busNumber, stationNumber);
-                                likedDatabase.likedDAO().insertLiked(likedDB);
+                                taYuDatabase.likedDAO().insertLiked(likedDB);
                                 Log.d("StationHolder : ", "INSERT liked_table!");
+
+                                Looper.prepare();
+                                Toast.makeText(context.getApplicationContext(), "즐겨찾기 등록.", Toast.LENGTH_SHORT).show();
+                                Looper.loop();
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        /*
-                        디비에 작업하고 toast 보여주거나,
-                        recyclerview 자체를 api에서 받아오고 해당 데이터 리스트들을 sql을 돌려서 이미 있는 것들은 효과를 따로 주거나?
-                        그냥 냅두거나
-
-                        stationActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });*/
                     }
                 }).start();
             }
@@ -154,43 +151,90 @@ public class StationHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
-                Toast.makeText(context, position + " : 첫 번째 버스", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(context, position + " : 첫 번째 버스", Toast.LENGTH_SHORT).show();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                // 도착예정시간 : 현재시간 + 남은시간 추가
-                builder.setTitle("버스 예약").setMessage(
-                        Html.fromHtml("정류소 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
-                                        "버스 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
-                                        "방면 : " + "<b>" + adirection.getText().toString() + "</b>" + "<br>" +
-                                        "남은시간 : " + "<b>" + arrmsgSec1.getText().toString() + "</b>" + "<br>" + "<br>" +
-                                        "<b>예약하시겠습니까?</b>"
-                                , Html.FROM_HTML_MODE_LEGACY)
-                );
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            // SQLite
+                            taYuDatabase = TaYuDatabase.getDatabase(context);
 
-                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(context.getApplicationContext(), "취소 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                /*
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        Toast.makeText(context.getApplicationContext(), "Cancel Click", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                */
-                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            // 도착예정시간 : 현재시간 + 남은시간 추가
+                            String Rbus = rtNm.getText().toString();
+                            String RstNm = stNm.getText().toString();
+                            String RAdirection = adirection.getText().toString();
+                            String RarrmsgSec1 = arrmsgSec1.getText().toString();
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved(Rbus, RstNm);
+                            Log.d("유소정 디비", reservedExist.toString());
+                            // 예약된 버스
+                            if (reservedExist > 0) {
+                                Looper.prepare();
+                                Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 입니다.", Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+                            }
+                            // 예약 시도
+                            else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                                builder.setTitle("버스 예약").setMessage(
+                                        Html.fromHtml("정류소 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
+                                                        "버스 : " + "<b>" + rtNm.getText().toString() + "</b>" + "<br>" +
+                                                        "방면 : " + "<b>" + adirection.getText().toString() + "</b>" + "<br>" +
+                                                        "남은시간 : " + "<b>" + arrmsgSec1.getText().toString() + "</b>" + "<br>" + "<br>" +
+                                                        "<b>예약하시겠습니까?</b>"
+                                                , Html.FROM_HTML_MODE_LEGACY)
+                                );
+
+                                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context.getApplicationContext(), "취소 되었습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                /*
+                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+                                        Toast.makeText(context.getApplicationContext(), "Cancel Click", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                */
+                                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
+
+                                        reservedDB = new ReservedDB(Rbus, RstNm);
+                                        taYuDatabase.reservedDAO().insert(reservedDB);
+                                        Log.d("StationHolder : ", "INSERT reserved_table!");
+                                    }
+                                });
+                                Looper.prepare();
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                                Looper.loop();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        /*
+                        ((StationActivity) context).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                        */
+                    }
+
+                }).start();
             }
         });
 
@@ -206,7 +250,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
                 // 도착예정시간 : 현재시간 + 남은시간 추가
                 builder.setTitle("버스 예약").setMessage(
                         Html.fromHtml("정류소 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
-                                        "버스 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
+                                        "버스 : " + "<b>" + rtNm.getText().toString() + "</b>" + "<br>" +
                                         "방면 : " + "<b>" + adirection.getText().toString() + "</b>" + "<br>" +
                                         "남은시간 : " + "<b>" + arrmsgSec2.getText().toString() + "</b>" + "<br>" + "<br>" +
                                         "<b>예약하시겠습니까?</b>"

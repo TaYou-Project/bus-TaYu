@@ -9,13 +9,16 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import org.devTayu.busTayu.model.LikedDB;
+import org.devTayu.busTayu.model.ReservedDB;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {LikedDB.class}, version = 1, exportSchema = false)
+@Database(entities = {LikedDB.class, ReservedDB.class}, version = 1, exportSchema = false)
 public abstract class TaYuDatabase extends RoomDatabase {
     public abstract LikedDAO likedDAO();
+
+    public abstract ReservedDAO reservedDAO();
 
     public static final int NUMBER_OF_THREADS = 4;
     private static volatile TaYuDatabase INSTANCE;
