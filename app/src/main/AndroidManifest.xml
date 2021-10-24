@@ -37,14 +37,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="org.devTayu.busTayu.activity.LikedActivity" />
-        <activity android:name="org.devTayu.busTayu.activity.ReserveActivity" />
-        <activity android:name="org.devTayu.busTayu.activity.AroundActivity" />
-        <activity android:name="org.devTayu.busTayu.activity.SearchActivity"/>
         <activity android:name="org.devTayu.busTayu.activity.StationActivity" />
-
-        <!--필요 시 사용 - 설정 빠지면 삭제 -->
-        <activity android:name="org.devTayu.busTayu.activity.SetupActivity" />
 
     </application>
 
