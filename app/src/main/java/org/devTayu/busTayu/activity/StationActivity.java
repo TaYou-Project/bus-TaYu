@@ -35,7 +35,7 @@ public class StationActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_station);
+        setContentView(R.layout.activity_station);
 
         // 뒤로가기 버튼
         ImageButton backButton = findViewById(R.id.btn_back);
