@@ -3,12 +3,18 @@ package org.devTayu.busTayu.ui.station;
 import android.util.Log;
 
 import org.devTayu.busTayu.model.Liked;
-import org.devTayu.busTayu.model.Station;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 public class LikedAPI {
 
@@ -27,7 +33,7 @@ public class LikedAPI {
     }
 
     // String
-    String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null , stNm=null;
+    String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null, stNm = null;
     String stationNum = null; // asrID 와 같은 내용 : 정류소 고유번호
 
     // Check
@@ -81,6 +87,8 @@ public class LikedAPI {
         this.stNm = stNm;
     }
 
+    int index;
+
     // 정류소 번호 : asrId , 버스 번호 : busNumber 받아와서 사용
     // asrId로 API 돌리고 돌린 결과에서 해당 버스 번호로 걸러내기
     public ArrayList<Liked> liked_arsId(String asrId, String busNumber) {
@@ -92,75 +100,62 @@ public class LikedAPI {
                 + "&arsId=" + asrId; // 정류소고유번호
         StringBuffer buffer = new StringBuffer();
 
+        BufferedReader bufferedReader = null;
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        DocumentBuilder documentBuilder;
+        Document document = null;
+
         try {
-            URL url = new URL(queryUrl); //문자열로 된 요청 url을 URL 객체로 생성.
-
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            XmlPullParser parser = factory.newPullParser();
-            parser.setInput(url.openStream(), "UTF-8");
-
-            System.out.println(queryUrl);
-            System.out.println("====== liked_arsId() 파싱 시작 ======");
-
             ArrayList<Liked> liked = new ArrayList<Liked>();
 
-            int parserEvent = parser.getEventType();
+            URL url = new URL(queryUrl); //문자열로 된 요청 url을 URL 객체로 생성.
+            System.out.println(queryUrl);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            System.out.println("====== liked_arsId() 파싱 시작 ======");
 
-            while (parserEvent != XmlPullParser.END_DOCUMENT) {
-                switch (parserEvent) {
-                    case XmlPullParser.START_TAG: // parser가 시작 태그를 만나면 실행
-                        if (parser.getName().equals("rtNm")) {
-                            adirectionCheck = true;
-                        } else if (parser.getName().equals("adirection")) {
-                            adirectionCheck = true;
-                        } else if (parser.getName().equals("arrmsgSec1")) {
-                            arrmsgSec1Check = true;
-                        } else if (parser.getName().equals("arrmsgSec2")) {
-                            arrmsgSec2Check = true;
-                        } else if (parser.getName().equals("stNm")) {
-                            stNmCheck = true;
-                        }else if (parser.getName().equals("arsId")) {
-                            stationNumCheck = true;
-                        }
-                        break;
-                    case XmlPullParser.TEXT: // parser가 내용에 접근했을때
-                        if (rtNmCheck) {
-                            setRtNm(parser.getText());
-                            rtNmCheck = false;
-                        } else if (adirectionCheck) {
-                            setAdirection(parser.getText());
-                            adirectionCheck = false;
-                        } else if (arrmsgSec1Check) {
-                            setArrmsgSec1(parser.getText());
-                            arrmsgSec1Check = false;
-                        } else if (arrmsgSec2Check) {
-                            setArrmsgSec2(parser.getText());
-                            arrmsgSec2Check = false;
-                        } else if (stNmCheck) {
-                            setStNm(parser.getText());
-                            stNmCheck = false;
-                        } else if (stationNumCheck) {
-                            setStationNum(parser.getText());
-                            stationNumCheck = false;
-                        }
-                        break;
-                    case XmlPullParser.END_TAG:
-                        if (parser.getName().equals("itemList")) {
-                            Liked entityLiked = new Liked();
-                            entityLiked.setRtNm(getRtNm());
-                            entityLiked.setAdirection(getAdirection());
-                            entityLiked.setArrmsgSec1(getArrmsgSec1());
-                            entityLiked.setArrmsgSec2(getArrmsgSec2());
-                            entityLiked.setStNm(getStNm());
-                            entityLiked.setStationNum(getStationNum());
-                            liked.add(entityLiked);
+            Document doc = parseXML(urlConnection.getInputStream());
+            NodeList descNodes = doc.getElementsByTagName("rtNm");
 
-                            System.out.println("여기에 하나만 들어가야 함"+entityLiked.getAdirection());
-                        }
-                        break;
+            for (int i = 0; i < descNodes.getLength(); i++) {
+                //첫번째 자식을 시작으로 마지막까지 다음 형제를 실행
+                Node node1 = descNodes.item(i);
+                if (node1.getTextContent().equals(busNumber)) {
+                    //System.out.println("부모" + node1.getParentNode().getNodeName());
+                    //System.out.println("본인" + node1.getTextContent());
+                    //System.out.println("i번호" + i);
+                    index = i; // rtNm 과 busNumber가 일치하는 게 없는 경우가 발생하더라도 index=1로 들어가서 실행에 문제는 X
+                    break;
                 }
-                parserEvent = parser.next();
             }
+
+            NodeList descNodes2 = doc.getElementsByTagName("itemList");
+            for (Node node = descNodes2.item(index).getFirstChild();
+                 node != null; node = node.getNextSibling()) {
+                // System.out.println(node.getNodeName() + " : " + node.getTextContent());
+                Liked entity = new Liked();
+                if (node.getNodeName().equals("adirection")) {
+                    System.out.println(node.getTextContent());
+                    entity.setAdirection(getAdirection());
+                } else if (node.getNodeName().equals("arrmsgSec1")) {
+                    System.out.println(node.getTextContent());
+                    entity.setAdirection(getArrmsgSec1());
+                } else if (node.getNodeName().equals("arrmsgSec2")) {
+                    System.out.println(node.getTextContent());
+                    entity.setAdirection(getArrmsgSec2());
+                } else if (node.getNodeName().equals("arsId")) {
+                    System.out.println(node.getTextContent());
+                    entity.setAdirection(getAsrId());
+                } else if (node.getNodeName().equals("rtNm")) {
+                    System.out.println(node.getTextContent());
+                    entity.setAdirection(getRtNm());
+                } else if (node.getNodeName().equals("stNm")) {
+                    System.out.println(node.getTextContent());
+                    entity.setAdirection(getStNm());
+                }
+                liked.add(entity);
+            }
+
             System.out.println("====== liked_arsId() 파싱 끝 ======");
             return liked;
         } catch (Exception e) {
@@ -169,5 +164,19 @@ public class LikedAPI {
         }
         return null;
     }
-}
 
+    private Document parseXML(InputStream stream) throws Exception {
+
+        DocumentBuilderFactory objDocumentBuilderFactory = null;
+        DocumentBuilder objDocumentBuilder = null;
+        Document doc = null;
+        try {
+            objDocumentBuilderFactory = DocumentBuilderFactory.newInstance();
+            objDocumentBuilder = objDocumentBuilderFactory.newDocumentBuilder();
+            doc = objDocumentBuilder.parse(stream);
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return doc;
+    }
+}
