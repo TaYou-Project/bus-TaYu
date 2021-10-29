@@ -20,7 +20,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.adapter.StationAdapter;
 import org.devTayu.busTayu.model.Station;
-import org.devTayu.busTayu.ui.station.LikedAPI;
 import org.devTayu.busTayu.ui.station.StationAPI;
 import org.jetbrains.annotations.NotNull;
 
@@ -51,11 +50,11 @@ public class StationActivity extends AppCompatActivity {
         Intent 가져올 때 null 체크 하려고 했는데 잘 안됨 : 일단 null 이어도 실행에 문제는 없음 : 나중에 확인
         String station_num = getIntent().getStringExtra("station_num").equals("")?"17001":getIntent().getStringExtra("station_num");
         */
-
         // SearchHolder 에서 넘어온 station_num : 정류소 번호
         String station_num = getIntent().getStringExtra("station_num");
         // SearchHolder 에서 넘어온 station_name : 정류소 명
         String station_name = getIntent().getStringExtra("station_name");
+
         // 정류소_명 [정류소 번호]
         TextView textView = (TextView) findViewById(R.id.station_name);
         textView.setText(station_name + " [ " + station_num + " ]");
@@ -63,14 +62,14 @@ public class StationActivity extends AppCompatActivity {
         Runnable mRunnable = new Runnable() {
             @Override
             public void run() {
+                /* Android Honeycomb 이후 MainThread 에서 networking 처리 불가 */
                 bindList(station_num);
-                Log.d("유소정", "핸들러로 bindList 호출");
+                Log.d("유소정", "stationActivity : 핸들러로 bindList 호출");
             }
         };
         Handler mHandler = new Handler();
         mHandler.postDelayed(mRunnable, 1000);
 
-        /* Android Honeycomb 이후 MainThread 에서 networking 처리 불가 */
         // 5초에 한번씩 호출
         /*
         new Thread(new Runnable() {
@@ -85,8 +84,6 @@ public class StationActivity extends AppCompatActivity {
                         mDatas = new ArrayList<>();
                         try {
                             mDatas = stationAPI.station_arsId(station_num);
-                            LikedAPI likedAPI = new LikedAPI();
-                            likedAPI.liked_arsId("01004", "G8110성남");
                             Log.d("유소정", "StationActivity thread 쓰레드 실행");
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -152,9 +149,6 @@ public class StationActivity extends AppCompatActivity {
                     mDatas = new ArrayList<>();
                     try {
                         mDatas = stationAPI.station_arsId(station_num);
-
-                        LikedAPI likedAPI = new LikedAPI();
-                        likedAPI.liked_arsId("01004", "G8110성남");
 
                     } catch (Exception e) {
                         e.printStackTrace();

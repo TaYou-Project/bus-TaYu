@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_station"
     android:layout_width="match_parent"
@@ -10,17 +11,33 @@
     android:background="@drawable/borderline"
     android:orientation="vertical">
 
-    <!--노선명-->
-    <TextView
-        android:id="@+id/station_rtNm"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8sp"
-        android:layout_marginTop="8sp"
-        android:layout_marginEnd="8sp"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        tools:text="rtNm 노선명" />
+        android:orientation="horizontal">
+
+        <!--노선명-->
+        <TextView
+            android:id="@+id/station_rtNm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="8sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="rtNm 노선명" />
+
+        <!--BusActivity-->
+        <Button
+            android:id="@+id/station_moreBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:minWidth="15dp"
+            android:minHeight="15dp"
+            android:text="@string/station_moreBtn" />
+    </LinearLayout>
 
     <!--버스 방면-->
     <TextView
@@ -53,8 +70,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8sp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8sp"
         android:orientation="horizontal">
 
@@ -63,7 +78,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:layout_marginEnd="8dp"
             android:minWidth="10dp"
             android:text="@string/station_likeBtn" />
 
@@ -120,7 +134,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
     </LinearLayout>
 

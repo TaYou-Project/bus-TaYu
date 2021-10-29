@@ -12,6 +12,9 @@
     <string name="station_stationTitle">정류장 명 [정류장 번호]</string>
     <string name="station_backBtn">이전</string>
     <string name="station_floatingBtn">시간 새로고침</string>
+    <string name="bus_floatingBtn">시간 새로고침</string>
+    <string name="bus_BusName">버스명</string>
+    <string name="bus_StationName">정류장 명 [정류장 번호]</string>
     <string name="around_floatingBtn">현 위치</string>
     <string name="around_title">사용자 현 위치</string>
     <string name="station_rserveBtn">예약</string>
@@ -24,4 +27,7 @@
     <string name="search_stationWay">방면</string>
     <string name="search_stationNumber">정류장 번호</string>
     <string name="search_stationName">정류장 명</string>
+    <string name="station_moreBtn">상세보기</string>
+    <string name="bus_data1Btn">첫 번째 버스 예약</string>
+    <string name="bus_data2Btn">두 번째 버스 예약</string>
 </resources>

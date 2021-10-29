@@ -22,12 +22,14 @@ import com.amitshekhar.DebugDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import org.devTayu.busTayu.activity.BusActivity;
 import org.devTayu.busTayu.activity.StationActivity;
 import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ActivityResultLauncher<Intent> resultLauncher;
 
+    Intent intent;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -155,7 +157,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // 임시 메뉴 - Station
             case R.id.menu_station:
                 Toast.makeText(MainActivity.this, "Station 이동", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), StationActivity.class);
+                intent = new Intent(getApplicationContext(), StationActivity.class);
+                startActivity(intent);
+                break;
+            // 임시 메뉴 - bus
+            case R.id.menu_bus:
+                Toast.makeText(MainActivity.this, "Bus 이동", Toast.LENGTH_SHORT).show();
+                intent = new Intent(getApplicationContext(), BusActivity.class);
                 startActivity(intent);
                 break;
 

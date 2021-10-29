@@ -22,6 +22,12 @@
                     style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                     android:title="임시 메뉴 - Station"
                     />
+                <item
+                    android:id="@+id/menu_bus"
+                    android:icon="@drawable/ic_baseline_person_24"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:title="임시 메뉴 - Bus"
+                    />
             </menu>
         </item>
     </group>
