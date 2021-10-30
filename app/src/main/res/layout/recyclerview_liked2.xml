@@ -10,15 +10,13 @@
     android:layout_marginBottom="15sp"
     android:background="@drawable/borderline"
     android:orientation="vertical">
-
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8sp"
-        android:layout_marginBottom="8sp"
         android:orientation="horizontal">
 
-        <!--정류소 명-->
+        &lt;!&ndash;정류소 명&ndash;&gt;
         <TextView
             android:id="@+id/liked_stationName"
             android:layout_width="wrap_content"
@@ -28,7 +26,7 @@
             android:textStyle="bold"
             tools:text="정류소 명" />
 
-        <!--정류소 번호-->
+        &lt;!&ndash;정류소 번호&ndash;&gt;
         <TextView
             android:id="@+id/liked_stationNum"
             android:layout_width="wrap_content"
@@ -37,12 +35,11 @@
             android:textSize="18sp"
             tools:text="정류소 번호" />
 
-        <!--방면-->
+        &lt;!&ndash;방면&ndash;&gt;
         <TextView
             android:id="@+id/liked_adirection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8sp"
             android:textSize="18sp"
             tools:text="정류소 방면" />
 
@@ -56,5 +53,48 @@
             android:text="@string/liked_btn" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8sp"
+        android:orientation="horizontal">
+
+        &lt;!&ndash;노선명 : 버스번호&ndash;&gt;
+        <TextView
+            android:id="@+id/liked_rtNm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="18sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="rtNm 노선명" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+
+            &lt;!&ndash;첫번째 도착 예정 버스 정보&ndash;&gt;
+            <TextView
+                android:id="@+id/liked_arrmsgSec1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                tools:text="arrmsgSec1" />
+
+            &lt;!&ndash;두번째 도착 예정 버스 정보&ndash;&gt;
+            <TextView
+                android:id="@+id/liked_arrmsgSec2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                tools:text="arrmsgSec2" />
+
+        </LinearLayout>
+
+    </LinearLayout>-->
 
 </LinearLayout>

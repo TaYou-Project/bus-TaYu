@@ -11,14 +11,15 @@ import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.holder.LikedHolder;
 import org.devTayu.busTayu.model.Liked;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LikedAdapter extends RecyclerView.Adapter<LikedHolder> {
 
     // 해당 어댑터의 ViewHolder를 상속받는다.
-    private final List<Liked> mItemList;
+    private ArrayList<Liked> mItemList;
 
-    public LikedAdapter(List<Liked> datas) {
+    public LikedAdapter(ArrayList<Liked> datas) {
         this.mItemList = datas;
         //localDataSet = dataSet
     }
@@ -57,10 +58,12 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedHolder> {
 
         likedHolder.stationName.setText(data.getStNm());
         likedHolder.stationNum.setText(data.getStationNum());
-        likedHolder.adirection.setText(data.getAdirection());
         likedHolder.rtNm.setText(data.getRtNm());
+        /* 레이아웃 변경하면서 빠짐
+        likedHolder.adirection.setText(data.getAdirection());
         likedHolder.arrmsgSec1.setText(data.getArrmsgSec1());
         likedHolder.arrmsgSec2.setText(data.getArrmsgSec2());
+        */
     }
 
     // 필수 3 : 아이템 개수를 조회

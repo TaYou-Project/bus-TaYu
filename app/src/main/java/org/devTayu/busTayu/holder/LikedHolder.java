@@ -17,10 +17,12 @@ public class LikedHolder extends RecyclerView.ViewHolder {
     // ViewHolder 에 필요한 데이터들을 적음.
     public TextView stationName;
     public TextView stationNum;
-    public TextView adirection;
     public TextView rtNm;
+    /* 레이아웃 변경되면서 빠짐
+    public TextView adirection;
     public TextView arrmsgSec1;
     public TextView arrmsgSec2;
+    */
 
     // 아이템 뷰를 저장하는 클래스
     public LikedHolder(@NonNull View itemView, final LikedAdapter.OnItemClickEventListener likedClickListener) {
@@ -29,10 +31,12 @@ public class LikedHolder extends RecyclerView.ViewHolder {
         // 아이템 뷰에 필요한 View
         stationName = itemView.findViewById(R.id.liked_stationName);
         stationNum = itemView.findViewById(R.id.liked_stationNum);
-        adirection = itemView.findViewById(R.id.liked_adirection);
         rtNm = itemView.findViewById(R.id.liked_rtNm);
+        /* 레이아웃 변경되면서 빠짐
+        adirection = itemView.findViewById(R.id.liked_adirection);
         arrmsgSec1 = itemView.findViewById(R.id.liked_arrmsgSec1);
         arrmsgSec2 = itemView.findViewById(R.id.liked_arrmsgSec2);
+        */
 
         // itemView : click
         itemView.setOnClickListener(new View.OnClickListener() {

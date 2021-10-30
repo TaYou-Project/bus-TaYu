@@ -11,13 +11,22 @@ public class LikedDB {
     private int uid;
     private String busNumber;
     private String stationNumber;
+    private String stationName;
     // private java.util.Date likedDate;
-
     // 나중엔 즐겨찾기 추가일도 저장해야 함 : 순서 때문에 최신을 맨 위로 올리기 위함
+
+    public LikedDB() {
+    }
 
     public LikedDB(String busNumber, String stationNumber) {
         this.busNumber = busNumber;
         this.stationNumber = stationNumber;
+    }
+
+    public LikedDB(String busNumber, String stationNumber, String stationName) {
+        this.busNumber = busNumber;
+        this.stationNumber = stationNumber;
+        this.stationName = stationName;
     }
 
     public int getUid() {
@@ -44,6 +53,14 @@ public class LikedDB {
         this.stationNumber = stationNumber;
     }
 
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
+
     /*
     @Override
     public String toString() {
@@ -53,7 +70,7 @@ public class LikedDB {
 
     @Override
     public String toString() {
-        return "\n busNumber=> " + this.busNumber + " , stationNumber=> " + this.stationNumber;
+        return "\n busNumber=> " + this.busNumber + " , stationNumber=> " + this.stationNumber + " , stationName=>" + this.stationName;
     }
 
 }

@@ -11,17 +11,20 @@
     android:background="@drawable/borderline"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_margin="10sp"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
 
         <!--정류소 명-->
         <TextView
             android:id="@+id/liked_stationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8sp"
+            android:layout_alignBaseline="@+id/liked_Btn"
+            android:layout_alignParentStart="true"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="정류소 명" />
@@ -31,70 +34,31 @@
             android:id="@+id/liked_stationNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8sp"
-            android:textSize="18sp"
-            tools:text="정류소 번호" />
-
-        <!--방면-->
-        <TextView
-            android:id="@+id/liked_adirection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="정류소 방면" />
-
-        <Button
-            android:id="@+id/liked_Btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8sp"
-            android:layout_marginEnd="8dp"
-            android:minWidth="10dp"
-            android:text="@string/liked_btn" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
-        android:orientation="horizontal">
+            android:layout_alignBaseline="@+id/liked_Btn"
+            android:layout_toEndOf="@id/liked_stationName"
+            android:layout_marginStart="5dp"
+            android:textSize="15sp"
+            tools:text="[ 정류소 번호 ]" />
 
         <!--노선명 : 버스번호-->
         <TextView
             android:id="@+id/liked_rtNm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18sp"
-            android:layout_marginStart="8sp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="rtNm 노선명" />
+            android:layout_alignBaseline="@+id/liked_Btn"
+            android:layout_toEndOf="@id/liked_stationNum"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            tools:text="rtNm 버스명" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/liked_Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:orientation="vertical">
+            android:layout_alignParentEnd="true"
+            android:minWidth="10dp"
+            android:text="@string/liked_Btn" />
 
-            <!--첫번째 도착 예정 버스 정보-->
-            <TextView
-                android:id="@+id/liked_arrmsgSec1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                tools:text="arrmsgSec1" />
-
-            <!--두번째 도착 예정 버스 정보-->
-            <TextView
-                android:id="@+id/liked_arrmsgSec2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                tools:text="arrmsgSec2" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

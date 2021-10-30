@@ -118,6 +118,8 @@ public class StationHolder extends RecyclerView.ViewHolder {
                             String busNumber = rtNm.getText().toString();
                             // stationNum (정류소번호) 가져오기
                             String stationNumber = stationNum.getText().toString();
+                            // stationName (정류소 명) 가져오기
+                            String stationName = stNm.getText().toString();
 
                             Integer likedExist = taYuDatabase.likedDAO().getCountLiked(busNumber, stationNumber);
                             // 즐겨찾기에 DELETE
@@ -133,7 +135,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
                             }
                             // 즐겨찾기에 INSERT
                             else {
-                                likedDB = new LikedDB(busNumber, stationNumber);
+                                likedDB = new LikedDB(busNumber, stationNumber, stationName);
                                 taYuDatabase.likedDAO().insertLiked(likedDB);
                                 Log.d("StationHolder : ", "INSERT liked_table!");
 
