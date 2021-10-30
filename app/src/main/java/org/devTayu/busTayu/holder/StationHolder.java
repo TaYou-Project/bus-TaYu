@@ -3,6 +3,7 @@ package org.devTayu.busTayu.holder;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Looper;
 import android.text.Html;
 import android.util.Log;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.BusActivity;
 import org.devTayu.busTayu.adapter.StationAdapter.OnItemClickEventListener;
 import org.devTayu.busTayu.database.TaYuDatabase;
 import org.devTayu.busTayu.model.LikedDB;
@@ -32,6 +34,8 @@ public class StationHolder extends RecyclerView.ViewHolder {
     private TaYuDatabase taYuDatabase;
     private LikedDB likedDB;
     private ReservedDB reservedDB;
+
+    Intent stationIntent;
 
     public StationHolder(@NonNull View itemView, final OnItemClickEventListener stationClickListener) {
         super(itemView);
@@ -281,6 +285,27 @@ public class StationHolder extends RecyclerView.ViewHolder {
 
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+            }
+        });
+
+        itemView.findViewById(R.id.station_moreBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int position = getAdapterPosition();
+                Context context = v.getContext();
+
+                // busNumber 가져오기
+                String station_num = stationNum.getText().toString();
+                String bus_name = rtNm.getText().toString();
+                String station_name = stNm.getText().toString();
+
+                // BusActivity로  station_num : 정류소 번호 전달, bus_name : 버스 명 전달, station_name : 정류소 명 전달
+                stationIntent = new Intent(context, BusActivity.class);
+                stationIntent.putExtra("station_num", station_num);
+                stationIntent.putExtra("bus_name", bus_name);
+                stationIntent.putExtra("station_name", station_name);
+                context.startActivity(stationIntent);
+
             }
         });
     }

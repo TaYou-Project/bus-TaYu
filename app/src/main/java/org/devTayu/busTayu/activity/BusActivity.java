@@ -46,24 +46,25 @@ public class BusActivity extends AppCompatActivity {
         Intent 가져올 때 null 체크 하려고 했는데 잘 안됨 : 일단 null 이어도 실행에 문제는 없음 : 나중에 확인
         */
         // 00000 에서 넘어온 station_num : 정류소 번호
-        // String station_num = getIntent().getStringExtra("station_num");
-        // 00000 에서 넘어온 station_name : 정류소 명
-        // String station_name = getIntent().getStringExtra("station_name");
-        // 00000 에서 넘어온 station_name : 정류소 명
-        // String bus_num = getIntent().getStringExtra("bus_num");
+        String station_num = getIntent().getStringExtra("station_num");
+        // SearchHolder 에서 넘어온 station_name : 정류소 명
+        String station_name = getIntent().getStringExtra("station_name");
+        // 00000 에서 넘어온 bus_name : 버스 명
+        String bus_name = getIntent().getStringExtra("bus_name");
 
         // 버스_명
         TextView textView1 = (TextView) findViewById(R.id.bus_BusName);
-        textView1.setText("버스이름");
+        textView1.setText(bus_name);
         // 정류소_명 [정류소 번호]
         TextView textView2 = (TextView) findViewById(R.id.bus_StationName);
-        textView2.setText("스테이션네임" + " [ " + "스테이션 넘버" + " ]");
+        textView2.setText(station_name + " [ " + station_num + " ]");
 
         Runnable mRunnable = new Runnable() {
             @Override
             public void run() {
                 /* Android Honeycomb 이후 MainThread 에서 networking 처리 불가 */
-                bindList("15172", "양천04");
+                // bindList("15172", "양천04");
+                bindList(station_num, bus_name);
                 Log.d("유소정", "busActivity : 핸들러로 bindList 호출");
             }
         };
@@ -100,7 +101,7 @@ public class BusActivity extends AppCompatActivity {
         });
     }
 
-    // bindList( , )
+    // bindList( 정류소번호 , 버스명)
     private void bindList(String station_num, String bus_num) {
         new Thread(new Runnable() {
             @Override
