@@ -266,7 +266,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
                 builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context.getApplicationContext(), "취소 되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 /*

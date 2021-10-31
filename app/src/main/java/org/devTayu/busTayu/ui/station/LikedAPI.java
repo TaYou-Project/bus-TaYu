@@ -20,73 +20,8 @@ public class LikedAPI {
 
     // 인증키
     String ServiceKey = "kd3zWLkxFKVIuT0XejOXR1qWycWNx03d21q75t5AHS2gIRKGQXQhqtwrvDWy3Huf04BaJZQL2vQHDvEkT8coDw%3D%3D";
-    // 정류소고유번호
-    String asrId;
 
-    // 정류소 번호
-    public String getAsrId() {
-        return asrId;
-    }
-
-    public void setAsrId(String asrId) {
-        this.asrId = asrId;
-    }
-
-    // String
-    String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null, stNm = null;
-    String stationNum = null; // asrID 와 같은 내용 : 정류소 고유번호
-
-    // Check
-    boolean rtNmCheck = false, adirectionCheck = false, arrmsgSec1Check = false, arrmsgSec2Check = false, stNmCheck = false, stationNumCheck = false;
-
-    public String getRtNm() {
-        return rtNm;
-    }
-
-    public void setRtNm(String rtNm) {
-        this.rtNm = rtNm;
-    }
-
-    public String getAdirection() {
-        return adirection;
-    }
-
-    public void setAdirection(String adirection) {
-        this.adirection = adirection;
-    }
-
-    public void setArrmsgSec1(String arrmsgSec1) {
-        this.arrmsgSec1 = arrmsgSec1;
-    }
-
-    public String getArrmsgSec1() {
-        return arrmsgSec1;
-    }
-
-    public String getArrmsgSec2() {
-        return arrmsgSec2;
-    }
-
-    public void setArrmsgSec2(String arrmsgSec2) {
-        this.arrmsgSec2 = arrmsgSec2;
-    }
-
-    public String getStationNum() {
-        return stationNum;
-    }
-
-    public void setStationNum(String stationNum) {
-        this.stationNum = stationNum;
-    }
-
-    public String getStNm() {
-        return stNm;
-    }
-
-    public void setStNm(String stNm) {
-        this.stNm = stNm;
-    }
-
+    // rtNm 과 busNumber 가 같을 때의 index 저장 --> node = descNodes2.item(index).getFirstChild() 이걸로 특정 rtNm 태그 밑의 child node 접근
     int index;
 
     // 정류소 번호 : asrId , 버스 번호 : busNumber 받아와서 사용
@@ -107,8 +42,6 @@ public class LikedAPI {
         Document document = null;
 
         try {
-            ArrayList<Liked> liked = new ArrayList<Liked>();
-
             URL url = new URL(queryUrl); //문자열로 된 요청 url을 URL 객체로 생성.
             System.out.println(queryUrl);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -124,38 +57,78 @@ public class LikedAPI {
                     //System.out.println("부모" + node1.getParentNode().getNodeName());
                     //System.out.println("본인" + node1.getTextContent());
                     //System.out.println("i번호" + i);
-                    index = i; // rtNm 과 busNumber가 일치하는 게 없는 경우가 발생하더라도 index=1로 들어가서 실행에 문제는 X
+                    index = i; // rtNm 과 busNumber 가 일치하는 게 없는 경우가 발생하더라도 index=1로 들어가서 실행에 문제는 X
                     break;
                 }
             }
+
+            ArrayList<Liked> liked = new ArrayList<>();
+            Liked entity = new Liked();
 
             NodeList descNodes2 = doc.getElementsByTagName("itemList");
             for (Node node = descNodes2.item(index).getFirstChild();
                  node != null; node = node.getNextSibling()) {
                 // System.out.println(node.getNodeName() + " : " + node.getTextContent());
-                Liked entity = new Liked();
-                if (node.getNodeName().equals("adirection")) {
-                    System.out.println(node.getTextContent());
-                    entity.setAdirection(getAdirection());
-                } else if (node.getNodeName().equals("arrmsgSec1")) {
-                    System.out.println(node.getTextContent());
-                    entity.setAdirection(getArrmsgSec1());
-                } else if (node.getNodeName().equals("arrmsgSec2")) {
-                    System.out.println(node.getTextContent());
-                    entity.setAdirection(getArrmsgSec2());
-                } else if (node.getNodeName().equals("arsId")) {
-                    System.out.println(node.getTextContent());
-                    entity.setAdirection(getAsrId());
-                } else if (node.getNodeName().equals("rtNm")) {
-                    System.out.println(node.getTextContent());
-                    entity.setAdirection(getRtNm());
-                } else if (node.getNodeName().equals("stNm")) {
-                    System.out.println(node.getTextContent());
-                    entity.setAdirection(getStNm());
-                }
-                liked.add(entity);
-            }
 
+                /*공통 정보*/
+                if (node.getNodeName().equals("adirection")) {
+                    // System.out.println(node.getTextContent());
+                    entity.setAdirection(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("firstTm")) {
+                    entity.setFirstTm(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("lastTm")) {
+                    entity.setLastTm(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("nxtStn")) {
+                    entity.setNxtStn(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("routeType")) {
+                    entity.setRoutType(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("sectNm")) {
+                    entity.setSectNm(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("term")) {
+                    entity.setTerm(node.getTextContent());
+                    liked.add(entity);
+                }
+                /*첫 번째 버스 정보*/
+                else if (node.getNodeName().equals("arrmsgSec1")) {
+                    entity.setArrmsgSec1(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("busType1")) {
+                    entity.setBusType1(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("isLast1")) {
+                    entity.setIsLast1(node.getTextContent());
+                    liked.add(entity);
+                }
+                /*두 번째 버스 정보*/
+                else if (node.getNodeName().equals("arrmsgSec2")) {
+                    entity.setArrmsgSec2(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("busType2")) {
+                    entity.setBusType2(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("isLast2")) {
+                    entity.setIsLast2(node.getTextContent());
+                    liked.add(entity);
+                }
+
+                /*기타*/
+                else if (node.getNodeName().equals("arsId")) {
+                    entity.setStationNum(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("rtNm")) {
+                    entity.setRtNm(node.getTextContent());
+                    liked.add(entity);
+                } else if (node.getNodeName().equals("stNm")) {
+                    entity.setStNm(node.getTextContent());
+                    liked.add(entity);
+                }
+            }
             System.out.println("====== liked_arsId() 파싱 끝 ======");
             return liked;
         } catch (Exception e) {
