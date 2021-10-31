@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,42 @@ public class SearchFragment extends Fragment {
 
     private void init(View root) {
         searchView = getView().findViewById(R.id.searchView_search);
+
+        // searchView 설정
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("유소정", "클릭-" + searchView.isIconified());
+                if (searchView.isIconified()) {
+                    searchView.setIconified(false);
+                    Log.e("유소정", "클릭-" + searchView.isIconified());
+                }
+            }
+        });
+
+        // searchView 설정
+        int searchCloseButtonId = searchView.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButton = (ImageView) this.searchView.findViewById(searchCloseButtonId);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("유소정", "닫기버튼-" + searchView.isIconified());
+                searchView.setIconified(true);
+                Log.e("유소정", "닫기버튼-" + searchView.isIconified());
+            }
+        });
+
+        // searchView 설정
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                Log.e("유소정", "포커스변경-" + searchView.isIconified());
+                if (searchView.isIconified()) {
+                    searchView.setIconified(false);
+                }
+                Log.e("유소정", "포커스변경-" + searchView.isIconified());
+            }
+        });
 
         mPostRecyclerView = getView().findViewById(R.id.recyclerView_search);
         mPostRecyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
