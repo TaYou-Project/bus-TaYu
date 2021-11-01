@@ -9,17 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.holder.LikedHolder;
-import org.devTayu.busTayu.model.Liked;
+import org.devTayu.busTayu.model.LikedDB;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LikedAdapter extends RecyclerView.Adapter<LikedHolder> {
 
     // 해당 어댑터의 ViewHolder를 상속받는다.
-    private ArrayList<Liked> mItemList;
+    private List<LikedDB> mItemList;
 
-    public LikedAdapter(ArrayList<Liked> datas) {
+    public LikedAdapter(List<LikedDB> datas) {
         this.mItemList = datas;
         //localDataSet = dataSet
     }
@@ -54,11 +53,11 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedHolder> {
         // contents of the view with that element
 
         // ViewHolder 가 재활용 될 때 사용되는 메소드
-        Liked data = mItemList.get(position);
+        LikedDB data = mItemList.get(position);
 
-        likedHolder.stationName.setText(data.getStNm());
-        likedHolder.stationNum.setText(data.getStationNum());
-        likedHolder.rtNm.setText(data.getRtNm());
+        likedHolder.stationName.setText(data.getStationName());
+        likedHolder.stationNum.setText(data.getStationNumber());
+        likedHolder.rtNm.setText(data.getBusNumber());
         /* 레이아웃 변경하면서 빠짐
         likedHolder.adirection.setText(data.getAdirection());
         likedHolder.arrmsgSec1.setText(data.getArrmsgSec1());

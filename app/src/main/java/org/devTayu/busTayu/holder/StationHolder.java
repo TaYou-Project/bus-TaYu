@@ -296,7 +296,6 @@ public class StationHolder extends RecyclerView.ViewHolder {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
 
-                // busNumber 가져오기
                 String station_num = stationNum.getText().toString();
                 String bus_name = rtNm.getText().toString();
                 String station_name = stNm.getText().toString();

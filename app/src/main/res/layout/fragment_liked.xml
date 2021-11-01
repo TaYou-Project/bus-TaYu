@@ -29,12 +29,13 @@
         android:orientation="vertical"
         tools:context=".activity.LikedActivity">
 
+        <!-- 임시 사용
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview11111"
-            android:text="안녕"
-            />
+            android:text="안녕" />
+        -->
 
         <!-- recycleview_liked.xml -->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -44,6 +45,8 @@
             tools:context=".activity.LikedActivity">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:id="@+id/recyclerView_liked"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

@@ -1,6 +1,7 @@
 package org.devTayu.busTayu.holder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.BusActivity;
 import org.devTayu.busTayu.adapter.LikedAdapter;
 
 public class LikedHolder extends RecyclerView.ViewHolder {
@@ -23,6 +25,8 @@ public class LikedHolder extends RecyclerView.ViewHolder {
     public TextView arrmsgSec1;
     public TextView arrmsgSec2;
     */
+
+    Intent likedIntent;
 
     // 아이템 뷰를 저장하는 클래스
     public LikedHolder(@NonNull View itemView, final LikedAdapter.OnItemClickEventListener likedClickListener) {
@@ -58,6 +62,26 @@ public class LikedHolder extends RecyclerView.ViewHolder {
             public boolean onLongClick(View v) {
                 Log.d("Recyclerview", "position = " + getAdapterPosition());
                 return false;
+            }
+        });
+
+        // 상세보기 버튼
+        itemView.findViewById(R.id.liked_Btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int position = getAdapterPosition();
+                Context context = v.getContext();
+
+                String station_num = stationNum.getText().toString();
+                String bus_name = rtNm.getText().toString();
+                String station_name = stationName.getText().toString();
+
+                // BusActivity로  station_num : 정류소 번호 전달, bus_name : 버스 명 전달, station_name : 정류소 명 전달
+                likedIntent = new Intent(context, BusActivity.class);
+                likedIntent.putExtra("station_num", station_num);
+                likedIntent.putExtra("bus_name", bus_name);
+                likedIntent.putExtra("station_name", station_name);
+                context.startActivity(likedIntent);
             }
         });
 

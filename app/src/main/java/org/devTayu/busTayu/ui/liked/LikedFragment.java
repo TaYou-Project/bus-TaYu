@@ -2,6 +2,7 @@ package org.devTayu.busTayu.ui.liked;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,9 @@ import androidx.room.Room;
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.adapter.LikedAdapter;
 import org.devTayu.busTayu.database.TaYuDatabase;
-import org.devTayu.busTayu.model.Liked;
 import org.devTayu.busTayu.model.LikedDB;
+import org.devTayu.busTayu.ui.station.LikedAPI;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,72 +29,117 @@ public class LikedFragment extends Fragment {
 
     private RecyclerView mPostRecyclerView;
     private LikedAdapter mAdpater;
-    private List<Liked> mDatas;
+    private List<LikedDB> mDatas;
     private TaYuDatabase db;
+    private LikedDB likedDB;
     private TextView mResultTextView;
+    LikedAPI likedAPI;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NotNull Context context) {
         super.onAttach(context);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_liked, container, false);
 
-        mResultTextView = root.findViewById(R.id.textview11111);
-        // 데이터베이스 생성
-        db = Room.databaseBuilder(getContext(), TaYuDatabase.class, "TaYu_database").build();
-        // .build()앞에 .addCallback(sRoomDatabaseCallback)를 적어주기만 하면 미리 데이터를 저장해 놓을 수 있습니다
-        //.fallbackToDestructiveMigration() : Entity에 Data를 추가하거나 변경하여 버전(version)을 바꿔야 할때 적어주면 Migration 메서드를 따로 만들지 않아도 됩니다.
-        //.allowMainThreadQueries()를 호출하면 메인스레드에서 DB접근을 허용할 수 있지만, 데이터를 받아오는 작업이 길어질 경우 UI가 장시간 멈추기 때문에 실제 어플에서는 사용을 권장하지 않는다고 합니다.
-        /*
-        아래와 같은 것
-        db.likedDAO().getAll().observe(this, dataList -> {
-            mResultTextView.setText(dataList.toString());
-        });
-        */
-        //UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨)
-        // UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨)
-        // LiveData가 데이터 변화를 감지하여 UI를 업데이트하게 됩니다.^^ 그 소스는 onCreate에서 Oberver를 통해 onChanged를 Callback받아 실행한 코드를 보면 알수 있습니다
-        db.likedDAO().getAll().observe(getViewLifecycleOwner(), new Observer<List<LikedDB>>() {
-            @Override
-            public void onChanged(List<LikedDB> dataList) {
-                mResultTextView.setText(dataList.toString());
-            }
-        });
-        //DB 데이터 불러오기 (SELECT)
-        mResultTextView.setText(db.likedDAO().getAll().toString());
-
         new Thread(new Runnable() {
             @Override
             public void run() {
-                init(root);
+                // likedAPI = new LikedAPI();
+                try {
+                    // mDatas = likedAPI.liked_arsId("15172", "양천04");
+                    // 데이터 추가
+                    mDatas = new ArrayList<>();
+                    // mDatas.add(new LikedDB("버스 번호", "[ 정류장 번호 ]", "정류장 명"));
+
+                    Log.d("유소정 bindList ", "LikedFragment : recyclerView: " + mDatas.size());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            bindList(root);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         }).start();
+
+        // 쓸어서 새로고침 : swipeRefreshLayout
+        /*SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) getView().findViewById(R.id.liked_SwipeLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), "새로고침1", Toast.LENGTH_SHORT).show();
+
+                        // bindList(station_num, bus_name);
+                        Log.d("유소정 bindList ", "스크롤로 bindList 호출");
+
+                        mSwipeRefreshLayout.setRefreshing(false); // false : 새로고침 중지
+                    }
+                }, 500);
+            }
+        });*/
+
+        // 플로팅 새로고침 : floatingActionButton
+        /*FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.liked_floatingbtn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "새로고침2", Toast.LENGTH_SHORT).show();
+
+                // bindList(station_num, bus_name);
+                Log.d("유소정 bindList ", "플로팅으로 bindList 호출");
+            }
+        });*/
+
+        // 데이터베이스 생성
+        db = Room.databaseBuilder(getContext(), TaYuDatabase.class, "TaYu_database").build();
+        // UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨)
+        db.likedDAO().getAll().observe(getViewLifecycleOwner(), new Observer<List<LikedDB>>() {
+            @Override
+            public void onChanged(List<LikedDB> dataList) {
+                // mResultTextView.setText(dataList.toString());
+                mDatas.addAll(dataList);
+                /*
+                mDatas.addAll(dataList); 와 같음
+                for (int i = 0; i < dataList.size(); i++) {
+                    mDatas.add(dataList.get(i));
+                }
+                */
+            }
+        });
+
+        /* 임시 사용 */
+        // mResultTextView = root.findViewById(R.id.textview11111);
+        // mResultTextView.setText(db.likedDAO().getAll().toString());
 
         return root;
     }
 
-
-    public void init(View root) {
+    public void bindList(View root) {
         mPostRecyclerView = getView().findViewById(R.id.recyclerView_liked);
+        mPostRecyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
 
-        mDatas = new ArrayList<>(); // 샘플 데이터 추가
-        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1", "도착정보2"));
-        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1", "도착정보2"));
-        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1", "도착정보2"));
-        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1", "도착정보2"));
-        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1", "도착정보2"));
-        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1", "도착정보2"));
-        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1", "도착정보2"));
-        mDatas.add(new Liked("정류장명", "정류장번호", "방면", "버스", "도착정보1", "도착정보2"));
         // Adapter, LayoutManager 연결
         mAdpater = new LikedAdapter(mDatas);
         mPostRecyclerView.setAdapter(mAdpater);
         mPostRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        /*LikedAPI 임시 실행 코드*/
+        //likedAPI = new LikedAPI();
+        //likedAPI.liked_arsId("01004", "N37");
     }
 }
-
 /*@Override
 public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
