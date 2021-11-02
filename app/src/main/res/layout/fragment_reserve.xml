@@ -21,7 +21,7 @@
         app:backgroundTint="#D8D8D8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_location_searching_24" />
+        app:srcCompat="@drawable/ic_baseline_autorenew_24" />
 
     <!-- recycleview_reserve.xml -->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

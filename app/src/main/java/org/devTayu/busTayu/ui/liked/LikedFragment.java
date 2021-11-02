@@ -70,38 +70,6 @@ public class LikedFragment extends Fragment {
             }
         }).start();
 
-        // 쓸어서 새로고침 : swipeRefreshLayout
-        /*SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) getView().findViewById(R.id.liked_SwipeLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getContext(), "새로고침1", Toast.LENGTH_SHORT).show();
-
-                        // bindList(station_num, bus_name);
-                        Log.d("유소정 bindList ", "스크롤로 bindList 호출");
-
-                        mSwipeRefreshLayout.setRefreshing(false); // false : 새로고침 중지
-                    }
-                }, 500);
-            }
-        });*/
-
-        // 플로팅 새로고침 : floatingActionButton
-        /*FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.liked_floatingbtn);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "새로고침2", Toast.LENGTH_SHORT).show();
-
-                // bindList(station_num, bus_name);
-                Log.d("유소정 bindList ", "플로팅으로 bindList 호출");
-            }
-        });*/
-
         // 데이터베이스 생성
         db = Room.databaseBuilder(getContext(), TaYuDatabase.class, "TaYu_database").build();
         // UI 갱신 (라이브데이터 Observer 이용, 해당 디비값이 변화가생기면 실행됨)

@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="30dp"
-            android:iconifiedByDefault="false"
             android:queryHint="정류장 명"
             app:closeIcon="@drawable/ic_baseline_clear_24"
             app:queryBackground="@color/white"
