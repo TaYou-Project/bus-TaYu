@@ -118,6 +118,7 @@ public class BusActivity extends AppCompatActivity {
                     mDatas = new ArrayList<>();
                     try {
                         mDatas = likedAPI.liked_arsId(station_num, bus_num);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -176,6 +177,7 @@ public class BusActivity extends AppCompatActivity {
             }
         });
 
+
         // 두 번째 버스 예약
         Button data2Btn = findViewById(R.id.bus_data2Btn);
         data2Btn.setOnClickListener(new View.OnClickListener() {
@@ -217,6 +219,26 @@ public class BusActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void init() {
+
+        /*버스 : if 운행종료, 일반버스, 폐지 than button.setEnabled */
+        /* "곧 도착" 일경우 예약 가능하게 할지 말지 */
+        Button data1Btn = findViewById(R.id.bus_data1Btn);
+        if (mDatas.get(0).getArrmsgSec1().equals("첫 번째 버스 운행종료")) {
+            data1Btn.setEnabled(false);
+        } else if (mDatas.get(0).getBusType1().equals("일반버스")) {
+            data1Btn.setEnabled(false);
+        } else if (mDatas.get(0).getRoutType().equals("폐지 노선")) {
+            data1Btn.setEnabled(false);
+        }
+        Button data2Btn = findViewById(R.id.bus_data2Btn);
+        if (mDatas.get(0).getArrmsgSec2().equals("두 번째 버스 운행종료")) {
+            data2Btn.setEnabled(false);
+        } else if (mDatas.get(0).getBusType2().equals("일반버스")) {
+            data2Btn.setEnabled(false);
+        } else if (mDatas.get(0).getRoutType().equals("폐지 노선")) {
+            data2Btn.setEnabled(false);
+        }
+
         /*
         버스 공통 데이터
         방향
