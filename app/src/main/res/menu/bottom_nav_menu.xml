@@ -7,9 +7,9 @@
         android:title="@string/title_liked" />
 
     <item
-        android:id="@+id/menu_reserve"
+        android:id="@+id/menu_reserved"
         android:icon="@drawable/ic_baseline_access_time_filled_24"
-        android:title="@string/title_reserve" />
+        android:title="@string/title_reserved" />
 
     <item
         android:id="@+id/menu_around"

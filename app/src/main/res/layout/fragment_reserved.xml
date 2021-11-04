@@ -7,31 +7,30 @@
     android:layout_height="match_parent"
     android:layout_marginTop="15sp"
     android:layout_marginBottom="15sp"
-    tools:context=".ui.reserve.ReserveFragment">
+    tools:context=".ui.reserved.ReservedFragment">
 
     <!-- Floating Action Button : 현위치 탐색 -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/reserve_floatingbtn"
+        android:id="@+id/reserved_floatingbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="65dp"
         android:clickable="true"
-        android:contentDescription="@string/reserve_floatingBtn"
+        android:contentDescription="@string/reserved_floatingBtn"
         app:backgroundTint="#D8D8D8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_autorenew_24" />
 
-    <!-- recycleview_reserve.xml -->
+    <!-- recycleview_reserved.xml -->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/reserve_SwipeLayout"
+        android:id="@+id/reserved_SwipeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activity.ReserveActivity">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_reserve"
+            android:id="@+id/recyclerView_reserved"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

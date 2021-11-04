@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reserve_reservedInfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/borderline"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/reserved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/reserved_leastTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="남은 시간" />
+
+        <RelativeLayout
+            android:id="@+id/reserved_rLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reserved_leastTime">
+
+            <TextView
+                android:id="@+id/reserved_stationName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="정류장 명" />
+
+            <TextView
+                android:id="@+id/reserved_stationNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/reserved_stationName"
+                android:textSize="18sp"
+                tools:text="[ 정류장 번호 ]" />
+
+            <TextView
+                android:id="@+id/reserved_busNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reserved_stationName"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="UnknownId"
+                tools:text="버스 명" />
+
+            <TextView
+                android:id="@+id/reserved_adirection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reserved_busNum"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                tools:text="버스 방면" />
+
+            <TextView
+                android:id="@+id/reserved_busInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reserved_stationName"
+                android:layout_alignTop="@id/reserved_adirection"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/reserved_adirection"
+                android:textSize="18sp"
+                tools:text="버스 정보" />
+            <!--
+                <TextView
+                    android:id="@+id/reserved_expectationTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8sp"
+                    android:textSize="18sp"
+                    tools:text="도착 예상 시간" />
+            -->
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/reserved_rLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reserved_leastTime"
+            android:layout_alignParentEnd="true">
+
+            <Button
+                android:id="@+id/reserved_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reserved_btn" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

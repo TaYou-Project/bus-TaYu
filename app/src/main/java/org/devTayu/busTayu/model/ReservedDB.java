@@ -12,6 +12,10 @@ public class ReservedDB {
     private String stationNumber;
     private String reservedDate;
 
+    public ReservedDB() {
+
+    }
+
     public int getUid() {
         return uid;
     }
@@ -49,8 +53,10 @@ public class ReservedDB {
         this.stationNumber = stationNumber;
     }
 
-    @Override
+   /*
+   @Override
     public String toString() {
         return "\n busNumber=> " + this.busNumber + " , stationNumber=> " + this.stationNumber;
     }
+    */
 }

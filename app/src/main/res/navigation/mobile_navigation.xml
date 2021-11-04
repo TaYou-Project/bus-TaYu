@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_liked" />
 
     <fragment
-        android:id="@+id/menu_reserve"
-        android:name="org.devTayu.busTayu.ui.reserve.ReserveFragment"
-        android:label="@string/title_reserve"
-        tools:layout="@layout/fragment_reserve" />
+        android:id="@+id/menu_reserved"
+        android:name="org.devTayu.busTayu.ui.reserved.ReservedFragment"
+        android:label="@string/title_reserved"
+        tools:layout="@layout/fragment_reserved" />
 
     <fragment
         android:id="@+id/menu_around"

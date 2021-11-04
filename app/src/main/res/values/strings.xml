@@ -2,7 +2,7 @@
     <string name="app_name">BusTAYU</string>
     <string name="title_route">경로</string>
     <string name="title_around">주변검색</string>
-    <string name="title_reserve">예약</string>
+    <string name="title_reserved">예약</string>
     <string name="title_liked">즐겨찾기</string>
     <string name="title_setup">설정</string>
     <string name="title_search">검색</string>
@@ -22,8 +22,8 @@
     <string name="liked_floatingBtn">시간 새로고침</string>
     <string name="liked_btn">더보기</string>
     <string name="search_btn">더보기</string>
-    <string name="reserve_floatingBtn">시간 새로고침</string>
-    <string name="reserve_btn">예약취소</string>
+    <string name="reserved_floatingBtn">시간 새로고침</string>
+    <string name="reserved_btn">예약취소</string>
     <string name="search_stationWay">방면</string>
     <string name="search_stationNumber">정류장 번호</string>
     <string name="search_stationName">정류장 명</string>

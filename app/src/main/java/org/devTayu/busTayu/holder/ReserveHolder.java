@@ -16,20 +16,24 @@ public class ReserveHolder extends RecyclerView.ViewHolder {
 
     // ViewHolder 에 필요한 데이터들을 적음.
     public TextView leastTime;
-    public TextView busNumber;
     public TextView stationName;
-    public TextView expectationTime;
+    public TextView stationNum;
+    public TextView busNumber;
+    public TextView adirection;
     public TextView busInfo;
+    // public TextView expectationTime;
 
     // 아이템 뷰를 저장하는 클래스
     public ReserveHolder(@NonNull View itemView, final ReserveAdapter.OnItemClickEventListener reserveClickListener) {
         super(itemView);
         // 아이템 뷰에 필요한 View
-        leastTime = itemView.findViewById(R.id.reserve_leastTime);
-        busNumber = itemView.findViewById(R.id.reserve_busNum);
-        stationName = itemView.findViewById(R.id.reserve_stationName);
-        expectationTime = itemView.findViewById(R.id.reserve_expectationTime);
-        busInfo = itemView.findViewById(R.id.reserve_busInfo);
+        leastTime = itemView.findViewById(R.id.reserved_leastTime);
+        stationName = itemView.findViewById(R.id.reserved_stationName);
+        stationNum = itemView.findViewById(R.id.reserved_stationNum);
+        busNumber = itemView.findViewById(R.id.reserved_busNum);
+        adirection = itemView.findViewById(R.id.reserved_adirection);
+        busInfo = itemView.findViewById(R.id.reserved_busInfo);
+        // expectationTime = itemView.findViewById(R.id.reserved_expectationTime);
 
         // itemView : click
         itemView.setOnClickListener(new View.OnClickListener() {

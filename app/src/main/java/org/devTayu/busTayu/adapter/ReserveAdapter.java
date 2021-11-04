@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.holder.ReserveHolder;
-import org.devTayu.busTayu.model.Reserve;
+import org.devTayu.busTayu.model.Reserved;
 
 import java.util.List;
 
 public class ReserveAdapter extends RecyclerView.Adapter<ReserveHolder> {
 
     // 해당 어댑터의 ViewHolder를 상속받는다.
-    private List<Reserve> mItemList;
+    private List<Reserved> mItemList;
 
-    public ReserveAdapter(List<Reserve> datas) {
+    public ReserveAdapter(List<Reserved> datas) {
         this.mItemList = datas;
         //localDataSet = dataSet
     }
@@ -38,7 +38,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveHolder> {
     @Override
     public ReserveHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_reserve, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_reserved, viewGroup, false);
         return new ReserveHolder(view, mItemClickListener);
     }
 
@@ -46,13 +46,23 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveHolder> {
     @Override
     public void onBindViewHolder(@NonNull ReserveHolder reserveHolder, int position) {
 
-        Reserve data = mItemList.get(position);
+        Reserved data = mItemList.get(position);
 
-        reserveHolder.leastTime.setText(data.getLeastTime());
-        reserveHolder.busNumber.setText(data.getBusNumber());
-        reserveHolder.stationName.setText(data.getStationName());
-        reserveHolder.expectationTime.setText(data.getExpectationTime());
-        reserveHolder.busInfo.setText(data.getBusInfo());
+        // reserveHolder.leastTime.setText(data.getLeastTime());
+        reserveHolder.busNumber.setText(data.getRtNm());
+        reserveHolder.stationName.setText(data.getStNm());
+        reserveHolder.stationNum.setText(data.getArsId());
+        reserveHolder.busNumber.setText(data.getRtNm());
+        reserveHolder.adirection.setText(data.getAdirection());
+        reserveHolder.busInfo.setText(data.getArrmsgSec1());
+        /*
+         *
+         * 도착정보 지금 첫번째 정보만 나오게 해둔거라 예약을 첫번째 버스로 했는지 두 번째 버스로 했는지 걸러서 들어와야 함
+         * 변경 필요
+         *
+         *
+         */
+        // reserveHolder.expectationTime.setText(data.get());
     }
 
     // 필수 3 : 아이템 개수를 조회

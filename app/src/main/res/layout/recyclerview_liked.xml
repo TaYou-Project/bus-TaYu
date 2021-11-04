@@ -5,16 +5,14 @@
     android:id="@+id/item_liked"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="5sp"
-    android:layout_marginEnd="5sp"
-    android:layout_marginBottom="15sp"
+    android:layout_margin="10dp"
     android:background="@drawable/borderline"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10sp"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
         tools:ignore="UselessParent">
 
