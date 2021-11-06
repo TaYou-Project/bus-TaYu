@@ -29,11 +29,11 @@ public class StationAPI {
     }
 
     // String
-    String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null, stNm = null;
+    String rtNm = null, adirection = null, arrmsgSec1 = null, arrmsgSec2 = null, stNm = null, busType1 = null, busType2 = null;
     String stationNum = null; // asrID 와 같은 내용 : 정류소 고유번호
 
     // Check
-    boolean rtNmCheck = false, adirectionCheck = false, arrmsgSec1Check = false, arrmsgSec2Check = false, stationNumCheck = false, stNmCheck = false;
+    boolean rtNmCheck = false, adirectionCheck = false, arrmsgSec1Check = false, arrmsgSec2Check = false, stationNumCheck = false, stNmCheck = false, busType1Check = false, busType2Check = false;
 
     public String getRtNm() {
         return rtNm;
@@ -83,6 +83,22 @@ public class StationAPI {
         this.stNm = stNm;
     }
 
+    public String getBusType1() {
+        return busType1;
+    }
+
+    public void setBusType1(String busType1) {
+        this.busType1 = busType1;
+    }
+
+    public String getBusType2() {
+        return busType2;
+    }
+
+    public void setBusType2(String busType2) {
+        this.busType2 = busType2;
+    }
+
     public ArrayList<Station> station_arsId(String asrId) {
         Log.d("유소정 : StationAPI", "station_arsId() 호출");
 
@@ -120,6 +136,10 @@ public class StationAPI {
                             stationNumCheck = true;
                         } else if (parser.getName().equals("stNm")) {
                             stNmCheck = true;
+                        } else if (parser.getName().equals("busType1")) {
+                            busType1Check = true;
+                        } else if (parser.getName().equals("busType2")) {
+                            busType2Check = true;
                         }
                         break;
                     case XmlPullParser.TEXT: // parser가 내용에 접근했을때
@@ -141,6 +161,12 @@ public class StationAPI {
                         } else if (stNmCheck) {
                             setStNm(parser.getText());
                             stNmCheck = false;
+                        } else if (busType1Check) {
+                            setBusType1(parser.getText());
+                            busType1Check = false;
+                        } else if (busType2Check) {
+                            setBusType2(parser.getText());
+                            busType2Check = false;
                         }
                         break;
                     case XmlPullParser.END_TAG:
@@ -152,6 +178,8 @@ public class StationAPI {
                             entity.setArrmsgSec2(getArrmsgSec2());
                             entity.setStationNum(getStationNum());
                             entity.setStNm(getStNm());
+                            entity.setBusType1(getBusType1());
+                            entity.setBusType2(getBusType2());
                             System.out.println("사이즈 " + station.size());
                             station.add(entity);
                         }

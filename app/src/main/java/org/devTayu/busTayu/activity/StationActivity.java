@@ -175,6 +175,7 @@ public class StationActivity extends AppCompatActivity {
 
     // recyclerView
     private void recyclerView() {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         RecyclerView mPostRecyclerView = findViewById(R.id.recyclerView_station);
 
@@ -197,6 +198,15 @@ public class StationActivity extends AppCompatActivity {
         StationAdapter mAdpater = new StationAdapter(mDatas);
         mPostRecyclerView.setAdapter(mAdpater);
         mPostRecyclerView.setLayoutManager(linearLayoutManager);
+
+        /*
+        Button bus1Btn = findViewById(R.id.station_arrmsgSec1Btn);
+        TextView textView1 = findViewById(R.id.station_arrmsgSec1);
+        System.out.println(textView1.getText()+"&&&&&&&&&&&&&&&&&&&&&&&&");
+        if(textView1.getText().equals("첫 번째 버스 운행종료")){
+            bus1Btn.setEnabled(false);
+        }
+        */
 
     }
 
