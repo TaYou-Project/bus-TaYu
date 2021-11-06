@@ -168,11 +168,11 @@ public class StationHolder extends RecyclerView.ViewHolder {
 
                             // 도착예정시간 : 현재시간 + 남은시간 추가
                             String Rbus = rtNm.getText().toString();
-                            String RstNm = stNm.getText().toString();
+                            String Rstation = stationNum.getText().toString();
                             String RAdirection = adirection.getText().toString();
                             String RarrmsgSec1 = arrmsgSec1.getText().toString();
 
-                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved(Rbus, RstNm);
+                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved(Rbus, Rstation);
                             Log.d("유소정 디비", reservedExist.toString());
                             // 예약된 버스
                             if (reservedExist > 0) {
@@ -213,7 +213,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                                        reservedDB = new ReservedDB(Rbus, RstNm);
+                                        reservedDB = new ReservedDB(Rbus, Rstation);
                                         taYuDatabase.reservedDAO().insert(reservedDB);
                                         Log.d("StationHolder : ", "INSERT reserved_table!");
                                     }
