@@ -12,4 +12,14 @@
     <!--AlertDialog-->
     <color name="NegativeButtonStyle">#f00</color>
     <color name="PositiveButtonStyle">#00f</color>
+
+    <!--커스텀 컬러-->
+    <color name="customColor1">#194350</color>
+    <color name="customColor2">#FF8882</color>
+    <color name="customColor3">#FFC2B4</color>
+    <color name="customColor4">#9DBEB9</color>
+
+    <!--menu_selector_color.xml bottomNavigation Menu color-->
+    <color name="customColor5">#FB9A66</color>
+    <color name="customColor6">#FFE9E4</color>
 </resources>

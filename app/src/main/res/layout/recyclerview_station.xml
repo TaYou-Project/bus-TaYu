@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_station"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="5sp"
-    android:layout_marginEnd="5sp"
-    android:layout_marginBottom="15sp"
-    android:background="@drawable/borderline"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/border_inside"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,9 +20,9 @@
             android:id="@+id/station_rtNm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8sp"
-            android:layout_marginTop="8sp"
-            android:layout_marginEnd="8sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:text="rtNm 노선명" />
@@ -44,8 +43,8 @@
         android:id="@+id/station_adirection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8sp"
-        android:layout_marginEnd="8sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:textSize="14sp"
         tools:text="arirection" />
 
@@ -54,8 +53,8 @@
         android:id="@+id/station_stationName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8sp"
-        android:layout_marginEnd="8sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         tools:text="stationName" />
 
     <!--정류소 번호 디비에 넣기 위해 recyclerView에 넣고, StationHolder에서 숨김처리 : 화면에 나오지 않음-->
@@ -63,14 +62,14 @@
         android:id="@+id/station_stationNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8sp"
-        android:layout_marginEnd="8sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         tools:text="stationNum" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal">
 
         <Button

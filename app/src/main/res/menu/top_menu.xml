@@ -9,6 +9,7 @@
         android:id="@+id/menu_notification"
         android:name="@string/title_notification"
         android:title="@string/title_notification"
+        android:iconTint="@color/black"
         android:icon="@drawable/ic_baseline_notifications_none_24"
         app:showAsAction="always"
         />

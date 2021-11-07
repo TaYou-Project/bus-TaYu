@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_liked"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@drawable/borderline"
+    android:background="@drawable/border_inside"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -33,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/liked_Btn"
-            android:layout_toEndOf="@id/liked_stationName"
             android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/liked_stationName"
             android:textSize="15sp"
             tools:text="[ 정류소 번호 ]" />
 
@@ -44,8 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/liked_Btn"
-            android:layout_toEndOf="@id/liked_stationNum"
             android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/liked_stationNum"
             android:textSize="20sp"
             tools:text="rtNm 버스명" />
 
@@ -54,7 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:background="@drawable/button_custom1"
             android:minWidth="10dp"
+            android:padding="10dp"
             android:text="@string/liked_Btn" />
 
     </RelativeLayout>
