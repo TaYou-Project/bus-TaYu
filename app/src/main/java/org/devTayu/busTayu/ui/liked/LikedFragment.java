@@ -2,11 +2,9 @@ package org.devTayu.busTayu.ui.liked;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,7 +17,6 @@ import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.adapter.LikedAdapter;
 import org.devTayu.busTayu.database.TaYuDatabase;
 import org.devTayu.busTayu.model.LikedDB;
-import org.devTayu.busTayu.ui.station.LikedAPI;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -31,9 +28,6 @@ public class LikedFragment extends Fragment {
     private LikedAdapter mAdpater;
     private List<LikedDB> mDatas;
     private TaYuDatabase db;
-    private LikedDB likedDB;
-    private TextView mResultTextView;
-    LikedAPI likedAPI;
 
     @Override
     public void onAttach(@NotNull Context context) {
@@ -46,14 +40,9 @@ public class LikedFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                // likedAPI = new LikedAPI();
                 try {
-                    // mDatas = likedAPI.liked_arsId("15172", "양천04");
-                    // 데이터 추가
                     mDatas = new ArrayList<>();
                     // mDatas.add(new LikedDB("버스 번호", "[ 정류장 번호 ]", "정류장 명"));
-
-                    Log.d("유소정 bindList ", "LikedFragment : recyclerView: " + mDatas.size());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -79,10 +68,10 @@ public class LikedFragment extends Fragment {
                 // mResultTextView.setText(dataList.toString());
                 mDatas.addAll(dataList);
                 /*
-                mDatas.addAll(dataList); 와 같음
-                for (int i = 0; i < dataList.size(); i++) {
-                    mDatas.add(dataList.get(i));
-                }
+                    mDatas.addAll(dataList); 와 같음
+                    for (int i = 0; i < dataList.size(); i++) {
+                        mDatas.add(dataList.get(i));
+                    }
                 */
             }
         });
