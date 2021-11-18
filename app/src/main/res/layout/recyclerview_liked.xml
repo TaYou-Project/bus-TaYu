@@ -11,17 +11,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        tools:ignore="UselessParent">
+        android:layout_margin="10dp">
 
         <!--정류소 명-->
         <TextView
             android:id="@+id/liked_stationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/liked_Btn"
-            android:layout_alignParentStart="true"
+            android:layout_margin="8dp"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="정류소 명" />
@@ -31,7 +28,7 @@
             android:id="@+id/liked_stationNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/liked_Btn"
+            android:layout_alignBaseline="@+id/liked_stationName"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/liked_stationName"
             android:textSize="15sp"
@@ -42,9 +39,9 @@
             android:id="@+id/liked_rtNm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/liked_Btn"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/liked_stationNum"
+            android:layout_below="@id/liked_stationName"
+            android:layout_margin="8dp"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
             tools:text="rtNm 버스명" />
 
@@ -53,11 +50,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/button_custom1"
-            android:minWidth="10dp"
-            android:padding="10dp"
+            android:layout_centerVertical="true"
             android:text="@string/liked_Btn" />
 
+        <!--android:background="@drawable/button_custom1"-->
     </RelativeLayout>
 
 </LinearLayout>

@@ -4,30 +4,21 @@
     android:id="@+id/search_stationInfo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginEnd="5dp"
-    android:layout_marginBottom="15dp"
+    android:layout_margin="10dp"
     android:background="@drawable/border_inside"
     android:orientation="vertical">
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
+        android:layout_margin="10dp">
 
         <TextView
             android:id="@+id/search_stationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             tools:text="@string/search_stationName" />
 
@@ -35,27 +26,18 @@
             android:id="@+id/search_stationNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textSize="18sp"
+            android:layout_alignBottom="@id/search_stationName"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/search_stationName"
+            android:textSize="15sp"
             tools:text="@string/search_stationNumber" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/search_stationWay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_below="@+id/search_stationName"
             android:textSize="18sp"
             tools:text="@string/search_stationWay" />
 
@@ -63,8 +45,8 @@
             android:id="@+id/search_xCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_below="@+id/search_stationWay"
+            android:layout_margin="8dp"
             android:textSize="18sp"
             tools:text="xCode" />
 
@@ -72,18 +54,20 @@
             android:id="@+id/search_yCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_below="@+id/search_stationWay"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@id/search_xCode"
             android:textSize="18sp"
             tools:text="yCode" />
 
         <Button
             android:id="@+id/search_btn_more"
-            android:layout_width="65dp"
-            android:layout_height="40dp"
-            android:minWidth="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:text="@string/search_btn" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

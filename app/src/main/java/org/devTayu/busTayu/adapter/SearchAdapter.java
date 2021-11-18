@@ -52,10 +52,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchHolder> {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         Search data = mItemList.get(position);
-
         searchHolder.stationName.setText(data.getStop_nm());
         searchHolder.stationNumber.setText(data.getStop_no());
         // 파베에 올린 데이터로는 방면 표시 불가라 한번 더 거쳐서 가져와야 함 searchHolder.stationWay.setText(data.());
+        searchHolder.stationWay.setText("방면정보(: 추가예정)");
         searchHolder.xCode.setText(data.getXcode());
         searchHolder.yCode.setText(data.getYcode());
     }

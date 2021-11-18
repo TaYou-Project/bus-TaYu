@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
         <!--노선명-->
@@ -30,7 +29,7 @@
             android:id="@+id/station_adirection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/station_rtNm"
+            android:layout_alignTop="@id/station_rtNm"
             android:layout_margin="8dp"
             android:layout_toEndOf="@id/station_rtNm"
             android:textSize="14sp"

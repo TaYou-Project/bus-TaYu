@@ -25,7 +25,7 @@
     <string name="reserved_floatingBtn">시간 새로고침</string>
     <string name="reserved_btn">예약취소</string>
     <string name="search_stationWay">방면</string>
-    <string name="search_stationNumber">정류장 번호</string>
+    <string name="search_stationNumber">[정류장 번호]</string>
     <string name="search_stationName">정류장 명</string>
     <string name="station_moreBtn">상세보기</string>
     <string name="bus_data1Btn">첫 번째 버스 예약</string>
