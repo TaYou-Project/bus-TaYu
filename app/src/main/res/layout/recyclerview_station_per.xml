@@ -4,49 +4,88 @@
     android:id="@+id/item_station"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="15dp"
     android:background="@drawable/border_inside"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        tools:ignore="UselessParent">
+        android:orientation="horizontal">
 
         <!--노선명-->
         <TextView
             android:id="@+id/station_rtNm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:text="rtNm 노선명" />
 
-        <!--버스 방면-->
-        <TextView
-            android:id="@+id/station_adirection"
+        <!--BusActivity-->
+        <Button
+            android:id="@+id/station_moreBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/station_rtNm"
             android:layout_margin="8dp"
-            android:layout_toEndOf="@id/station_rtNm"
-            android:textSize="14sp"
-            tools:text="arirection" />
+            android:minWidth="15dp"
+            android:minHeight="15dp"
+            android:text="@string/station_moreBtn" />
+    </LinearLayout>
+
+    <!--버스 방면-->
+    <TextView
+        android:id="@+id/station_adirection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="14sp"
+        tools:text="arirection" />
+
+    <!-- 정류소 이름(한글) Alertdialog에 recyclerView에 넣고, StationHolder에서 숨김처리 : 화면에 나오지 않음-->
+    <TextView
+        android:id="@+id/station_stationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:text="stationName" />
+
+    <!--정류소 번호 디비에 넣기 위해 recyclerView에 넣고, StationHolder에서 숨김처리 : 화면에 나오지 않음-->
+    <TextView
+        android:id="@+id/station_stationNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:text="stationNum" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/station_likeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:minWidth="10dp"
+            android:text="@string/station_likeBtn" />
 
         <LinearLayout
-            android:id="@+id/station_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/station_rtNm"
-            android:layout_margin="8dp"
             android:orientation="vertical">
-
             <!-- 첫번째 버스 -->
-            <RelativeLayout
-                android:id="@+id/station_firstBus"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -63,16 +102,14 @@
                     android:id="@+id/station_arrmsgSec1Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_marginStart="8dp"
                     android:minWidth="15dp"
                     android:minHeight="15dp"
                     android:text="@string/station_rserveBtn" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <!-- 두번째 버스 -->
-            <RelativeLayout
-                android:id="@+id/station_secondBus"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -89,50 +126,14 @@
                     android:id="@+id/station_arrmsgSec2Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_marginStart="8dp"
                     android:minWidth="15dp"
                     android:minHeight="15dp"
                     android:text="@string/station_rserveBtn" />
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/station_likeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/station_linear"
-            android:text="@string/station_likeBtn" />
-
-        <!--BusActivity-->
-        <Button
-            android:id="@+id/station_moreBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/station_linear"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@id/station_likeBtn"
-            android:text="@string/station_moreBtn" />
-
-        <!-- 정류소 이름(한글) Alertdialog에 recyclerView에 넣고, StationHolder에서 숨김처리 : 화면에 나오지 않음-->
-        <TextView
-            android:id="@+id/station_stationName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/station_moreBtn"
-            tools:text="stationName" />
-
-        <!--정류소 번호 디비에 넣기 위해 recyclerView에 넣고, StationHolder에서 숨김처리 : 화면에 나오지 않음-->
-        <TextView
-            android:id="@+id/station_stationNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/station_likeBtn"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/station_stationName"
-            tools:text="stationNum" />
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>
