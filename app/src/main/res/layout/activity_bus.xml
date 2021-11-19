@@ -25,14 +25,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+            <Button
+                android:id="@+id/bus_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp"
+                android:layout_alignBaseline="@+id/btn_back"
+                android:padding="10dp"
+                android:text="@string/bus_likeBtn" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/bus_BusName"

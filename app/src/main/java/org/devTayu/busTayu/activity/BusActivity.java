@@ -2,9 +2,11 @@ package org.devTayu.busTayu.activity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +22,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.database.TaYuDatabase;
 import org.devTayu.busTayu.model.Liked;
+import org.devTayu.busTayu.model.LikedDB;
 import org.devTayu.busTayu.ui.station.LikedAPI;
 
 import java.util.ArrayList;
@@ -29,6 +33,9 @@ public class BusActivity extends AppCompatActivity {
 
     ArrayList<Liked> mDatas;
     private LikedAPI likedAPI;
+
+    private TaYuDatabase taYuDatabase;
+    private LikedDB likedDB;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -74,6 +81,51 @@ public class BusActivity extends AppCompatActivity {
         };
         Handler mHandler = new Handler();
         mHandler.postDelayed(mRunnable, 1000);
+
+        // 즐겨찾기 해제 버튼
+        Button likeBtn = findViewById(R.id.bus_Btn);
+        likeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Context context = v.getContext();
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            // SQLite
+                            taYuDatabase = TaYuDatabase.getDatabase(context);
+
+                            Integer likedExist = taYuDatabase.likedDAO().getCountLiked(bus_name, station_num);
+                            // 즐겨찾기에 DELETE
+                            if (likedExist > 0) {
+                                likedDB = new LikedDB(bus_name, station_num);
+                                taYuDatabase.likedDAO().deleteLiked(bus_name, station_num);
+                                Log.d("StationHolder : ", "DELETE liked_table!");
+
+                                Looper.prepare();
+                                Toast.makeText(context.getApplicationContext(), "즐겨찾기 해제.", Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+
+                            }
+                            // 즐겨찾기에 INSERT
+                            else {
+                                likedDB = new LikedDB(bus_name, station_num, station_name);
+                                taYuDatabase.likedDAO().insertLiked(likedDB);
+                                Log.d("StationHolder : ", "INSERT liked_table!");
+
+                                Looper.prepare();
+                                Toast.makeText(context.getApplicationContext(), "즐겨찾기 등록.", Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
 
         // 쓸어서 새로고침 : swipeRefreshLayout
         SwipeRefreshLayout mSwipeRefreshLayout = findViewById(R.id.bus_SwipeLayout);
@@ -222,10 +274,13 @@ public class BusActivity extends AppCompatActivity {
 
         /*버스 : if 운행종료, 일반버스, 폐지 than button.setEnabled */
         /* "곧 도착" 일경우 예약 가능하게 할지 말지 */
+        /* "버스 정보 없음" 이건 제보나 직접 확인해서 왜 정보가 없는지, 해당 버스는 종류가 뭔지 확인 해서 가능하게 풀어주는 방법? */
         Button data1Btn = findViewById(R.id.bus_data1Btn);
         if (mDatas.get(0).getArrmsgSec1().equals("첫 번째 버스 운행종료")) {
             data1Btn.setEnabled(false);
         } else if (mDatas.get(0).getBusType1().equals("일반버스")) {
+            data1Btn.setEnabled(false);
+        } else if (mDatas.get(0).getBusType1().equals("버스 정보 없음")) {
             data1Btn.setEnabled(false);
         } else if (mDatas.get(0).getRoutType().equals("폐지 노선")) {
             data1Btn.setEnabled(false);
@@ -234,6 +289,8 @@ public class BusActivity extends AppCompatActivity {
         if (mDatas.get(0).getArrmsgSec2().equals("두 번째 버스 운행종료")) {
             data2Btn.setEnabled(false);
         } else if (mDatas.get(0).getBusType2().equals("일반버스")) {
+            data2Btn.setEnabled(false);
+        } else if (mDatas.get(0).getBusType2().equals("버스 정보 없음")) {
             data2Btn.setEnabled(false);
         } else if (mDatas.get(0).getRoutType().equals("폐지 노선")) {
             data2Btn.setEnabled(false);

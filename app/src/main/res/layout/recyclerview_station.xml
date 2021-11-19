@@ -40,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/station_rtNm"
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:orientation="vertical">
 
             <!-- 첫번째 버스 -->
@@ -55,6 +56,7 @@
                     android:id="@+id/station_arrmsgSec1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/station_arrmsgSec1Btn"
                     android:textSize="16sp"
                     tools:text="arrmsgSec1" />
 
@@ -81,6 +83,7 @@
                     android:id="@+id/station_arrmsgSec2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/station_arrmsgSec2Btn"
                     android:textSize="16sp"
                     tools:text="arrmsgSec2" />
 
