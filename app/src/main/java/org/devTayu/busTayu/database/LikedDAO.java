@@ -33,7 +33,7 @@ public interface LikedDAO {
     @Query("SELECT COUNT(*) FROM liked_table WHERE busNumber IN(:busNumber) AND stationNumber IN(:stationNumber)")
     Integer getCountLiked(String busNumber, String stationNumber);
 
-    @Query("SELECT * FROM liked_table")
+    @Query("SELECT * FROM liked_table ORDER BY uid DESC")
     //abstract LiveData<ArrayList<LikedDB>> getAll(); //LiveData
     public LiveData<List<LikedDB>> getAll();
     // LiveData<List<LikedDB>> getAll(List<LikedDB> likedDBList);

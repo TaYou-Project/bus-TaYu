@@ -63,11 +63,11 @@ public class StationHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 final int position = getAdapterPosition();
-                Context context = v.getContext();
-
+                // Context context = v.getContext();
                 if (position != RecyclerView.NO_POSITION) {
                     stationClickListener.onItemClick(position);
-                    Toast.makeText(context, position + " : itemView", Toast.LENGTH_SHORT).show();
+                    Log.d("StationHolder Recyclerview", position + " : itemView");
+                    // Toast.makeText(context, position + " : itemView", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -88,7 +88,6 @@ public class StationHolder extends RecyclerView.ViewHolder {
 
         // station_likeBtn : 즐겨찾기 : click
         itemView.findViewById(R.id.station_likeBtn).setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 final int position = getAdapterPosition();
@@ -177,7 +176,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
                             // 예약된 버스
                             if (reservedExist > 0) {
                                 Looper.prepare();
-                                Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 입니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 이거나, 예약된 버스가 있습니다. 한번에 하나의 예약만 가능합니다", Toast.LENGTH_LONG).show();
                                 Looper.loop();
                             }
                             // 예약 시도
@@ -213,7 +212,8 @@ public class StationHolder extends RecyclerView.ViewHolder {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                                        reservedDB = new ReservedDB(Rbus, Rstation);
+                                        // state 칼럼 : R(예약하면 디폴트로 들어감), D(예약취소-사용자), Y(탑승-버스기사), N(미탑승-버스기사), Z(기사님이 잊었거나, 기타 다른 이유)
+                                        reservedDB = new ReservedDB(Rbus, Rstation, "R");
                                         taYuDatabase.reservedDAO().insert(reservedDB);
                                         Log.d("StationHolder : ", "INSERT reserved_table!");
                                     }
@@ -250,46 +250,75 @@ public class StationHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 final int position = getAdapterPosition();
                 Context context = v.getContext();
-                Toast.makeText(context, position + " : 두 번째 버스", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(context, position + " : 두 번째 버스", Toast.LENGTH_SHORT).show();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                // 도착예정시간 : 현재시간 + 남은시간 추가
-                builder.setTitle("버스 예약").setMessage(
-                        Html.fromHtml("정류소 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
-                                        "버스 : " + "<b>" + rtNm.getText().toString() + "</b>" + "<br>" +
-                                        "방면 : " + "<b>" + adirection.getText().toString() + "</b>" + "<br>" +
-                                        "남은시간 : " + "<b>" + arrmsgSec2.getText().toString() + "</b>" + "<br>" + "<br>" +
-                                        "<b>예약하시겠습니까?</b>"
-                                , Html.FROM_HTML_MODE_LEGACY)
-                );
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            // SQLite
+                            taYuDatabase = TaYuDatabase.getDatabase(context);
 
-                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(context.getApplicationContext(), "취소 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                /*
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        Toast.makeText(context.getApplicationContext(), "Cancel Click", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                */
-                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_LONG).show();
-                    }
-                });
+                            // 도착예정시간 : 현재시간 + 남은시간 추가
+                            String Rbus = rtNm.getText().toString();
+                            String Rstation = stationNum.getText().toString();
+                            String RAdirection = adirection.getText().toString();
+                            String RarrmsgSec1 = arrmsgSec1.getText().toString();
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved(Rbus, Rstation);
+                            Log.d("유소정 디비", reservedExist.toString());
+                            // 예약된 버스
+                            if (reservedExist > 0) {
+                                Looper.prepare();
+                                Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 이거나, 예약된 버스가 있습니다. 한번에 하나의 예약만 가능합니다", Toast.LENGTH_LONG).show();
+                                Looper.loop();
+                            }
+                            // 예약 시도
+                            else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                                builder.setTitle("버스 예약").setMessage(
+                                        Html.fromHtml("정류소 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
+                                                        "버스 : " + "<b>" + rtNm.getText().toString() + "</b>" + "<br>" +
+                                                        "방면 : " + "<b>" + adirection.getText().toString() + "</b>" + "<br>" +
+                                                        "남은시간 : " + "<b>" + arrmsgSec1.getText().toString() + "</b>" + "<br>" + "<br>" +
+                                                        "<b>예약하시겠습니까?</b>"
+                                                , Html.FROM_HTML_MODE_LEGACY)
+                                );
+
+                                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context.getApplicationContext(), "취소 되었습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
+
+                                        // state 칼럼 : R(예약하면 디폴트로 들어감), D(예약취소-사용자), Y(탑승-버스기사), N(미탑승-버스기사)
+                                        reservedDB = new ReservedDB(Rbus, Rstation, "R");
+                                        taYuDatabase.reservedDAO().insert(reservedDB);
+                                        Log.d("StationHolder : ", "INSERT reserved_table!");
+                                    }
+                                });
+                                Looper.prepare();
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                                Looper.loop();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }).start();
             }
         });
 
+        // 상세보기 버튼 : busActivity 이동
         itemView.findViewById(R.id.station_moreBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

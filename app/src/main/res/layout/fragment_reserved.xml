@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="20dp"
     android:layout_marginBottom="15dp"
     tools:context=".ui.reserved.ReservedFragment">
 
@@ -22,18 +22,89 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_autorenew_24" />
 
-    <!-- recycleview_reserved.xml -->
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/reserved_SwipeLayout"
+    <RelativeLayout
+        android:id="@+id/reserve_reservedInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_inside"
+        tools:ignore="MissingConstraints">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_reserved"
+        <RelativeLayout
+            android:id="@+id/reserved"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="70dp" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            tools:ignore="UselessParent">
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <TextView
+                android:id="@+id/reserved_leastTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="남은 시간" />
+
+            <RelativeLayout
+                android:id="@+id/reserved_rLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reserved_leastTime">
+
+                <TextView
+                    android:id="@+id/reserved_stationName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="정류장 명" />
+
+                <TextView
+                    android:id="@+id/reserved_stationNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/reserved_stationName"
+                    android:textSize="18sp"
+                    tools:text="[ 정류장 번호 ]" />
+
+                <TextView
+                    android:id="@+id/reserved_busNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/reserved_stationName"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="UnknownId"
+                    tools:text="버스 명" />
+
+                <TextView
+                    android:id="@+id/reserved_adirection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/reserved_stationName"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@+id/reserved_busNum"
+                    android:textSize="18sp"
+                    tools:text="버스 방면" />
+
+                <Button
+                    android:id="@+id/reserved_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/reserved_btn" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
