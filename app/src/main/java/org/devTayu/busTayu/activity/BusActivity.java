@@ -25,6 +25,7 @@ import org.devTayu.busTayu.R;
 import org.devTayu.busTayu.database.TaYuDatabase;
 import org.devTayu.busTayu.model.Liked;
 import org.devTayu.busTayu.model.LikedDB;
+import org.devTayu.busTayu.model.ReservedDB;
 import org.devTayu.busTayu.ui.station.LikedAPI;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class BusActivity extends AppCompatActivity {
 
     private TaYuDatabase taYuDatabase;
     private LikedDB likedDB;
+    private ReservedDB reservedDB;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -196,75 +198,156 @@ public class BusActivity extends AppCompatActivity {
         data1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context context = v.getContext();
 
-                Toast.makeText(BusActivity.this, "첫 번째 버스 예약", Toast.LENGTH_SHORT).show();
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(BusActivity.this);
-                // 도착예정시간 : 현재시간 + 남은시간 추가
-                builder.setTitle("버스 예약").setMessage(
-                        Html.fromHtml("정류소 : " + "<b>" + mDatas.get(0).getStNm() + "</b>" + "<br>" +
-                                        "버스 : " + "<b>" + mDatas.get(0).getRtNm() + "</b>" + "<br>" +
-                                        "방면 : " + "<b>" + mDatas.get(0).getAdirection() + "</b>" + "<br>" +
-                                        "남은시간 : " + "<b>" + mDatas.get(0).getArrmsgSec1() + "</b>" + "<br>" + "<br>" +
-                                        "<b>예약하시겠습니까?</b>"
-                                , Html.FROM_HTML_MODE_LEGACY)
-                );
-
-                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                new Thread(new Runnable() {
                     @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(BusActivity.this, "취소 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    public void run() {
+                        try {
+                            // SQLite
+                            taYuDatabase = TaYuDatabase.getDatabase(context);
 
-                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(BusActivity.this, "예약 되었습니다.", Toast.LENGTH_LONG).show();
-                    }
-                });
+                            // 예약된 버스
+                            Integer reservedBusExist = taYuDatabase.reservedDAO().getCountReservedBus(bus_num, station_num);
+                            // 예약 존재 여부
+                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved();
+                            Log.d("유소정 디비", reservedExist.toString());
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                            // 예약된 버스가 있는지 확인
+                            if (reservedExist > 0) {
+                                // 해당 버스가 이미 예약된 버스
+                                if (reservedBusExist > 0) {
+                                    Looper.prepare();
+                                    Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 입니다. 예약 탭에서 확인해 주세요", Toast.LENGTH_LONG).show();
+                                    Looper.loop();
+                                } else {
+                                    Looper.prepare();
+                                    Toast.makeText(context.getApplicationContext(), "예약된 다른 버스가 있습니다. 한번에 하나의 예약만 가능합니다", Toast.LENGTH_LONG).show();
+                                    Looper.loop();
+                                }
+                            }
+                            // 예약 시도
+                            else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                                builder.setTitle("버스 예약").setMessage(
+                                        Html.fromHtml("정류소 : " + "<b>" + mDatas.get(0).getStNm() + "</b>" + "<br>" +
+                                                        "버스 : " + "<b>" + mDatas.get(0).getRtNm() + "</b>" + "<br>" +
+                                                        "방면 : " + "<b>" + mDatas.get(0).getAdirection() + "</b>" + "<br>" +
+                                                        "남은시간 : " + "<b>" + mDatas.get(0).getArrmsgSec1() + "</b>" + "<br>" + "<br>" +
+                                                        "<b>예약하시겠습니까?</b>"
+                                                , Html.FROM_HTML_MODE_LEGACY)
+                                );
+
+                                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context.getApplicationContext(), "취소 되었습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
+
+                                        // state 칼럼 : R(예약하면 디폴트로 들어감), D(예약취소-사용자), Y(탑승-버스기사), N(미탑승-버스기사), Z(기사님이 잊었거나, 기타 다른 이유)
+                                        reservedDB = new ReservedDB(bus_num, station_num, "R");
+                                        taYuDatabase.reservedDAO().insert(reservedDB);
+                                        Log.d("StationHolder : ", "INSERT reserved_table!");
+                                    }
+                                });
+                                Looper.prepare();
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                                Looper.loop();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }).start();
             }
         });
-
 
         // 두 번째 버스 예약
         Button data2Btn = findViewById(R.id.bus_data2Btn);
         data2Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context context = v.getContext();
+                // Toast.makeText(context, position + " : 두 번째 버스", Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(BusActivity.this, "두 번째 버스 예약", Toast.LENGTH_SHORT).show();
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(BusActivity.this);
-                // 도착예정시간 : 현재시간 + 남은시간 추가
-                builder.setTitle("버스 예약").setMessage(
-                        Html.fromHtml("정류소 : " + "<b>" + mDatas.get(0).getStNm() + "</b>" + "<br>" +
-                                        "버스 : " + "<b>" + mDatas.get(0).getRtNm() + "</b>" + "<br>" +
-                                        "방면 : " + "<b>" + mDatas.get(0).getAdirection() + "</b>" + "<br>" +
-                                        "남은시간 : " + "<b>" + mDatas.get(0).getArrmsgSec2() + "</b>" + "<br>" + "<br>" +
-                                        "<b>예약하시겠습니까?</b>"
-                                , Html.FROM_HTML_MODE_LEGACY)
-                );
-
-                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                new Thread(new Runnable() {
                     @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(BusActivity.this, "취소 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    public void run() {
+                        try {
+                            // SQLite
+                            taYuDatabase = TaYuDatabase.getDatabase(context);
 
-                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(BusActivity.this, "예약 되었습니다.", Toast.LENGTH_LONG).show();
-                    }
-                });
+                            // 예약된 버스
+                            Integer reservedBusExist = taYuDatabase.reservedDAO().getCountReservedBus(bus_num, station_num);
+                            // 예약 존재 여부
+                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved();
+                            Log.d("유소정 디비", reservedExist.toString());
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                            // 예약된 버스가 있는지 확인
+                            if (reservedExist > 0) {
+                                // 해당 버스가 이미 예약된 버스
+                                if (reservedBusExist > 0) {
+                                    Looper.prepare();
+                                    Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 입니다. 예약 탭에서 확인해 주세요", Toast.LENGTH_LONG).show();
+                                    Looper.loop();
+                                } else {
+                                    Looper.prepare();
+                                    Toast.makeText(context.getApplicationContext(), "예약된 다른 버스가 있습니다. 한번에 하나의 예약만 가능합니다", Toast.LENGTH_LONG).show();
+                                    Looper.loop();
+                                }
+                            }
+                            // 예약 시도
+                            else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                                // 도착예정시간 : 현재시간 + 남은시간 추가
+                                builder.setTitle("버스 예약").setMessage(
+                                        Html.fromHtml("정류소 : " + "<b>" + mDatas.get(0).getStNm() + "</b>" + "<br>" +
+                                                        "버스 : " + "<b>" + mDatas.get(0).getRtNm() + "</b>" + "<br>" +
+                                                        "방면 : " + "<b>" + mDatas.get(0).getAdirection() + "</b>" + "<br>" +
+                                                        "남은시간 : " + "<b>" + mDatas.get(0).getArrmsgSec2() + "</b>" + "<br>" + "<br>" +
+                                                        "<b>예약하시겠습니까?</b>"
+                                                , Html.FROM_HTML_MODE_LEGACY)
+                                );
+
+                                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context.getApplicationContext(), "취소 되었습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                builder.setNeutralButton("예약", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
+
+                                        // state 칼럼 : R(예약하면 디폴트로 들어감), D(예약취소-사용자), Y(탑승-버스기사), N(미탑승-버스기사), Z(기사님이 잊었거나, 기타 다른 이유)
+                                        reservedDB = new ReservedDB(bus_num, station_num, "R");
+                                        taYuDatabase.reservedDAO().insert(reservedDB);
+                                        Log.d("StationHolder : ", "INSERT reserved_table!");
+                                    }
+                                });
+                                Looper.prepare();
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                                Looper.loop();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }).start();
             }
         });
     }

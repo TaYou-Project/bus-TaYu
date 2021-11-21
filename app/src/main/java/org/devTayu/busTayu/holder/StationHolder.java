@@ -171,13 +171,24 @@ public class StationHolder extends RecyclerView.ViewHolder {
                             String RAdirection = adirection.getText().toString();
                             String RarrmsgSec1 = arrmsgSec1.getText().toString();
 
-                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved(Rbus, Rstation);
-                            Log.d("유소정 디비", reservedExist.toString());
                             // 예약된 버스
+                            Integer reservedBusExist = taYuDatabase.reservedDAO().getCountReservedBus(Rbus, Rstation);
+                            // 예약 존재 여부
+                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved();
+                            Log.d("유소정 디비", reservedExist.toString());
+
+                            // 예약된 버스가 있는지 확인
                             if (reservedExist > 0) {
-                                Looper.prepare();
-                                Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 이거나, 예약된 버스가 있습니다. 한번에 하나의 예약만 가능합니다", Toast.LENGTH_LONG).show();
-                                Looper.loop();
+                                // 해당 버스가 이미 예약된 버스
+                                if (reservedBusExist > 0) {
+                                    Looper.prepare();
+                                    Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 입니다. 예약 탭에서 확인해 주세요", Toast.LENGTH_LONG).show();
+                                    Looper.loop();
+                                } else {
+                                    Looper.prepare();
+                                    Toast.makeText(context.getApplicationContext(), "예약된 다른 버스가 있습니다. 한번에 하나의 예약만 가능합니다", Toast.LENGTH_LONG).show();
+                                    Looper.loop();
+                                }
                             }
                             // 예약 시도
                             else {
@@ -265,13 +276,25 @@ public class StationHolder extends RecyclerView.ViewHolder {
                             String RAdirection = adirection.getText().toString();
                             String RarrmsgSec1 = arrmsgSec1.getText().toString();
 
-                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved(Rbus, Rstation);
-                            Log.d("유소정 디비", reservedExist.toString());
+
                             // 예약된 버스
+                            Integer reservedBusExist = taYuDatabase.reservedDAO().getCountReservedBus(Rbus, Rstation);
+                            // 예약 존재 여부
+                            Integer reservedExist = taYuDatabase.reservedDAO().getCountReserved();
+                            Log.d("유소정 디비", reservedExist.toString());
+
+                            // 예약된 버스가 있는지 확인
                             if (reservedExist > 0) {
-                                Looper.prepare();
-                                Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 이거나, 예약된 버스가 있습니다. 한번에 하나의 예약만 가능합니다", Toast.LENGTH_LONG).show();
-                                Looper.loop();
+                                // 해당 버스가 이미 예약된 버스
+                                if (reservedBusExist > 0) {
+                                    Looper.prepare();
+                                    Toast.makeText(context.getApplicationContext(), "이미 예약된 버스 입니다. 예약 탭에서 확인해 주세요", Toast.LENGTH_LONG).show();
+                                    Looper.loop();
+                                } else {
+                                    Looper.prepare();
+                                    Toast.makeText(context.getApplicationContext(), "예약된 다른 버스가 있습니다. 한번에 하나의 예약만 가능합니다", Toast.LENGTH_LONG).show();
+                                    Looper.loop();
+                                }
                             }
                             // 예약 시도
                             else {
@@ -281,7 +304,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
                                         Html.fromHtml("정류소 : " + "<b>" + stNm.getText().toString() + "</b>" + "<br>" +
                                                         "버스 : " + "<b>" + rtNm.getText().toString() + "</b>" + "<br>" +
                                                         "방면 : " + "<b>" + adirection.getText().toString() + "</b>" + "<br>" +
-                                                        "남은시간 : " + "<b>" + arrmsgSec1.getText().toString() + "</b>" + "<br>" + "<br>" +
+                                                        "남은시간 : " + "<b>" + arrmsgSec2.getText().toString() + "</b>" + "<br>" + "<br>" +
                                                         "<b>예약하시겠습니까?</b>"
                                                 , Html.FROM_HTML_MODE_LEGACY)
                                 );
@@ -298,7 +321,7 @@ public class StationHolder extends RecyclerView.ViewHolder {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Toast.makeText(context.getApplicationContext(), "예약 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                                        // state 칼럼 : R(예약하면 디폴트로 들어감), D(예약취소-사용자), Y(탑승-버스기사), N(미탑승-버스기사)
+                                        // state 칼럼 : R(예약하면 디폴트로 들어감), D(예약취소-사용자), Y(탑승-버스기사), N(미탑승-버스기사), Z(기사님이 잊었거나, 기타 다른 이유)
                                         reservedDB = new ReservedDB(Rbus, Rstation, "R");
                                         taYuDatabase.reservedDAO().insert(reservedDB);
                                         Log.d("StationHolder : ", "INSERT reserved_table!");
