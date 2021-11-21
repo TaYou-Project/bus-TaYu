@@ -2,6 +2,7 @@ package org.devTayu.busTayu.ui.search;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.devTayu.busTayu.R;
+import org.devTayu.busTayu.activity.LoadingDialog;
 import org.devTayu.busTayu.adapter.SearchAdapter;
 import org.devTayu.busTayu.model.Search;
 
@@ -42,6 +44,17 @@ public class SearchFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_search, container, false);
+
+        // 로딩 LoadingDialog
+        final LoadingDialog loadingActivity = new LoadingDialog(getActivity());
+        loadingActivity.startLoading(getActivity());
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingActivity.dismissLoading(getActivity());
+            }
+        }, 1500);
 
         new Thread(new Runnable() {
             @Override

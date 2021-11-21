@@ -32,4 +32,5 @@
     <string name="bus_data2Btn">두 번째 버스 예약</string>
     <string name="liked_Btn">상세보기</string>
     <string name="bus_likeBtn">즐겨찾기 해제</string>
+    <string name="loading">잠시 기다려 주세요</string>
 </resources>

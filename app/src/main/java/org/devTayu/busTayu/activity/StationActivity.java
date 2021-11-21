@@ -36,6 +36,17 @@ public class StationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station);
 
+        // 로딩 LoadingDialog
+        final LoadingDialog loadingActivity = new LoadingDialog(this);
+        loadingActivity.startLoading(this);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingActivity.dismissLoading(StationActivity.this);
+            }
+        }, 1200);
+
         // 뒤로가기 버튼
         ImageButton backButton = findViewById(R.id.btn_back);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -190,9 +201,9 @@ public class StationActivity extends AppCompatActivity {
 
         Log.d("유소정", "recyclerView: " + mDatas.size());
         // 샘플 데이터
-        for (int i = 0; i < 2; i++) {
+        /*for (int i = 0; i < 2; i++) {
             mDatas.add(new Station("샘플데이터", "샘플데이터", "샘플데이터", "샘플데이터", "샘플데이터", "샘플데이터"));
-        }
+        }*/
 
         // Adapter, LayoutManager(LinerLayoutManager) 연결
         StationAdapter mAdpater = new StationAdapter(mDatas);

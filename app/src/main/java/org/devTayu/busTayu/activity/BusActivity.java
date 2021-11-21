@@ -45,6 +45,17 @@ public class BusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus);
 
+        // 로딩 LoadingDialog
+        final LoadingDialog loadingActivity = new LoadingDialog(this);
+        loadingActivity.startLoading(this);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingActivity.dismissLoading(BusActivity.this);
+            }
+        }, 1200);
+
         // 뒤로가기 버튼
         ImageButton backButton = findViewById(R.id.btn_back);
         backButton.setOnClickListener(new View.OnClickListener() {
