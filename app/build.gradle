@@ -15,6 +15,7 @@ android {
     }
     buildTypes {
         release {
+            // 프로가드 활성화 minifyEnabled false->true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -41,7 +42,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
     // Android Debug Database
-    implementation  'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-database:19.3.0'
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
