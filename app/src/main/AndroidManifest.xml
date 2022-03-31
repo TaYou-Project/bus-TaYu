@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!--화면 계속 켜져있도록 - 개발 때 불편해서 넣음-->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="false"
@@ -41,6 +41,13 @@
 
         <activity android:name="org.devTayu.busTayu.activity.StationActivity" />
         <activity android:name="org.devTayu.busTayu.activity.BusActivity" />
+
+        <service
+            android:name="org.devTayu.busTayu.FCM.FirebaseMessaging">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
 
     </application>
 

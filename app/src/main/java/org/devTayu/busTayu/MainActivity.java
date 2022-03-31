@@ -1,13 +1,17 @@
 package org.devTayu.busTayu;
 
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,8 +23,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.amitshekhar.DebugDB;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.devTayu.busTayu.activity.BusActivity;
 import org.devTayu.busTayu.activity.StationActivity;
@@ -59,6 +66,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          D/DebugDB: Open http://192.168.0.11:8080 in your browser 이런 식
         */
         DebugDB.getAddressLog();
+
+
+        // FCM : 현재 기기 토큰 값
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        Log.d("Fetching FCM registration token success", token);
+
+                        // Log and toast
+                        /*String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d(TAG, msg);
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();*/
+                    }
+                });
+
     }
 
     //해시키

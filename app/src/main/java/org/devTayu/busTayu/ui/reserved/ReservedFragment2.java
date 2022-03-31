@@ -68,8 +68,10 @@ public class ReservedFragment2 extends Fragment {
                     // System.out.println(dataList.get(i).getStationNumber() + dataList.get(i).getBusNumber() + " stackList 저장");
 
                     Reserved temp = new Reserved();
-                    temp.setStackBus(dataList.get(i).getBusNumber());
-                    temp.setStackStation(dataList.get(i).getStationNumber());
+                    /*
+                        temp.setStackBus(dataList.get(i).getBusNumber());
+                        temp.setStackStation(dataList.get(i).getStationNumber());
+                    */
                     stackList.add(temp);
                 }
 
@@ -89,7 +91,11 @@ public class ReservedFragment2 extends Fragment {
                 // stackList에 담았던 것 확인차 출력 시키기
                 for (Reserved i : stackList) {
                     // mDatas = new ArrayList<>();
-                    System.out.println(i.getStackStation() + i.getStackBus() + " stackList 출력");
+
+                    /*
+                        System.out.println(i.getStackStation() + i.getStackBus() + " stackList 출력");
+                    */
+
                     // call2(i.getStackStation(), i.getStackBus(), root);
 
                     // tempList = new ArrayList<>();
